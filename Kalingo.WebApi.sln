@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalingo.WebApi", "Kalingo.WebApi\Kalingo.WebApi.csproj", "{D2198E08-9313-4E73-836E-459473AA90C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalingo.WebApi.Domain", "Kalingo.WebApi.Domain\Kalingo.WebApi.Domain.csproj", "{4A299064-A72E-4CAE-B3BC-7C1228A17489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalingo.WebApi.AcceptanceTests", "Kalingo.WebApi.AcceptanceTests\Kalingo.WebApi.AcceptanceTests.csproj", "{982CFAE5-A3B0-49D1-A656-EA55FFF298E4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{9C747BF6-FA54-42A6-AE6B-0CC8CF7B5223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalingo.WebApi.UnitTests", "Kalingo.WebApi.UnitTests\Kalingo.WebApi.UnitTests.csproj", "{92902BEC-ABEB-41D6-8E06-165B0EFBE01B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kalingo.Games.Contract", "Kalingo.Games.Contract\Kalingo.Games.Contract.csproj", "{8CDCF667-4738-4C11-A1FA-206A34141A02}"
+EndProject
+Project("{CC5FD16D-436D-48AD-A40C-5A424C6E3E79}") = "KalingoCloudService", "KalingoCloudService\KalingoCloudService.ccproj", "{B552387B-5844-4C00-A77A-C1480B218BE5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2198E08-9313-4E73-836E-459473AA90C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2198E08-9313-4E73-836E-459473AA90C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2198E08-9313-4E73-836E-459473AA90C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2198E08-9313-4E73-836E-459473AA90C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A299064-A72E-4CAE-B3BC-7C1228A17489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A299064-A72E-4CAE-B3BC-7C1228A17489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A299064-A72E-4CAE-B3BC-7C1228A17489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A299064-A72E-4CAE-B3BC-7C1228A17489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982CFAE5-A3B0-49D1-A656-EA55FFF298E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982CFAE5-A3B0-49D1-A656-EA55FFF298E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982CFAE5-A3B0-49D1-A656-EA55FFF298E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982CFAE5-A3B0-49D1-A656-EA55FFF298E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92902BEC-ABEB-41D6-8E06-165B0EFBE01B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92902BEC-ABEB-41D6-8E06-165B0EFBE01B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92902BEC-ABEB-41D6-8E06-165B0EFBE01B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92902BEC-ABEB-41D6-8E06-165B0EFBE01B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDCF667-4738-4C11-A1FA-206A34141A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDCF667-4738-4C11-A1FA-206A34141A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDCF667-4738-4C11-A1FA-206A34141A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDCF667-4738-4C11-A1FA-206A34141A02}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B552387B-5844-4C00-A77A-C1480B218BE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B552387B-5844-4C00-A77A-C1480B218BE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B552387B-5844-4C00-A77A-C1480B218BE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B552387B-5844-4C00-A77A-C1480B218BE5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{982CFAE5-A3B0-49D1-A656-EA55FFF298E4} = {9C747BF6-FA54-42A6-AE6B-0CC8CF7B5223}
+		{92902BEC-ABEB-41D6-8E06-165B0EFBE01B} = {9C747BF6-FA54-42A6-AE6B-0CC8CF7B5223}
+		{FFC3A3A3-DBB7-45BD-9069-94D59908BBA5} = {9C747BF6-FA54-42A6-AE6B-0CC8CF7B5223}
+	EndGlobalSection
+EndGlobal
