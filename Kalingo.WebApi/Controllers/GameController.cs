@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Ladders;
@@ -27,9 +28,17 @@ namespace Kalingo.WebApi.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> Join(int gameTypeId, int userId)
         {
-            var gameId = await _processor.ExecuteNewGame(gameTypeId, userId);
+            try
+            {
+                var gameId = await _processor.ExecuteNewGame(gameTypeId, userId);
 
-            return Ok(gameId); 
+                return Ok(gameId);
+            }
+            catch (Exception e)
+            {
+                return Ok(e);
+            }
+            
         }
 
         /// <summary>
@@ -41,8 +50,15 @@ namespace Kalingo.WebApi.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> Submit([FromBody] MinesBoomArgs gameArgs)
         {
-            var reuslt = (MinesBoomGameResult)await _processor.ExecuteSelection(gameArgs);
-            return Ok(reuslt);
+            try
+            {
+                var reuslt = (MinesBoomGameResult)await _processor.ExecuteSelection(gameArgs);
+                return Ok(reuslt);
+            }
+            catch (Exception e)
+            {
+                return Ok(e);
+            }
         }
 
         /// <summary>

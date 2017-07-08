@@ -3,7 +3,11 @@
   <Role name="Kalingo.WebApi">
     <Instances count="1" />
     <ConfigurationSettings>
-      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="DefaultEndpointsProtocol=https;AccountName=kalingostorage;AccountKey=$(_kalingostorage.key_)" />
+      <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" value="1626e8bf-e04d-4240-8e82-27d9e4da285f" />
+      <Setting name="KalingoDB" value="Server=tcp:kalingodb.database.windows.net,1433;Initial Catalog=KalingoDB;Persist Security Info=False;User ID=KalingoDbUser;Password=Kalingo2017;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" />
+      <Setting name="MbTotalChances" value="5" />
+      <Setting name="MbTotalGifts" value="3" />
     </ConfigurationSettings>
   </Role>
 </ServiceConfiguration>

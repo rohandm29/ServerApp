@@ -23,7 +23,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Engine
         {
             // arrange
             A.CallTo(() => _fakeRandomGenerator.GetSequence(A<int>.Ignored, A<NumberSet>.Ignored)).Returns(new[] { 1,2,3,4 });
-            var expectedSequence = "1;2;3;4";
+            var expectedSequence = new[] { 1, 2, 3, 4 };
 
             // act
             var randomSequence = _randomProvider.CreateRandomSequenceForMinesBoom(); 
