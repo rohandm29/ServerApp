@@ -1,40 +1,35 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Dapper;
-using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class CloseMinesBoomCommand
+    public class AllocateGoldCoinsCommand
     {
         private readonly string _connectionString;
 
-        public CloseMinesBoomCommand(string connectionString)
+        public AllocateGoldCoinsCommand(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task Execute(MinesBoomSession mb)
+        public async Task Execute(int userId, int gameId)
         {
             try
             {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspCloseMinesBoom",
-                        new
-                        {
-                            @userId = mb.UserId,
-                            @gameId = mb.GameId,
-                            @win = mb.GameResult.HasWon,
-                            @userSelections = mb.GameState.UserSelections
-                        },
+                        "uspAllocateGoldCoins",
+                        new { userId, gameId },
                         commandType: CommandType.StoredProcedure);
 
-                    await conn.ExecuteScalarAsync<int>(command);
+                    await conn.ExecuteAsync(command);
                 }
             }
             catch (Exception e)

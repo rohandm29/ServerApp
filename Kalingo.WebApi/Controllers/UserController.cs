@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
+using Kalingo.Games.Contract.Entity;
+using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
@@ -17,15 +19,15 @@ namespace Kalingo.WebApi.Controllers
         /// <summary>
         /// Gets the usersId if valid user.
         /// </summary>
-        /// <param name="userName"></param>
+        /// <param name="User"></param>
         /// <returns></returns>
-        [Route("GetData")]
-        [HttpGet]
-        public async Task<IHttpActionResult> GetUserId(string userName)
+        [Route("Get")]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetUser(UserArgs user)
         {
-            var userValid = await _processor.GetUserId(userName);
+            var userEntity = await _processor.GetUser(user);
 
-            return Ok(userValid);
+            return Ok(userEntity);
         }
 
         /// <summary>
@@ -36,21 +38,24 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Add")]
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(string username, string password)
+        public async Task<IHttpActionResult> AddUser(NewUser user)
         {
-            return Ok(12345);
+            var userId = await _processor.AddUser(user);
+
+            return Ok(userId);
         } 
 
         /// <summary>
         /// Update the user details.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="updateUser"></param>
         /// <returns></returns>
         [Route("Update")]
         [HttpPatch]
-        public async Task<IHttpActionResult> UpdateUser(string username, string password)
+        public async Task<IHttpActionResult> UpdateUser(UpdateUser updateUser)
         {
+            _processor.UpdateUser(updateUser);
+
             return Ok(true);
         }
 

@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.Games.Contract.Entity;
+using Kalingo.Games.Contract.Entity.User;
+using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -19,20 +22,20 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(string userName)
+        public async Task<UserEntity> Execute(UserArgs user)
         {
             try
-            {   
+            {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspGetUserId",
-                        new {@userName = userName},
+                        "uspGetUser",
+                        new {@userName = user.UserName},
                         commandType: CommandType.StoredProcedure);
 
-                    var validUser = await conn.ExecuteScalarAsync<int>(command);
+                    var validUser = await conn.QueryAsync<UserEntity>(command);
 
-                    return validUser;
+                    return validUser.FirstOrDefault();
                 }
             }
             catch (Exception e)

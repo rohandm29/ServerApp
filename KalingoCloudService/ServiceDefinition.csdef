@@ -11,12 +11,19 @@
     <ConfigurationSettings>
       <Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" />
       <Setting name="APPINSIGHTS_INSTRUMENTATIONKEY" />
-      <Setting name="KalingoDB"/>
-      <Setting name="MbTotalChances"/>
-      <Setting name="MbTotalGifts"/>  
+      <Setting name="KalingoDb" />
+      <Setting name="MbTotalChances" />
+      <Setting name="MbTotalGifts" />
     </ConfigurationSettings>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />
     </Endpoints>
+    <Imports>
+      <Import moduleName="RemoteAccess" />
+      <Import moduleName="RemoteForwarder" />
+    </Imports>
+    <LocalResources>
+      <LocalStorage name="LocalStorage1" cleanOnRoleRecycle="false" />
+    </LocalResources>
   </WebRole>
 </ServiceDefinition>

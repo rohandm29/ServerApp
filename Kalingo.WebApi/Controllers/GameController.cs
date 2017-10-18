@@ -33,12 +33,11 @@ namespace Kalingo.WebApi.Controllers
                 var gameId = await _processor.ExecuteNewGame(gameTypeId, userId);
 
                 return Ok(gameId);
-            }
+            }   
             catch (Exception e)
             {
                 return Ok(e);
             }
-            
         }
 
         /// <summary>

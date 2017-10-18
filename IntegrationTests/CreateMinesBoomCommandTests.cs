@@ -15,7 +15,7 @@ namespace IntegrationTests
         [SetUp]
         public void SetUp()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["KalingoDB"].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["KalingoDb"].ConnectionString;
             _dbHelper = new DbHelper(_connectionString);
             _createMinesBoomCommand = new CreateMinesBoomCommand(_connectionString);
         }

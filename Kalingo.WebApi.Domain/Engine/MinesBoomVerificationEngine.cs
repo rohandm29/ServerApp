@@ -26,12 +26,12 @@ namespace Kalingo.WebApi.Domain.Engine
 
             if (gameData == null)
             {
-                return MinesBoomSession.CreateNotFound(NotFound(gameArgs.GameId), null);
+                return MinesBoomSession.CreateNotFound(gameArgs.UserId, NotFound(gameArgs.GameId), null);
             }
 
             var result = IsSelectionCorrect(gameArgs, gameData);
 
-            return MinesBoomSession.Create(result, gameData);
+            return MinesBoomSession.Create(gameArgs.UserId, result, gameData);
         }
 
         // Get the game data from cache

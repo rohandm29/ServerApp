@@ -21,10 +21,8 @@ namespace Kalingo.WebApi.Domain.Entity
             TotalChances--;
         }
 
-        public void IncrementWin()
+        public void DecrementGifts()
         {
-            TotalWins++;
-
             TotalGifts--;
         }
 
@@ -38,8 +36,6 @@ namespace Kalingo.WebApi.Domain.Entity
         public int TotalGifts { get; private set; }
 
         public int TotalChances { get; private set; }
-
-        public int TotalWins { get; private set; }
 
         public string UserSelections { get; private set; } 
     }

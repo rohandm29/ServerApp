@@ -19,7 +19,7 @@ namespace IntegrationTests
         [SetUp]
         public void SetUp()
         {
-            _connectionString = ConfigurationManager.ConnectionStrings["KalingoDB"].ConnectionString;
+            _connectionString = ConfigurationManager.ConnectionStrings["KalingoDb"].ConnectionString;
             _dbHelper = new DbHelper(_connectionString);
             _createMinesBoomCommand = new CreateMinesBoomCommand(_connectionString);
         }
@@ -48,7 +48,7 @@ namespace IntegrationTests
 
         private static MinesBoomSession GetMbData(int gameId)
         {
-            return MinesBoomSession.Create(
+            return MinesBoomSession.Create(1,
                 new MinesBoomGameResult(gameId, true, null, null) {HasWon = true},
                 new MinesBoomGameState(new[] {1, 2, 3, 4, 5}, 1, 1));
         }

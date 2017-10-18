@@ -26,7 +26,7 @@ namespace Kalingo.WebApi.AcceptanceTests.WebApi.Support
 
         public void ConfigureTestContainer(ContainerBuilder apiBuilder)
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["KalingoDB"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["KalingoDb"].ConnectionString;
 
             var builder = apiBuilder ?? new ContainerBuilder();
 

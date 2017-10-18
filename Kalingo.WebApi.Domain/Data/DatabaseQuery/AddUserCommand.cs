@@ -1,40 +1,43 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.IO;
 using System.Threading.Tasks;
 using Dapper;
-using Kalingo.WebApi.Domain.Entity;
+using Kalingo.Games.Contract.Entity;
+using Kalingo.Games.Contract.Entity.User;
+using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class CloseMinesBoomCommand
+    public class AddUserCommand
     {
         private readonly string _connectionString;
 
-        public CloseMinesBoomCommand(string connectionString)
+        public AddUserCommand(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task Execute(MinesBoomSession mb)
+        public async Task<int> Execute(NewUser user)
         {
             try
             {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspCloseMinesBoom",
+                        "uspAddUser",
                         new
                         {
-                            @userId = mb.UserId,
-                            @gameId = mb.GameId,
-                            @win = mb.GameResult.HasWon,
-                            @userSelections = mb.GameState.UserSelections
+                            @userName = user.UserName,
+                            @password = user.Password,
+                            @emailaddress = user.Email,
+                            @country = CountryService.GetCountry(user.Country)
                         },
                         commandType: CommandType.StoredProcedure);
 
-                    await conn.ExecuteScalarAsync<int>(command);
+                    var validUser = await conn.ExecuteScalarAsync<int>(command);
+
+                    return validUser;
                 }
             }
             catch (Exception e)

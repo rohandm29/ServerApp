@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
 using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
@@ -18,8 +20,13 @@ namespace Kalingo.WebApi.Domain.Cleaner
 
         public async Task CloseIfGameOver(MinesBoomSession minesBoomSession)
         {
-            if (minesBoomSession.GameResult.HasWon || minesBoomSession.GameState.TotalChances == 0)
+            if (minesBoomSession.GameState.TotalChances <= 0)
             {
+                await Close(minesBoomSession);
+            }
+            if (minesBoomSession.GameResult.HasWon)
+            {
+                await _gamesRepository.AllocateGoldCoins(minesBoomSession);
                 await Close(minesBoomSession);
             }
         }

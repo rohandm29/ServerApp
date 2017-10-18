@@ -13,7 +13,7 @@ namespace Kalingo.WebApi.Domain.Data.Cache
 
         public MinesBoomCache()
         {
-            _cacheItemPolicy = new CacheItemPolicy {AbsoluteExpiration = DateTime.UtcNow.AddMinutes(10)};
+            _cacheItemPolicy = new CacheItemPolicy {AbsoluteExpiration = DateTime.UtcNow.AddMinutes(60)};
             _cache = new MemoryCache(MinesBoomCacheName);
         }
 

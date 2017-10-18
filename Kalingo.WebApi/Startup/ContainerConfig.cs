@@ -43,16 +43,19 @@ namespace Kalingo.WebApi.Startup
 
         private static void RegisterDomain()
         {
-            var connectionString = ConfigurationManager.ConnectionStrings["KalingoDB"].ConnectionString;
+            var connectionString = ConfigurationManager.ConnectionStrings["KalingoDb"].ConnectionString;
 
             Builder.RegisterType<MinesBoomCache>().SingleInstance();
             Builder.RegisterType<RandomProvider>().SingleInstance();
             Builder.RegisterType<RandomGenerator>().SingleInstance();
 
             Builder.RegisterType<GetUserQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<AddUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<CloseMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<TerminateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<CreateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<AllocateGoldCoinsCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
 

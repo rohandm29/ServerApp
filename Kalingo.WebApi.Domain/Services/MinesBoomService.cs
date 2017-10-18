@@ -30,19 +30,18 @@ namespace Kalingo.WebApi.Domain.Services
 
         private static void UpdateGameStateAndResult(MinesBoomSession mbSession)
         {
-            IncrementWinsIfNeeded(mbSession);
+            DecrementGiftsIfWon(mbSession);
 
             DecrementLifes(mbSession);
 
             UpdateGameResult(mbSession.GameResult, mbSession.GameState);
         }
 
-        // Increment TotalWins and Decrement TotalGifts
-        private static void IncrementWinsIfNeeded(MinesBoomSession mbSession)
+        private static void DecrementGiftsIfWon(MinesBoomSession mbSession)
         {
             if (mbSession.GameResult.SelectionCorrect)
             {
-                mbSession.GameState.IncrementWin();
+                mbSession.GameState.DecrementGifts();
             }
         }
 
