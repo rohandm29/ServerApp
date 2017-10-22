@@ -40,13 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\CaptchaResponse.cs" />
+    <Compile Include="Entity\Captcha\CaptchaAnswer.cs" />
+    <Compile Include="Entity\Captcha\CaptchaResult.cs" />
+    <Compile Include="Entity\Captcha\CaptchaResponse.cs" />
     <Compile Include="Entity\GameArgs.cs" />
     <Compile Include="Entity\GameResult.cs" />
     <Compile Include="Entity\Ladders\LaddersGameArgs.cs" />
     <Compile Include="Entity\MinesBoom\MinesBoomArgs.cs" />
     <Compile Include="Entity\MinesBoom\MinesBoomGameResult.cs" />
-    <Compile Include="Entity\CaptchaArgs.cs" />
+    <Compile Include="Entity\Captcha\CaptchaArgs.cs" />
     <Compile Include="Entity\UserArgs.cs" />
     <Compile Include="Entity\UserCodes.cs" />
     <Compile Include="Entity\User\UpdateUser.cs" />

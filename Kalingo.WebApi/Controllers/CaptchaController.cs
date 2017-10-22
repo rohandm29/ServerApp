@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
 using Kalingo.Games.Contract.Entity;
+using Kalingo.Games.Contract.Entity.Captcha;
 using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Processors;
 
@@ -38,9 +39,9 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Update")]
         [HttpPatch]
-        public async Task<IHttpActionResult> SubmitCaptcha(UpdateUser updateUser)
+        public async Task<IHttpActionResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
         {
-            var result = await _processor.SubmitCaptcha(updateUser);
+            var result = await _processor.SubmitCaptcha(captchaAnswer);
 
             return Ok(result);
         }

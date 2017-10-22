@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
+using Kalingo.Games.Contract.Entity.Captcha;
 using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
 
@@ -19,9 +20,9 @@ namespace Kalingo.WebApi.Processors
             return _captchaRepository.GetCaptcha(captchaArgs);
         }
 
-        public Task<bool> SubmitCaptcha(UpdateUser updateUser)
+        public Task<CaptchaResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
         {
-            throw new System.NotImplementedException();
+            return _captchaRepository.SubmitCaptcha(captchaAnswer);
         }
     }
 }

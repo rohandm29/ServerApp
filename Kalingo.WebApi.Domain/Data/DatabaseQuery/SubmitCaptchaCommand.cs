@@ -9,29 +9,29 @@ using Kalingo.Games.Contract.Entity.Captcha;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class GetCaptchaQuery
+    public class SubmitCaptchaCommand
     {
         private readonly string _connectionString;
 
-        public GetCaptchaQuery(string connectionString)
+        public SubmitCaptchaCommand(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaResponse> Execute(CaptchaArgs captchaArgs)
+        public async Task<CaptchaResult> Execute(CaptchaAnswer captchaAnswer)
         {
             try
             {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspGetCaptcha",
-                        new {@id = captchaArgs.UserId},
+                        "uspCheckCaptcha",
+                        new {@id = captchaAnswer.Id, @answer = captchaAnswer.Answer},
                         commandType: CommandType.StoredProcedure);
 
-                    var captcha = await conn.QueryAsync<string>(command);
+                    var result = await conn.QueryAsync<bool>(command);
 
-                    return new CaptchaResponse(captchaArgs.UserId, captcha.FirstOrDefault());
+                    return new CaptchaResult(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
                 }
             }
             catch (Exception e)

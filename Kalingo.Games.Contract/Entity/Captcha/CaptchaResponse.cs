@@ -1,4 +1,4 @@
-﻿namespace Kalingo.Games.Contract.Entity
+﻿namespace Kalingo.Games.Contract.Entity.Captcha
 {
     public class CaptchaResponse
     {

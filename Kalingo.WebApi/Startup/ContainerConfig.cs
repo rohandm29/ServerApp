@@ -57,6 +57,7 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<AllocateGoldCoinsCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetCaptchaQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
             Builder.RegisterType<CaptchaRepository>().SingleInstance();
