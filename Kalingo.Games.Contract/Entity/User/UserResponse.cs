@@ -58,6 +58,6 @@ namespace Kalingo.Games.Contract.Entity.User
             };
 
             return response;
-        }
+        }   
     }
 }
