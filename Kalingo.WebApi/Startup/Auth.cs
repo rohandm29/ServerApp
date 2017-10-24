@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Linq;
-using System.Web;
+﻿using System.Configuration;
+using System.IdentityModel.Tokens;
 using Microsoft.Owin.Security.ActiveDirectory;
 using Owin;
 
@@ -15,8 +12,13 @@ namespace Kalingo.WebApi.Startup
             app.UseWindowsAzureActiveDirectoryBearerAuthentication(
                 new WindowsAzureActiveDirectoryBearerAuthenticationOptions
                 {
-                    Audience = "https://rohanmayekar29outlook.onmicrosoft.com/KalingoApi",  //ConfigurationManager.AppSettings["Audience"],
-                    Tenant = "https://rohanmayekar29outlook.onmicrosoft.com" //ConfigurationManager.AppSettings["Tenant"]
+                    //ConfigurationManager.AppSettings["Tenant"]
+                    Tenant = "rohanmayekar29outlook.onmicrosoft.com",
+                    TokenValidationParameters = new TokenValidationParameters
+                    {
+                        //ConfigurationManager.AppSettings["Audience"],
+                        ValidAudience = "https://rohanmayekar29outlook.onmicrosoft.com/KalingoApi"  
+                    }
                 });
         }
     }
