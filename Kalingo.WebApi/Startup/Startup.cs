@@ -15,6 +15,8 @@ namespace Kalingo.WebApi.Startup
             var config = new HttpConfiguration();
             config.MapHttpAttributeRoutes();
 
+            Auth.ConfigureAuth(app);
+
             app.UseWebApi(config);
 
             var container = ContainerConfig.ConfigureAndBuildContainer();
