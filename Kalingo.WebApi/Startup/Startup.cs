@@ -16,7 +16,7 @@ namespace Kalingo.WebApi.Startup
         {
             var config = new HttpConfiguration();
 
-            Auth.ConfigureAuth(app);
+            //Auth.ConfigureAuth(app);
 
             WebApiConfig.Register(config);
 

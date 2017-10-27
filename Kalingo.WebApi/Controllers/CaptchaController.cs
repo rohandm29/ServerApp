@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
-using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("captcha")]
     public class CaptchaController : ApiController
     {
