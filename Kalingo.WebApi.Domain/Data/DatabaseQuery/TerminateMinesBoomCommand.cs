@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.WebApi.Domain.Engine;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
@@ -19,7 +20,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task Execute(int gameId, string userSelections)
+        public async Task Execute(int gameId, string userSelections, int[] randomSequence)
         {
             try
             {
@@ -29,8 +30,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                         "uspTerminateMinesBoom",
                         new
                         {
-                            gameId,
-                            userSelections
+                            @gameId = gameId,
+                            @randomSequence = RandomProvider.GetDelimatedSequence(randomSequence),
+                            @userSelections = userSelections
                         },
                         commandType: CommandType.StoredProcedure);
 

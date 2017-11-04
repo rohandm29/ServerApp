@@ -28,7 +28,7 @@ namespace IntegrationTests
             const int userId = 111;
 
             // act
-            var gameId = await _createMinesBoomCommand.Execute(userId, randomSequence);
+            var gameId = await _createMinesBoomCommand.Execute(userId); //, randomSequence);
 
             var gameData = await _dbHelper.GetUserGameMinesBoom(gameId);
 

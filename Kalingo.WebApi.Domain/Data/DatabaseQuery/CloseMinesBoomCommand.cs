@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.WebApi.Domain.Engine;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
@@ -30,6 +31,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                             @userId = mb.UserId,
                             @gameId = mb.GameId,
                             @win = mb.GameResult.HasWon,
+                            @randomSequence = RandomProvider.GetDelimatedSequence(mb.GameState.RandomSequence),
                             @userSelections = mb.GameState.UserSelections
                         },
                         commandType: CommandType.StoredProcedure);

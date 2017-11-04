@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(int userId, string randomSequence)
+        public async Task<int> Execute(int userId)
         {
             try
             {
@@ -26,7 +26,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                 {
                     var command = new CommandDefinition(
                         "uspCreateMinesBoom", 
-                        new {userId, randomSequence}, 
+                        new {userId}, 
                         commandType: CommandType.StoredProcedure);
 
                     var gameId = await conn.ExecuteScalarAsync<int>(command);

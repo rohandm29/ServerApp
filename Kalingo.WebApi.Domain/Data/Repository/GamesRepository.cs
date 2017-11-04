@@ -23,9 +23,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _allocateGoldCoinsCommand = allocateGoldCoinsCommand;
         }
 
-        public async Task<int> CreateMinesBoom(int userId, string randomSequence)
+        public async Task<int> CreateMinesBoom(int userId)
         {
-            return await _createMinesBoomCommand.Execute(userId, randomSequence);
+            return await _createMinesBoomCommand.Execute(userId);
         }
 
         public async Task CloseMinesBoom(MinesBoomSession minesBoomSession)
@@ -33,9 +33,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             await _closeMinesBoomCommand.Execute(minesBoomSession);
         }
 
-        public async Task TerminateMinesBoom(int gameId, string userSelection)
+        public async Task TerminateMinesBoom(int gameId, string userSelection, int[] randomSequence)
         {
-            await _terminateMinesBoomCommand.Execute(gameId, userSelection);
+            await _terminateMinesBoomCommand.Execute(gameId, userSelection, randomSequence);
         }
 
         public async Task AllocateGoldCoins(MinesBoomSession minesBoomSession)

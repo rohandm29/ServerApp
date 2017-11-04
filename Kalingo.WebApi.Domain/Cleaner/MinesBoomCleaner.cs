@@ -42,7 +42,7 @@ namespace Kalingo.WebApi.Domain.Cleaner
         {
             var gameData = await _cache.GetData(gameId);
 
-            await _gamesRepository.TerminateMinesBoom(gameId, gameData.UserSelections);
+            await _gamesRepository.TerminateMinesBoom(gameId, gameData.UserSelections, gameData.RandomSequence);
 
             _cache.Remove(gameId);
         }

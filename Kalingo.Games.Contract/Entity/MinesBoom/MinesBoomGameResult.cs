@@ -4,11 +4,11 @@
     {
         private new const int GameId = 2;
 
-        public MinesBoomGameResult(int gameId, bool selectionCorrect, string randomSequence, string comment) 
+        public MinesBoomGameResult(int gameId, bool selectionCorrect, string userSelection, string comment) 
             : base(gameId, GameId)
         {
             SelectionCorrect = selectionCorrect;
-            RandomSequence = randomSequence;
+            UserSelection = userSelection;
             Comment = comment;
         }
 
@@ -27,11 +27,13 @@
         /// <summary>
         /// The value that was generated as random.
         /// </summary>
-        public string RandomSequence { get; set; }
+        public string UserSelection { get; set; }
 
         /// <summary>
         /// Comments.
         /// </summary>
         public string Comment { get; set; }
+
+        public string RandomSequence { get; set; }
     }
 }

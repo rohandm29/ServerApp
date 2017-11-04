@@ -67,7 +67,7 @@ namespace Kalingo.WebApi.Domain.Engine
 
         private MinesBoomGameResult NotFound(int gameId)
         {
-            return new MinesBoomGameResult(gameId: gameId, selectionCorrect: false, randomSequence: null, comment: "The game not found");
+            return new MinesBoomGameResult(gameId: gameId, selectionCorrect: false, userSelection: null, comment: "The game not found");
         }
     }
 }
