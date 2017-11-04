@@ -25,6 +25,8 @@ namespace Kalingo.WebApi.Domain.Services
             
             CacheCurrentSelection(mbArgs.SelectedOption, mbSession);
 
+            SetDifferenceIfNeeded(mbSession);
+            
             return mbSession;
         }
 
@@ -34,7 +36,7 @@ namespace Kalingo.WebApi.Domain.Services
 
             DecrementLifes(mbSession);
 
-            UpdateGameResult(mbSession.GameResult, mbSession.GameState);
+            UpdateGameResult(mbSession);
         }
 
         private static void DecrementGiftsIfWon(MinesBoomSession mbSession)
@@ -51,17 +53,19 @@ namespace Kalingo.WebApi.Domain.Services
             mbSession.GameState.DecrementChance();
         }
 
-        private static void UpdateGameResult(MinesBoomGameResult mbGameResult, MinesBoomGameState mbGameState)
+        private static void UpdateGameResult(MinesBoomSession mbSession)
         {
-            mbGameResult.TotalChances = mbGameState.TotalChances;
-            mbGameResult.TotalGifts = mbGameState.TotalGifts;
+            mbSession.GameResult.TotalChances = mbSession.GameState.TotalChances;
+            mbSession.GameResult.TotalGifts = mbSession.GameState.TotalGifts;
+            mbSession.GameResult.HasWon = mbSession.GameState.TotalGifts == 0;
+        }
 
-            mbGameResult.HasWon = mbGameState.TotalGifts == 0;
-
-            if (mbGameState.TotalChances == 0)
+        private static void SetDifferenceIfNeeded(MinesBoomSession mbSession)
+        {
+            if (mbSession.GameState.TotalChances == 0)
             {
-                var missedSelection = Helper.MinesboomHelper.GetDifference(mbGameState.RandomSequence, mbGameState.UserSelections);
-                mbGameResult.RandomSequence = RandomProvider.GetDelimatedSequence(missedSelection);
+                var missedSelection = Helper.MinesboomHelper.GetDifference(mbSession.GameState.RandomSequence, mbSession.GameState.UserSelections);
+                mbSession.GameResult.RandomSequence = RandomProvider.GetDelimatedSequence(missedSelection);
             }
         }
 
