@@ -59,7 +59,10 @@ namespace Kalingo.WebApi.Domain.Services
             mbGameResult.HasWon = mbGameState.TotalGifts == 0;
 
             if (mbGameState.TotalChances == 0)
-                mbGameResult.RandomSequence = RandomProvider.GetDelimatedSequence(mbGameState.RandomSequence);
+            {
+                var missedSelection = Helper.MinesboomHelper.GetDifference(mbGameState.RandomSequence, mbGameState.UserSelections);
+                mbGameResult.RandomSequence = RandomProvider.GetDelimatedSequence(missedSelection);
+            }
         }
 
         private void CacheCurrentSelection(int selectedOption, MinesBoomSession mbSession)
