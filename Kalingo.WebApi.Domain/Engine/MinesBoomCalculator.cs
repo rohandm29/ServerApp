@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kalingo.Games.Contract.Entity.MinesBoom;
+﻿using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Engine
 {
     public class MinesBoomCalculator
     {
-        public MinesboomSettings MbSettings { get; }
+        public MinesboomSettings MinesboomSettings { get; }
 
-        public MinesBoomCalculator(MinesboomSettings mbSettings)
+        public MinesBoomCalculator(MinesboomSettings minesboomSettings)
         {
-            MbSettings = mbSettings;
+            MinesboomSettings = minesboomSettings;
         }
 
         public void Calculate(MinesBoomSession mbSession)
@@ -24,7 +19,7 @@ namespace Kalingo.WebApi.Domain.Engine
 
         private void HasWonAnything(MinesBoomGameResult mbResult, MinesBoomGameState mbState)
         {
-            foreach (var setting in MbSettings.Setting)
+            foreach (var setting in MinesboomSettings.Setting)
             {
                 if (mbState.GiftsFound != setting.MinesCount)
                     continue;

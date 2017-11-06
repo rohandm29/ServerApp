@@ -1,12 +1,29 @@
 ﻿using System.Collections.Generic;
+using Kalingo.WebApi.Domain.Data.Repository;
 
 namespace Kalingo.WebApi.Domain.Entity
 {
     public class MinesboomSettings
     {
-        public IEnumerable<Settings> Setting;
+        private readonly GamesRepository _gamesRepository;
 
-        public class Settings
+        public MinesboomSettings(GamesRepository _gamesRepository)
+        {
+            this._gamesRepository = _gamesRepository;
+            FetchSettings();
+        }
+
+        public IEnumerable<Settings> Setting;
+        
+        private void FetchSettings()
+        {
+            var settings = _gamesRepository.GetMinesboomSettings();
+
+            Setting = settings;
+        }
+    }
+
+     public class Settings
         {
             public int CoinTypeId { get; }
 
@@ -24,5 +41,4 @@ namespace Kalingo.WebApi.Domain.Entity
                 Chances = chances;
             }
         }
-    }
 }

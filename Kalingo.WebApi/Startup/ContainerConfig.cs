@@ -8,6 +8,7 @@ using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Data.DatabaseQuery;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Engine;
+using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Facades;
 using Kalingo.WebApi.Domain.Services;
 using Kalingo.WebApi.Processors;
@@ -58,7 +59,7 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetCaptchaQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
-            Builder.RegisterType<GetMinesboomSettings>().WithParameter("connectionString", connectionString).SingleInstance(); 
+            Builder.RegisterType<GetMinesboomSettingsQuery>().WithParameter("connectionString", connectionString).SingleInstance(); 
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
             Builder.RegisterType<CaptchaRepository>().SingleInstance();
@@ -66,9 +67,10 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<MinesBoomGameSettings>().SingleInstance();
             Builder.RegisterType<MinesBoomCreationEngine>().SingleInstance();
             Builder.RegisterType<MinesBoomVerificationEngine>().SingleInstance();
+            Builder.RegisterType<MinesboomSettings>().SingleInstance();
+            Builder.RegisterType<MinesBoomCalculator>().SingleInstance();
             Builder.RegisterType<MinesBoomService>().SingleInstance();
             Builder.RegisterType<MinesBoomCleaner>().SingleInstance();
-            Builder.RegisterType<MinesBoomCalculator>().SingleInstance();
             Builder.RegisterType<MinesBoomFacade>().SingleInstance();
             Builder.RegisterType<UserProcessor>().SingleInstance();
             Builder.RegisterType<GameProcessor>().SingleInstance();

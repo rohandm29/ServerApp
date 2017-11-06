@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Data.Cache;
+using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Engine;
 using Kalingo.WebApi.Domain.Entity;
 

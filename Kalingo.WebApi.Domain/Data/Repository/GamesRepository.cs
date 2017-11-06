@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.WebApi.Domain.Data.DatabaseQuery;
 using Kalingo.WebApi.Domain.Entity;
@@ -11,16 +12,19 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         private readonly CloseMinesBoomCommand _closeMinesBoomCommand;
         private readonly TerminateMinesBoomCommand _terminateMinesBoomCommand;
         private readonly AllocateGoldCoinsCommand _allocateGoldCoinsCommand;
+        private readonly GetMinesboomSettingsQuery _getMinesboomSettingsQuery;
 
         public GamesRepository(CreateMinesBoomCommand createMinesBoomCommand, 
             CloseMinesBoomCommand closeMinesBoomCommand, 
             TerminateMinesBoomCommand terminateMinesBoomCommand,
-            AllocateGoldCoinsCommand allocateGoldCoinsCommand)
+            AllocateGoldCoinsCommand allocateGoldCoinsCommand,
+            GetMinesboomSettingsQuery getMinesboomSettingsQuery)
         {
             _createMinesBoomCommand = createMinesBoomCommand;
             _closeMinesBoomCommand = closeMinesBoomCommand;
             _terminateMinesBoomCommand = terminateMinesBoomCommand;
             _allocateGoldCoinsCommand = allocateGoldCoinsCommand;
+            _getMinesboomSettingsQuery = getMinesboomSettingsQuery;
         }
 
         public async Task<int> CreateMinesBoom(int userId)
@@ -41,6 +45,11 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         public async Task AllocateGoldCoins(MinesBoomSession minesBoomSession)
         {
             await _allocateGoldCoinsCommand.Execute(minesBoomSession.UserId, minesBoomSession.GameId);
+        }
+
+        public IEnumerable<Settings> GetMinesboomSettings()
+        {
+            return _getMinesboomSettingsQuery.Execute();
         }
     }
 }

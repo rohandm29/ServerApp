@@ -22,11 +22,10 @@ namespace Kalingo.WebApi.Processors
 
             switch (gameTypeId)
             {
-                case 1:
+                case 1: gameId = await _minesBoomFacade.ProcessNewGame(userId);
                     break;
 
                 case 2:
-                    gameId = await _minesBoomFacade.ProcessNewGame(userId);
                     break;
             }
 
@@ -43,11 +42,11 @@ namespace Kalingo.WebApi.Processors
                 switch (gameArgs.GameTypeId)
                 {
                     case 1:
-                        gameResult = default(GameResult);
+                        gameResult = await _minesBoomFacade.ProcessSelection((MinesBoomArgs)gameArgs);
                         break;
 
                     case 2:
-                        gameResult = await _minesBoomFacade.ProcessSelection((MinesBoomArgs)gameArgs);
+                        gameResult = default(GameResult);
                         break;
 
                     default: gameResult = default(GameResult);

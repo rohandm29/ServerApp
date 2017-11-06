@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -7,16 +8,16 @@ using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class GetMinesboomSettings
+    public class GetMinesboomSettingsQuery
     {
         private readonly string _connectionString;
 
-        public GetMinesboomSettings(string connectionString)
+        public GetMinesboomSettingsQuery(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<MinesboomSettings> Execute()
+        public IEnumerable<Settings> Execute()
         {
             try
             {
@@ -26,11 +27,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                         "uspGetMinesboomSettings",
                         commandType: CommandType.StoredProcedure);
 
-                    var settings = await conn.QueryAsync<MinesboomSettings.Settings>(command);
-
-                    var minesboomSettings = new MinesboomSettings {Setting = settings};
-
-                    return minesboomSettings;
+                    var settings = conn.Query<Settings>(command);
+                    
+                    return settings;
                 }
             }
             catch (Exception e)
