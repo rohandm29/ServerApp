@@ -2,7 +2,7 @@
 {
     public class MinesBoomArgs : GameArgs
     {
-        private const int MinesboomGameId = 2;
+        private const int MinesboomGameId = 1;
 
         /// <summary>
         /// Arguments for MinesBoomSession

@@ -60,14 +60,14 @@ namespace Kalingo.WebApi.Domain.Engine
 
         private MinesBoomGameResult CreateResult(bool selectionCorrect, MinesBoomArgs args)
         {
-            var gameResult = new MinesBoomGameResult(args.GameId, selectionCorrect, args.SelectedOption.ToString(), "");
+            var gameResult = new MinesBoomGameResult(args.GameId, selectionCorrect, args.SelectedOption.ToString());
 
             return gameResult;
         }
 
         private MinesBoomGameResult NotFound(int gameId)
         {
-            return new MinesBoomGameResult(gameId: gameId, selectionCorrect: false, userSelection: null, comment: "The game not found");
+            return new MinesBoomGameResult(gameId: gameId, selectionCorrect: false, userSelection: null);
         }
     }
 }

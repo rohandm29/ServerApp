@@ -6,10 +6,21 @@ namespace Kalingo.WebApi.Domain.Entity
     {
         public MinesBoomGameState(int[] randomSequence, int totalGifts, int totalChances)
         {
+            GiftsFound = 0;
             RandomSequence = randomSequence;
             TotalGifts = totalGifts;
             TotalChances = totalChances;
         }
+
+        public int[] RandomSequence { get; }
+
+        public int TotalGifts { get; private set; }
+
+        public int TotalChances { get; private set; }
+
+        public string UserSelections { get; private set; }
+
+        public int GiftsFound { get; set; }
 
         public bool HasSelection(int selection)
         {
@@ -24,19 +35,17 @@ namespace Kalingo.WebApi.Domain.Entity
         public void DecrementGifts()
         {
             TotalGifts--;
+            GiftFound();
+        }
+
+        public void GiftFound()
+        {
+            GiftsFound++;
         }
 
         public void AppendSelection(int selection)
         {
             UserSelections += $"{selection}-";
         }
-
-        public int[] RandomSequence { get; }
-
-        public int TotalGifts { get; private set; }
-
-        public int TotalChances { get; private set; }
-
-        public string UserSelections { get; private set; } 
     }
 }

@@ -10,11 +10,13 @@ namespace Kalingo.WebApi.Domain.Services
     {
         private readonly MinesBoomVerificationEngine _verifier;
         private readonly MinesBoomCache _mbCache;
+        private readonly MinesBoomCalculator _mbCalculator;
 
-        public MinesBoomService(MinesBoomVerificationEngine verifier, MinesBoomCache mbCache)
+        public MinesBoomService(MinesBoomVerificationEngine verifier, MinesBoomCache mbCache, MinesBoomCalculator mbCalculator)
         {
             _verifier = verifier;
             _mbCache = mbCache;
+            _mbCalculator = mbCalculator;
         }
 
         public async Task<MinesBoomSession> ProcessSelection(MinesBoomArgs mbArgs)
@@ -30,7 +32,7 @@ namespace Kalingo.WebApi.Domain.Services
             return mbSession;
         }
 
-        private static void UpdateGameStateAndResult(MinesBoomSession mbSession)
+        private void UpdateGameStateAndResult(MinesBoomSession mbSession)
         {
             DecrementGiftsIfWon(mbSession);
 
@@ -53,11 +55,14 @@ namespace Kalingo.WebApi.Domain.Services
             mbSession.GameState.DecrementChance();
         }
 
-        private static void UpdateGameResult(MinesBoomSession mbSession)
+        private void UpdateGameResult(MinesBoomSession mbSession)
         {
             mbSession.GameResult.TotalChances = mbSession.GameState.TotalChances;
-            mbSession.GameResult.TotalGifts = mbSession.GameState.TotalGifts;
-            mbSession.GameResult.HasWon = mbSession.GameState.TotalGifts == 0;
+            mbSession.GameResult.GiftsHidden = mbSession.GameState.TotalGifts;
+
+            _mbCalculator.Calculate(mbSession);
+            
+            //mbSession.GameResult.HasWon = mbSession.GameState.TotalGifts == 0;
         }
 
         private static void SetDifferenceIfNeeded(MinesBoomSession mbSession)

@@ -1,37 +1,36 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Kalingo.Games.Contract.Entity;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class GetUserQuery
+    public class GetMinesboomSettings
     {
         private readonly string _connectionString;
 
-        public GetUserQuery(string connectionString)
+        public GetMinesboomSettings(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<UserEntity> Execute(UserArgs user)
+        public async Task<MinesboomSettings> Execute()
         {
             try
             {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspGetUser",
-                        new {@userName = user.UserName},
+                        "uspGetMinesboomSettings",
                         commandType: CommandType.StoredProcedure);
 
-                    var validUser = await conn.QueryAsync<UserEntity>(command);
+                    var settings = await conn.QueryAsync<MinesboomSettings.Settings>(command);
 
-                    return validUser.FirstOrDefault();
+                    var minesboomSettings = new MinesboomSettings {Setting = settings};
+
+                    return minesboomSettings;
                 }
             }
             catch (Exception e)

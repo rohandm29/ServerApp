@@ -2,14 +2,13 @@
 {
     public class MinesBoomGameResult : GameResult
     {
-        private new const int GameId = 2;
+        private new const int GameId = 1;
 
-        public MinesBoomGameResult(int gameId, bool selectionCorrect, string userSelection, string comment) 
+        public MinesBoomGameResult(int gameId, bool selectionCorrect, string userSelection) 
             : base(gameId, GameId)
         {
             SelectionCorrect = selectionCorrect;
             UserSelection = userSelection;
-            Comment = comment;
         }
 
         public bool SelectionCorrect { get; set; }
@@ -17,7 +16,7 @@
         /// <summary>
         /// Number of valid values game has.
         /// </summary>
-        public int TotalGifts { get; set; }
+        public int GiftsHidden { get; set; }
 
         /// <summary>
         /// Number of chances user has.
@@ -29,10 +28,9 @@
         /// </summary>
         public string UserSelection { get; set; }
 
-        /// <summary>
-        /// Comments.
-        /// </summary>
-        public string Comment { get; set; }
+        public int CoinsWon { get; set; }
+
+        public int CoinType { get; set; }
 
         public string RandomSequence { get; set; }
     }
