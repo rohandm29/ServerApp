@@ -44,7 +44,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
 
         public async Task AllocateGoldCoins(MinesBoomSession minesBoomSession)
         {
-            await _allocateGoldCoinsCommand.Execute(minesBoomSession.UserId, minesBoomSession.GameId);
+            await _allocateGoldCoinsCommand.Execute(minesBoomSession);
         }
 
         public IEnumerable<Settings> GetMinesboomSettings()

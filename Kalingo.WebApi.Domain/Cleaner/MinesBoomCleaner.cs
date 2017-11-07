@@ -20,14 +20,14 @@ namespace Kalingo.WebApi.Domain.Cleaner
 
         public async Task CloseIfGameOver(MinesBoomSession minesBoomSession)
         {
-            if (minesBoomSession.GameState.TotalChances <= 0)
+            if (minesBoomSession.GameState.TotalChances <= 0 || minesBoomSession.GameState.TotalGifts <= 0)
             {
                 await Close(minesBoomSession);
-            }
-            if (minesBoomSession.GameResult.HasWon)
-            {
-                await _gamesRepository.AllocateGoldCoins(minesBoomSession);
-                await Close(minesBoomSession);
+
+                if (minesBoomSession.GameResult.HasWon)
+                {
+                    await _gamesRepository.AllocateGoldCoins(minesBoomSession);
+                }
             }
         }
         

@@ -26,7 +26,7 @@ namespace Kalingo.WebApi.Domain.Engine
 
                 mbResult.HasWon = true;
                 mbResult.CoinType = setting.CoinTypeId;
-                mbResult.CoinsWon = setting.MinesCount;
+                mbResult.CoinsWon = setting.CoinCount;
             }
         }
     }

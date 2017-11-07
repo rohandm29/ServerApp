@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -18,15 +19,15 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task Execute(int userId, int gameId)
+        public async Task Execute(MinesBoomSession mbSession)
         {
             try
             {
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspAllocateGoldCoins",
-                        new { userId, gameId },
+                        "uspAllocateCoins",
+                        new { mbSession.UserId, mbSession.GameId, mbSession.GameResult.CoinType, mbSession.GameResult.CoinsWon },
                         commandType: CommandType.StoredProcedure);
 
                     await conn.ExecuteAsync(command);
