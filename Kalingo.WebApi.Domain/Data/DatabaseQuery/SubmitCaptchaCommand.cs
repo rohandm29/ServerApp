@@ -25,8 +25,8 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                 using (IDbConnection conn = new SqlConnection(_connectionString))
                 {
                     var command = new CommandDefinition(
-                        "uspCheckCaptcha",
-                        new {@id = captchaAnswer.Id, @answer = captchaAnswer.Answer},
+                        "uspProcessCaptcha",
+                        new {@id = captchaAnswer.Id, @gameId = captchaAnswer.GameId, @answer = captchaAnswer.Answer},
                         commandType: CommandType.StoredProcedure);
 
                     var result = await conn.QueryAsync<bool>(command);

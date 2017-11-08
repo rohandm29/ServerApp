@@ -6,18 +6,18 @@
 
         public string Password { get; set; }
 
-        public int GoldCoins { get; }
+        public int Gold { get; }
 
-        public int SilverCoins { get; }
+        public int Silver { get; }
 
         public int CountryId { get; }
 
-        public UserEntity(int userId, string password, int goldCoins, int silverCoins, int countryId)
+        public UserEntity(int userId, string password, int gold, int silver, int countryId)
         {
             UserId = userId;
             Password = password;
-            GoldCoins = goldCoins;
-            SilverCoins = silverCoins;
+            Gold = gold;
+            Silver = silver;
             CountryId = countryId;
         }
     }

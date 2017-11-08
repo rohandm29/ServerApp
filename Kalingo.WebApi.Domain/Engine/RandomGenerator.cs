@@ -35,5 +35,12 @@ namespace Kalingo.WebApi.Domain.Engine
 
             return randomNumbers.ToArray();
         }
+
+        public virtual int GetNumber(NumberSet set)
+        {
+            var number = random.Next(set.Start, set.End);
+
+            return number;
+        }
     }
 }

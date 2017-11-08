@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaResponse> Execute(CaptchaArgs captchaArgs)
+        public async Task<CaptchaResponse> Execute(int id, CaptchaArgs captchaArgs)
         {
             try
             {
@@ -26,12 +26,12 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                 {
                     var command = new CommandDefinition(
                         "uspGetCaptcha",
-                        new {@id = captchaArgs.UserId},
+                        new {@id = id, @gameId = captchaArgs.GameId},
                         commandType: CommandType.StoredProcedure);
 
-                    var captcha = await conn.QueryAsync<string>(command);
-
-                    return new CaptchaResponse(captchaArgs.UserId, captcha.FirstOrDefault());
+                    var captcha = await conn.QueryAsync<CaptchaResponse>(command);
+                    
+                    return captcha.First();
                 }
             }
             catch (Exception e)

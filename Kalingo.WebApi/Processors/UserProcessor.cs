@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Processors
             var isValid = user != null && Encryption.VerifyHash(userArgs.Password, user.Password);
 
             return isValid
-                ? UserResponse.ValidUser(user.UserId, user.GoldCoins, user.SilverCoins, user.CountryId)
+                ? UserResponse.ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId)
                 : UserResponse.InvalidUser();
         }
 

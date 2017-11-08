@@ -18,9 +18,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _submitCaptchaCommand = submitCaptcha;
         }
 
-        public async Task<CaptchaResponse> GetCaptcha(CaptchaArgs captchaArgs)
+        public async Task<CaptchaResponse> GetCaptcha(int id, CaptchaArgs captchaArgs)
         {
-            return await _getCaptchaQuery.Execute(captchaArgs);
+            return await _getCaptchaQuery.Execute(id, captchaArgs);
         }
 
         public async Task<CaptchaResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
