@@ -19,8 +19,8 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
         {
             _connectionString = connectionString;
         }
-
-        public async Task Execute(int gameId, string userSelections, int[] randomSequence)
+            
+        public async Task Execute(int gameId, List<int> userSelections, int[] randomSequence)
         {
             try
             {
@@ -32,7 +32,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                         {
                             @gameId = gameId,
                             @randomSequence = RandomProvider.GetDelimatedSequence(randomSequence),
-                            @userSelections = userSelections
+                            @userSelections = RandomProvider.GetDelimatedSequence(userSelections)
                         },
                         commandType: CommandType.StoredProcedure);
 

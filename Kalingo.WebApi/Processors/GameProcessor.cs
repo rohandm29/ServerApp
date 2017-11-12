@@ -61,5 +61,22 @@ namespace Kalingo.WebApi.Processors
                 throw;
             }
         }
+
+        public async Task TerminateGame(GameArgs gameArgs)
+        {
+            try
+            {
+                switch (gameArgs.GameTypeId)
+                {
+                    case 1: await _minesBoomFacade.TerminateGame(gameArgs.GameId);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }

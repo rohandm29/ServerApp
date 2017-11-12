@@ -32,7 +32,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                             @gameId = mb.GameId,
                             @win = mb.GameResult.HasWon,
                             @randomSequence = RandomProvider.GetDelimatedSequence(mb.GameState.RandomSequence),
-                            @userSelections = mb.GameState.UserSelections
+                            @userSelections = RandomProvider.GetDelimatedSequence(mb.GameState.UserSelections)
                         },
                         commandType: CommandType.StoredProcedure);
 

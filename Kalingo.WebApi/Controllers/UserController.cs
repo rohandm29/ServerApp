@@ -6,7 +6,7 @@ using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
 {
-    [RoutePrefix("user")]
+    [RoutePrefix("users")]
     public class UserController : ApiController
     {
         private readonly UserProcessor _processor;

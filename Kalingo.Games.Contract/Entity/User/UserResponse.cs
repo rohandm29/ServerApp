@@ -16,16 +16,19 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int CountryId { get; }
 
+        public int PromoId { get; }
+
         public UserCodes ErrorCode { get; private set; }
 
         public List<string> Errors { get;  } = new List<string>();
 
-        public UserResponse(int userId, int gold, int silver, int countryId)
+        public UserResponse(int userId, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
         {
             UserId = userId;
             Gold = gold;
             Silver = silver;
             CountryId = countryId;
+            PromoId = promoId;
         }
 
         public static UserResponse ValidUser(int userId, int gold, int silver, int countryId)
@@ -40,7 +43,7 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public static UserResponse InvalidUser()
         {
-            var response = new UserResponse(0, 0, 0, 0)
+            var response = new UserResponse(0)
             {
                 ErrorCode = UserCodes.Invalid
             };

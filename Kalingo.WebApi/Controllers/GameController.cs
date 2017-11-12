@@ -8,7 +8,7 @@ using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
 {
-    [RoutePrefix("game")]
+    [RoutePrefix("games")]
     public class GameController : ApiController
     {
         private readonly GameProcessor _processor;
@@ -82,6 +82,7 @@ namespace Kalingo.WebApi.Controllers
         [HttpPut]
         public async Task<IHttpActionResult> Terminated([FromBody] GameArgs gameArgs)
         {
+            await _processor.TerminateGame(gameArgs);
             return Ok(true);
         }
     }

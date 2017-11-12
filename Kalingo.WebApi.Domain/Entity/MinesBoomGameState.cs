@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Kalingo.WebApi.Domain.Entity
 {
@@ -10,6 +11,7 @@ namespace Kalingo.WebApi.Domain.Entity
             RandomSequence = randomSequence;
             TotalGifts = totalGifts;
             TotalChances = totalChances;
+            UserSelections = new List<int>();
         }
 
         public int[] RandomSequence { get; }
@@ -18,7 +20,7 @@ namespace Kalingo.WebApi.Domain.Entity
 
         public int TotalChances { get; private set; }
 
-        public string UserSelections { get; private set; }
+        public List<int> UserSelections { get; }
 
         public int GiftsFound { get; set; }
 
@@ -45,7 +47,7 @@ namespace Kalingo.WebApi.Domain.Entity
 
         public void AppendSelection(int selection)
         {
-            UserSelections += $"{selection}-";
+            UserSelections.Add(selection);
         }
     }
 }

@@ -5,9 +5,9 @@ namespace Kalingo.WebApi.Domain.Helper
 {
     public class MinesboomHelper
     {
-        public static IEnumerable<int> GetDifference(int[]sequence, string selection)
+        public static IEnumerable<int> GetDifference(int[]sequence, List<int> selection)
         {
-            var userSelection = selection.TrimEnd('-').Split('-').Select(int.Parse).ToArray();
+            var userSelection = selection.ToArray();
 
             var result = sequence.Except(userSelection);
 

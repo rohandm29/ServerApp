@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http.Results;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Data.Cache;
@@ -51,8 +52,13 @@ namespace Kalingo.WebApi.Domain.Engine
         // Check if selection is correct and increment Wins 
         private MinesBoomGameResult IsSelectionCorrect(MinesBoomArgs mbArgs, MinesBoomGameState mbGameState)
         {
-            var selectionExist = mbGameState.HasSelection(mbArgs.SelectedOption);
-            
+            var alreadySelected = false;
+
+            if(mbGameState.UserSelections.Any())
+                alreadySelected = mbGameState.UserSelections.Contains(mbArgs.SelectedOption);
+
+            var selectionExist = mbGameState.HasSelection(mbArgs.SelectedOption) && !alreadySelected;
+
             var result = CreateResult(selectionExist, mbArgs);
 
             return result;

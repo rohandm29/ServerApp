@@ -37,7 +37,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             await _closeMinesBoomCommand.Execute(minesBoomSession);
         }
 
-        public async Task TerminateMinesBoom(int gameId, string userSelection, int[] randomSequence)
+        public async Task TerminateMinesBoom(int gameId, List<int> userSelection, int[] randomSequence)
         {
             await _terminateMinesBoomCommand.Execute(gameId, userSelection, randomSequence);
         }
