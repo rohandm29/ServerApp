@@ -52,14 +52,16 @@ namespace Kalingo.WebApi.Startup
 
             Builder.RegisterType<GetUserQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AddUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetUserLimitQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetMinesboomSettingsQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<CreateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<CloseMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<TerminateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
-            Builder.RegisterType<CreateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AllocateGoldCoinsCommand>().WithParameter("connectionString", connectionString).SingleInstance();
-            Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetCaptchaQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
-            Builder.RegisterType<GetMinesboomSettingsQuery>().WithParameter("connectionString", connectionString).SingleInstance(); 
+
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
             Builder.RegisterType<CaptchaRepository>().SingleInstance();

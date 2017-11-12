@@ -54,7 +54,7 @@ namespace Kalingo.WebApi.Controllers
         [HttpPatch]
         public async Task<IHttpActionResult> UpdateUser(UpdateUser updateUser)
         {
-            _processor.UpdateUser(updateUser);
+            await _processor.UpdateUser(updateUser);
 
             return Ok(true);
         }
@@ -69,6 +69,14 @@ namespace Kalingo.WebApi.Controllers
         public async Task<IHttpActionResult> DeleteUser(int userId)
         {
             return Ok(true);
+        }
+
+        [Route("GetLimit")]
+        [HttpGet]
+        public async Task<IHttpActionResult> GetLimit(int userId)
+        {
+            var limit = await _processor.GetLimit(userId);
+            return Ok(limit);
         }
     }
 }

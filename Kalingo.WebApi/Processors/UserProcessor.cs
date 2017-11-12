@@ -40,5 +40,10 @@ namespace Kalingo.WebApi.Processors
         {
             await _repository.UpdateUser(updateUser);
         }
+
+        public async Task<int> GetLimit(int userId)
+        {
+            return await _repository.GetUserLimit(userId);
+        }
     }
 }

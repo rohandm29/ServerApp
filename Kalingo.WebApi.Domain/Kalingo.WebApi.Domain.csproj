@@ -62,6 +62,7 @@
     <Compile Include="Configuration\MinesBoomGameSettings.cs" />
     <Compile Include="Data\Cache\MinesBoomCache.cs" />
     <Compile Include="Data\DatabaseQuery\GetMinesboomSettingsQuery.cs" />
+    <Compile Include="Data\DatabaseQuery\GetUserLimitQuery.cs" />
     <Compile Include="Data\DatabaseQuery\SubmitCaptchaCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetCaptchaQuery.cs" />
     <Compile Include="Data\DatabaseQuery\UpdateUserCommand.cs" />

@@ -83,7 +83,7 @@ namespace Kalingo.WebApi.Controllers
         public async Task<IHttpActionResult> Terminated([FromBody] GameArgs gameArgs)
         {
             await _processor.TerminateGame(gameArgs);
-            return Ok(true);
+            return Ok();
         }
     }
 }

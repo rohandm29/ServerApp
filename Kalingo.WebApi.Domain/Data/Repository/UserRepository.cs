@@ -11,12 +11,14 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         private readonly GetUserQuery _getUser;
         private readonly AddUserCommand _addUser;
         private readonly UpdateUserCommand _updateUser;
+        private readonly GetUserLimitQuery _getUserLimitQuery;
 
-        public UserRepository(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUser)
+        public UserRepository(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUser, GetUserLimitQuery getUserLimitQuery)
         {
             _getUser = getUserQuery;
             _addUser = addUserCommand;
             _updateUser = updateUser;
+            _getUserLimitQuery = getUserLimitQuery;
         }
 
         public async Task<UserEntity> GetUser(UserArgs user)
@@ -32,6 +34,11 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         public async Task UpdateUser(UpdateUser updateUser)
         {
             await _updateUser.Execute(updateUser);
+        }
+
+        public async Task<int> GetUserLimit(int userId)
+        {
+            return await _getUserLimitQuery.Execute(userId);
         }
     }
 }
