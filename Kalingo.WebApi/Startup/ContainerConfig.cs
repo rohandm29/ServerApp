@@ -61,10 +61,13 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<AllocateGoldCoinsCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetCaptchaQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetVouchersQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<VoucherClaimedCommand>().WithParameter("connectionString", connectionString).SingleInstance();
 
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
             Builder.RegisterType<CaptchaRepository>().SingleInstance();
+            Builder.RegisterType<VoucherRepository>().SingleInstance();
 
             Builder.RegisterType<MinesBoomGameSettings>().SingleInstance();
             Builder.RegisterType<MinesBoomCreationEngine>().SingleInstance();
@@ -77,6 +80,7 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<UserProcessor>().SingleInstance();
             Builder.RegisterType<GameProcessor>().SingleInstance();
             Builder.RegisterType<CaptchaProcessor>().SingleInstance();
+            Builder.RegisterType<VoucherProcessor>().SingleInstance();
 
             Builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
         }

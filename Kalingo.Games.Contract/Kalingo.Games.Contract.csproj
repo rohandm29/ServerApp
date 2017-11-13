@@ -54,6 +54,9 @@
     <Compile Include="Entity\User\UpdateUser.cs" />
     <Compile Include="Entity\User\NewUser.cs" />
     <Compile Include="Entity\User\UserResponse.cs" />
+    <Compile Include="Entity\Voucher\Voucher.cs" />
+    <Compile Include="Entity\Voucher\VoucherClaim.cs" />
+    <Compile Include="Entity\Voucher\VoucherClaimResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
