@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Controllers
         }
         
         [Route("Get")]
-        [HttpPost]
+        [HttpGet]
         public async Task<IHttpActionResult> GetVouchers(int countryId)
         {
             var image = await _processor.GetVouchers(countryId);
@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Controllers
         }
         
         [Route("Claim")]
-        [HttpPatch]
+        [HttpPost]
         public async Task<IHttpActionResult> ClaimVoucher(VoucherClaim claim)
         {
             var claimResponse = await _processor.ClaimVoucher(claim);
