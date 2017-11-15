@@ -2,7 +2,9 @@
 {
     public class Voucher
     {
-        public int Id { get; } 
+        public int Id { get; }
+
+        public string Description { get; }
 
         public string Name { get; } 
 
@@ -10,9 +12,10 @@
 
         public int Coins { get; }
 
-        public Voucher(int id, string name, int worth, int coins)
+        public Voucher(int id, string description, string name, int worth, int coins)
         {
             Id = id;
+            Description = description;
             Name = name;
             Worth = worth;
             Coins = coins;
