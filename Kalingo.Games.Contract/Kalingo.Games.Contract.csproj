@@ -40,22 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\Captcha\CaptchaAnswer.cs" />
-    <Compile Include="Entity\Captcha\CaptchaResult.cs" />
+    <Compile Include="Entity\Captcha\CaptchaAnswerRequest.cs" />
+    <Compile Include="Entity\Captcha\CaptchaAnswerResponse.cs" />
     <Compile Include="Entity\Captcha\CaptchaResponse.cs" />
     <Compile Include="Entity\GameArgs.cs" />
     <Compile Include="Entity\GameResult.cs" />
-    <Compile Include="Entity\Ladders\LaddersGameArgs.cs" />
-    <Compile Include="Entity\MinesBoom\MinesBoomArgs.cs" />
-    <Compile Include="Entity\MinesBoom\MinesBoomGameResult.cs" />
-    <Compile Include="Entity\Captcha\CaptchaArgs.cs" />
+    <Compile Include="Entity\Ladders\LaddersGameRequest.cs" />
+    <Compile Include="Entity\MinesBoom\MinesboomSelectionRequest.cs" />
+    <Compile Include="Entity\MinesBoom\MinesboomSelectionResponse.cs" />
+    <Compile Include="Entity\Captcha\CaptchaRequest.cs" />
     <Compile Include="Entity\UserArgs.cs" />
     <Compile Include="Entity\UserCodes.cs" />
-    <Compile Include="Entity\User\UpdateUser.cs" />
-    <Compile Include="Entity\User\NewUser.cs" />
+    <Compile Include="Entity\User\UpdateUserRequest.cs" />
+    <Compile Include="Entity\User\NewUserRequest.cs" />
     <Compile Include="Entity\User\UserResponse.cs" />
-    <Compile Include="Entity\Voucher\Voucher.cs" />
-    <Compile Include="Entity\Voucher\VoucherClaim.cs" />
+    <Compile Include="Entity\Voucher\VoucherResponse.cs" />
+    <Compile Include="Entity\Voucher\VoucherClaimRequest.cs" />
     <Compile Include="Entity\Voucher\VoucherClaimResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

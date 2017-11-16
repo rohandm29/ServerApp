@@ -1,6 +1,6 @@
 ﻿namespace Kalingo.Games.Contract.Entity.Voucher
 {
-    public class Voucher
+    public class VoucherResponse
     {
         public int Id { get; }
 
@@ -12,7 +12,7 @@
 
         public int Coins { get; }
 
-        public Voucher(int id, string description, string name, int worth, int coins)
+        public VoucherResponse(int id, string description, string name, int worth, int coins)
         {
             Id = id;
             Description = description;

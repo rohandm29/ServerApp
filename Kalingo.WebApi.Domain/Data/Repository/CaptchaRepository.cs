@@ -18,12 +18,12 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _submitCaptchaCommand = submitCaptcha;
         }
 
-        public async Task<CaptchaResponse> GetCaptcha(int id, CaptchaArgs captchaArgs)
+        public async Task<CaptchaResponse> GetCaptcha(int id, CaptchaRequest captchaArgs)
         {
             return await _getCaptchaQuery.Execute(id, captchaArgs);
         }
 
-        public async Task<CaptchaResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
+        public async Task<CaptchaAnswerResponse> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
             return await _submitCaptchaCommand.Execute(captchaAnswer);
         }

@@ -26,12 +26,12 @@ namespace Kalingo.WebApi.Processors
                 : UserResponse.InvalidUser();
         }
 
-        public async Task<int> AddUser(NewUser user)
+        public async Task<int> AddUser(NewUserRequest user)
         {
             return await _repository.AddUser(user);
         }
 
-        public async Task UpdateUser(UpdateUser updateUser)
+        public async Task UpdateUser(UpdateUserRequest updateUser)
         {
             await _repository.UpdateUser(updateUser);
         }

@@ -19,14 +19,14 @@ namespace Kalingo.WebApi.Processors
             _randomGenerator = randomGenerator;
         }
 
-        public Task<CaptchaResponse> GetCaptcha(CaptchaArgs captchaArgs)
+        public Task<CaptchaResponse> GetCaptcha(CaptchaRequest captchaArgs)
         {
             var id = _randomGenerator.GetNumber(new NumberSet(1, 4));
 
             return _captchaRepository.GetCaptcha(id, captchaArgs);
         }
 
-        public Task<CaptchaResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
+        public Task<CaptchaAnswerResponse> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
             return _captchaRepository.SubmitCaptcha(captchaAnswer);
         }

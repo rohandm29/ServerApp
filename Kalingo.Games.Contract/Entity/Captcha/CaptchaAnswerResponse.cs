@@ -1,6 +1,6 @@
 ﻿namespace Kalingo.Games.Contract.Entity.Captcha
 {
-    public class CaptchaResult
+    public class CaptchaAnswerResponse
     {
         public int Id { get; }
 
@@ -8,7 +8,7 @@
 
         public int GameId { get; }
 
-        public CaptchaResult(int id, int gameId, bool match)
+        public CaptchaAnswerResponse(int id, int gameId, bool match)
         {
             Id = id;
             Match = match;

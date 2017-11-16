@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(NewUser user)
+        public async Task<int> Execute(NewUserRequest user)
         {
             try
             {

@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaResult> Execute(CaptchaAnswer captchaAnswer)
+        public async Task<CaptchaAnswerResponse> Execute(CaptchaAnswerRequest captchaAnswer)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
                     var result = await conn.QueryAsync<bool>(command);
 
-                    return new CaptchaResult(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
+                    return new CaptchaAnswerResponse(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
                 }
             }
             catch (Exception e)

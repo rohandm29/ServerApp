@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Domain.Facades
             return gameId;
         }
 
-        public async Task<MinesBoomGameResult> ProcessSelection(MinesBoomArgs gameArgs)
+        public async Task<MinesboomSelectionResponse> ProcessSelection(MinesboomSelectionRequest gameArgs)
         {
             var mbSession = await _minesBoomService.ProcessSelection(gameArgs);
 

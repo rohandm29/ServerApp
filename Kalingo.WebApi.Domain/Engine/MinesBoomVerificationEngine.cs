@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Domain.Engine
         /// </summary>
         /// <param name="gameArgs"></param>
         /// <returns></returns>
-        public async Task<MinesBoomSession> CheckUserSelection(MinesBoomArgs gameArgs)
+        public async Task<MinesBoomSession> CheckUserSelection(MinesboomSelectionRequest gameArgs)
         {
             var gameData = FetchDataFromCache(gameArgs.GameId);
 
@@ -50,7 +50,7 @@ namespace Kalingo.WebApi.Domain.Engine
         }
 
         // Check if selection is correct and increment Wins 
-        private MinesBoomGameResult IsSelectionCorrect(MinesBoomArgs mbArgs, MinesBoomGameState mbGameState)
+        private MinesboomSelectionResponse IsSelectionCorrect(MinesboomSelectionRequest mbArgs, MinesBoomGameState mbGameState)
         {
             var alreadySelected = false;
 
@@ -64,16 +64,16 @@ namespace Kalingo.WebApi.Domain.Engine
             return result;
         }
 
-        private MinesBoomGameResult CreateResult(bool selectionCorrect, MinesBoomArgs args)
+        private MinesboomSelectionResponse CreateResult(bool selectionCorrect, MinesboomSelectionRequest args)
         {
-            var gameResult = new MinesBoomGameResult(args.GameId, selectionCorrect, args.SelectedOption.ToString());
+            var gameResult = new MinesboomSelectionResponse(args.GameId, selectionCorrect, args.SelectedOption.ToString());
 
             return gameResult;
         }
 
-        private MinesBoomGameResult NotFound(int gameId)
+        private MinesboomSelectionResponse NotFound(int gameId)
         {
-            return new MinesBoomGameResult(gameId: gameId, selectionCorrect: false, userSelection: null);
+            return new MinesboomSelectionResponse(gameId: gameId, selectionCorrect: false, userSelection: null);
         }
     }
 }

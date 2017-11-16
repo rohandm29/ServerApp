@@ -49,7 +49,7 @@ namespace IntegrationTests
         private static MinesBoomSession GetMbData(int gameId)
         {
             return MinesBoomSession.Create(1,
-                new MinesBoomGameResult(gameId, true, null) {HasWon = true},
+                new MinesboomSelectionResponse(gameId, true, null) {HasWon = true},
                 new MinesBoomGameState(new[] {1, 2, 3, 4, 5}, 1, 1));
         }
 

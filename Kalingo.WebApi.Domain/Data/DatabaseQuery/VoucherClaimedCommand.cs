@@ -19,7 +19,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<VoucherClaimResponse> Execute(VoucherClaim voucherClaim)
+        public async Task<VoucherClaimResponse> Execute(VoucherClaimRequest voucherClaim)
         {
             try
             {

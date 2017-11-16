@@ -17,7 +17,7 @@ namespace Kalingo.WebApi.Domain.Engine
             HasWonAnything(mbSession.GameResult, mbSession.GameState);
         }
 
-        private void HasWonAnything(MinesBoomGameResult mbResult, MinesBoomGameState mbState)
+        private void HasWonAnything(MinesboomSelectionResponse mbResult, MinesBoomGameState mbState)
         {
             foreach (var setting in MinesboomSettings.Setting)
             {

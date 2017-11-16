@@ -1,6 +1,6 @@
 ﻿namespace Kalingo.Games.Contract.Entity.MinesBoom
 {
-    public class MinesBoomArgs : GameArgs
+    public class MinesboomSelectionRequest : GameArgs
     {
         private const int MinesboomGameId = 1;
 
@@ -10,7 +10,7 @@
         /// <param name="gameId"></param>
         /// <param name="userId"></param>
         /// <param name="selectedOption"></param>
-        public MinesBoomArgs(int gameId, int userId, int selectedOption)
+        public MinesboomSelectionRequest(int gameId, int userId, int selectedOption)
             :base(gameId, userId, MinesboomGameId)
         {
             SelectedOption = selectedOption;

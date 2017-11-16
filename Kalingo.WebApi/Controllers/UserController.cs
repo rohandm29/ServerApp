@@ -38,7 +38,7 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Add")]
         [HttpPost]
-        public async Task<IHttpActionResult> AddUser(NewUser user)
+        public async Task<IHttpActionResult> AddUser(NewUserRequest user)
         {
             var userId = await _processor.AddUser(user);
 
@@ -52,7 +52,7 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Update")]
         [HttpPatch]
-        public async Task<IHttpActionResult> UpdateUser(UpdateUser updateUser)
+        public async Task<IHttpActionResult> UpdateUser(UpdateUserRequest updateUser)
         {
             await _processor.UpdateUser(updateUser);
 

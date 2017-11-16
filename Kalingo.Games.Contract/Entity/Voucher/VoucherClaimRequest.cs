@@ -1,11 +1,11 @@
 ﻿namespace Kalingo.Games.Contract.Entity.Voucher
 {
-    public class VoucherClaim
+    public class VoucherClaimRequest
     {
         public int VoucherId { get; }
         public int UserId { get; }
 
-        public VoucherClaim(int voucherId, int userId)
+        public VoucherClaimRequest(int voucherId, int userId)
         {
             VoucherId = voucherId;
             UserId = userId;

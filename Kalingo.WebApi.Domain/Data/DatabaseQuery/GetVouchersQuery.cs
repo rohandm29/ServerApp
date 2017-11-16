@@ -20,7 +20,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<IEnumerable<Voucher>> Execute(int countryId)
+        public async Task<IEnumerable<VoucherResponse>> Execute(int countryId)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                         new { countryId = countryId },
                         commandType: CommandType.StoredProcedure);
 
-                    var vouchers = await conn.QueryAsync<Voucher>(command);
+                    var vouchers = await conn.QueryAsync<VoucherResponse>(command);
 
                     return vouchers;
                 }

@@ -47,11 +47,11 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("submit/MinesBoomSession")]
         [HttpPost]
-        public async Task<IHttpActionResult> Submit([FromBody] MinesBoomArgs gameArgs)
+        public async Task<IHttpActionResult> Submit([FromBody] MinesboomSelectionRequest gameArgs)
         {
             try
             {
-                var reuslt = (MinesBoomGameResult)await _processor.ExecuteSelection(gameArgs);
+                var reuslt = (MinesboomSelectionResponse)await _processor.ExecuteSelection(gameArgs);
                 return Ok(reuslt);
             }
             catch (Exception e)
@@ -67,7 +67,7 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("submit/Ladders")]
         [HttpPost]
-        public async Task<IHttpActionResult> Submit([FromBody] LaddersGameArgs gameArgs)
+        public async Task<IHttpActionResult> Submit([FromBody] LaddersGameRequest gameArgs)
         {
             await _processor.ExecuteSelection(gameArgs);
             return Ok();

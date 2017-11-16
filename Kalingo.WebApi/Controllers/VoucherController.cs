@@ -28,7 +28,7 @@ namespace Kalingo.WebApi.Controllers
         
         [Route("Claim")]
         [HttpPost]
-        public async Task<IHttpActionResult> ClaimVoucher(VoucherClaim claim)
+        public async Task<IHttpActionResult> ClaimVoucher(VoucherClaimRequest claim)
         {
             var claimResponse = await _processor.ClaimVoucher(claim);
 

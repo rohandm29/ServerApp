@@ -23,7 +23,7 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Get")]
         [HttpPost]
-        public async Task<IHttpActionResult> GetCaptcha(CaptchaArgs captchaArgs)
+        public async Task<IHttpActionResult> GetCaptcha(CaptchaRequest captchaArgs)
         {
             var image = await _processor.GetCaptcha(captchaArgs);
 
@@ -38,7 +38,7 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("Update")]
         [HttpPatch]
-        public async Task<IHttpActionResult> SubmitCaptcha(CaptchaAnswer captchaAnswer)
+        public async Task<IHttpActionResult> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
             var result = await _processor.SubmitCaptcha(captchaAnswer);
 

@@ -1,10 +1,10 @@
 ﻿namespace Kalingo.Games.Contract.Entity.MinesBoom
 {
-    public class MinesBoomGameResult : GameResult
+    public class MinesboomSelectionResponse : GameResult
     {
         private new const int GameId = 1;
 
-        public MinesBoomGameResult(int gameId, bool selectionCorrect, string userSelection) 
+        public MinesboomSelectionResponse(int gameId, bool selectionCorrect, string userSelection) 
             : base(gameId, GameId)
         {
             SelectionCorrect = selectionCorrect;

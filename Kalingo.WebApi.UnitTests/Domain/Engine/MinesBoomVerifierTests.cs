@@ -32,7 +32,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Engine
 
             await _cache.Add(gameId, gameData);
 
-            var gameArgs = new MinesBoomArgs(gameId, 111, selection);
+            var gameArgs = new MinesboomSelectionRequest(gameId, 111, selection);
 
             // act
             var result = await _verifier.CheckUserSelection(gameArgs);

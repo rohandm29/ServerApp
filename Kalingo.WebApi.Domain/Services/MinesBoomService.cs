@@ -20,7 +20,7 @@ namespace Kalingo.WebApi.Domain.Services
             _mbCalculator = mbCalculator;
         }
 
-        public async Task<MinesBoomSession> ProcessSelection(MinesBoomArgs mbArgs)
+        public async Task<MinesBoomSession> ProcessSelection(MinesboomSelectionRequest mbArgs)
         {
             var mbSession = await _verifier.CheckUserSelection(mbArgs);
 

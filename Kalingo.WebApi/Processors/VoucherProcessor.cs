@@ -17,12 +17,12 @@ namespace Kalingo.WebApi.Processors
             _voucherRepository = voucherRepository;
         }
 
-        public async Task<IEnumerable<Voucher>> GetVouchers(int countryId)
+        public async Task<IEnumerable<VoucherResponse>> GetVouchers(int countryId)
         {
             return await _voucherRepository.GetVouchers(countryId);
         }
 
-        public async Task<VoucherClaimResponse> ClaimVoucher(VoucherClaim claim)
+        public async Task<VoucherClaimResponse> ClaimVoucher(VoucherClaimRequest claim)
         {
             return await _voucherRepository.VoucherClaimed(claim);
         }

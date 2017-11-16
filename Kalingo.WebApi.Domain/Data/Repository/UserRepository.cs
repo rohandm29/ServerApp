@@ -26,12 +26,12 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             return await _getUser.Execute(user);
         }
 
-        public async Task<int> AddUser(NewUser user)
+        public async Task<int> AddUser(NewUserRequest user)
         {
             return await _addUser.Execute(user);
         }
 
-        public async Task UpdateUser(UpdateUser updateUser)
+        public async Task UpdateUser(UpdateUserRequest updateUser)
         {
             await _updateUser.Execute(updateUser);
         }

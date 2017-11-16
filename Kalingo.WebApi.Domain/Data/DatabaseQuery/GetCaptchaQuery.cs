@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaResponse> Execute(int id, CaptchaArgs captchaArgs)
+        public async Task<CaptchaResponse> Execute(int id, CaptchaRequest captchaArgs)
         {
             try
             {

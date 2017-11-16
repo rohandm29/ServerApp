@@ -42,7 +42,7 @@ namespace Kalingo.WebApi.Processors
                 switch (gameArgs.GameTypeId)
                 {
                     case 1:
-                        gameResult = await _minesBoomFacade.ProcessSelection((MinesBoomArgs)gameArgs);
+                        gameResult = await _minesBoomFacade.ProcessSelection((MinesboomSelectionRequest)gameArgs);
                         break;
 
                     case 2:
