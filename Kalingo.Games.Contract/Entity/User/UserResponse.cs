@@ -4,15 +4,15 @@ namespace Kalingo.Games.Contract.Entity.User
 {
     public class UserResponse
     {
-        private int UserId { get; }
+        public int UserId { get; }
 
-        private int Gold { get; }
+        public int Gold { get; }
 
-        private int Silver { get; }
+        public int Silver { get; }
 
-        private int CountryId { get; }
+        public int CountryId { get; }
 
-        private int PromoId { get; }
+        public int PromoId { get; }
 
         public UserErrorCodes ErrorCode { get; set; }
 

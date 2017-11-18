@@ -4,11 +4,11 @@ namespace Kalingo.Games.Contract.Entity.Captcha
 {
     public class CaptchaAnswerResponse
     {
-        private int Id { get; }
+        public int Id { get; }
 
-        private CaptchaErrorCodes ErrorCode { get; }
+        public CaptchaErrorCodes ErrorCode { get; }
 
-        private List<string> Errors { get; }
+        public List<string> Errors { get; }
 
         public CaptchaAnswerResponse(int id, CaptchaErrorCodes errorCode, List<string> errors)
         {
