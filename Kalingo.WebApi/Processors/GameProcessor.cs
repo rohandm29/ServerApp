@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.MinesBoom;
-using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Facades;
 
 namespace Kalingo.WebApi.Processors
@@ -18,7 +16,7 @@ namespace Kalingo.WebApi.Processors
 
         public async Task<int> ExecuteNewGame(int gameTypeId, int userId)
         {
-            var gameId = 0;
+            int gameId;
 
             switch (gameTypeId)
             {
@@ -26,6 +24,8 @@ namespace Kalingo.WebApi.Processors
                     break;
 
                 case 2:
+                    
+                default: gameId = 0;
                     break;
             }
 
@@ -34,48 +34,34 @@ namespace Kalingo.WebApi.Processors
 
         public async Task<GameResult> ExecuteSelection(GameArgs gameArgs)
         {
-            try
+            // can be any type of gameresult
+            dynamic gameResult;
+
+            switch (gameArgs.GameTypeId)
             {
-                // can be any type of gameresult
-                dynamic gameResult;
+                case 1:
+                    gameResult = await _minesBoomFacade.ProcessSelection((MinesboomSelectionRequest) gameArgs);
+                    break;
 
-                switch (gameArgs.GameTypeId)
-                {
-                    case 1:
-                        gameResult = await _minesBoomFacade.ProcessSelection((MinesboomSelectionRequest)gameArgs);
-                        break;
+                case 2:
+                    gameResult = default(GameResult);
+                    break;
 
-                    case 2:
-                        gameResult = default(GameResult);
-                        break;
-
-                    default: gameResult = default(GameResult);
-                        break;
-                }
-
-                return gameResult;
+                default:
+                    gameResult = default(GameResult);
+                    break;
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
+
+            return gameResult;
         }
 
         public async Task TerminateGame(GameArgs gameArgs)
         {
-            try
+            switch (gameArgs.GameTypeId)
             {
-                switch (gameArgs.GameTypeId)
-                {
-                    case 1: await _minesBoomFacade.TerminateGame(gameArgs.GameId);
-                        break;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                case 1:
+                    await _minesBoomFacade.TerminateGame(gameArgs.GameId);
+                    break;
             }
         }
     }

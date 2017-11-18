@@ -88,7 +88,7 @@ namespace Kalingo.WebApi.Processors
         {
             var response = new UserResponse(userId, gold, silver, countryId)
             {
-                ErrorCode = UserErrorCodes.Valid
+                Code = UserCodes.Valid
             };
 
             return response;
@@ -98,10 +98,10 @@ namespace Kalingo.WebApi.Processors
         {
             var response = new UserResponse(0)
             {
-                ErrorCode = UserErrorCodes.Invalid
+                Code = UserCodes.Invalid
             };
 
-            response.Errors.Add("User details are not valid");
+            response.Errors.Add("User not valid");
 
             return response;
         }
@@ -110,7 +110,7 @@ namespace Kalingo.WebApi.Processors
         {
             var response = new UserResponse(0)
             {
-                ErrorCode = UserErrorCodes.NotFound
+                Code = UserCodes.NotFound
             };
 
             response.Errors.Add("User not found");
@@ -122,7 +122,7 @@ namespace Kalingo.WebApi.Processors
         {
             var response = new UserResponse(0)
             {
-                ErrorCode = UserErrorCodes.Inactive
+                Code = UserCodes.Inactive
             };
 
             response.Errors.Add("User not active");

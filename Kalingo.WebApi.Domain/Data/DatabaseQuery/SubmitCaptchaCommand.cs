@@ -17,7 +17,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaAnswer> Execute(CaptchaAnswerRequest captchaAnswer)
+        public async Task<bool> Execute(CaptchaAnswerRequest captchaAnswer)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
@@ -28,7 +28,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
                 var result = await conn.QueryAsync<bool>(command);
 
-                return new CaptchaAnswer(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
+                return result.FirstOrDefault();
             }
         }
     }

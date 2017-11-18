@@ -6,13 +6,13 @@
 
         public int CaptchaAnswerGameId { get; }
 
-        public bool FirstOrDefault { get; }
+        public bool IsCorrect { get; }
 
-        public CaptchaAnswer(int captchaAnswerId, int captchaAnswerGameId, bool firstOrDefault)
+        public CaptchaAnswer(int captchaAnswerId, int captchaAnswerGameId, bool isCorrect)
         {
             CaptchaAnswerId = captchaAnswerId;
             CaptchaAnswerGameId = captchaAnswerGameId;
-            FirstOrDefault = firstOrDefault;
+            IsCorrect = isCorrect;
         }
     }
 }

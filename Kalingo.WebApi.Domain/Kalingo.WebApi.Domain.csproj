@@ -126,6 +126,8 @@
     <Compile Include="Entity\NumberSet.cs" />
     <Compile Include="Entity\MinesboomSettings.cs" />
     <Compile Include="Entity\UserEntity.cs" />
+    <Compile Include="Exceptions\DuplicateSelectionException.cs" />
+    <Compile Include="Exceptions\GameNotFoundException.cs" />
     <Compile Include="Facades\MinesBoomFacade.cs" />
     <Compile Include="Helper\MinesboomHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

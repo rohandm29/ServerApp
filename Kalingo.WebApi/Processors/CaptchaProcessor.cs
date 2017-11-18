@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
-using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Engine;
 using Kalingo.WebApi.Domain.Entity;
@@ -20,21 +20,36 @@ namespace Kalingo.WebApi.Processors
             _randomGenerator = randomGenerator;
         }
 
-        public Task<CaptchaResponse> GetCaptcha(CaptchaRequest captchaArgs)
+        public async Task<CaptchaResponse> GetCaptcha(CaptchaRequest captchaArgs)
         {
-            var id = _randomGenerator.GetNumber(new NumberSet(1, 4));
+            try
+            {
+                var id = _randomGenerator.GetNumber(new NumberSet(1, 4));
 
-            return _captchaRepository.GetCaptcha(id, captchaArgs);
+                return await _captchaRepository.GetCaptcha(id, captchaArgs);
+            }
+            catch (Exception)
+            {
+               return new CaptchaResponse(0, string.Empty);
+            }
         }
 
-        public Task<CaptchaAnswerResponse> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
+        public async Task<CaptchaAnswerResponse> SubmitCaptcha(CaptchaAnswerRequest captchaAnswerRequest)
         {
-            // todo
-            var result = _captchaRepository.SubmitCaptcha(captchaAnswer);
+            try
+            {
+                var isCorrect = await _captchaRepository.SubmitCaptcha(captchaAnswerRequest);
 
-            var response = new CaptchaAnswerResponse(1, CaptchaErrorCodes.Inactive, new List<string>());
-
-            return Task.FromResult(response);
+                return isCorrect
+                    ? new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.Valid)
+                    : new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.Invalid,
+                        new List<string> {"Does not match"});
+            }
+            catch (Exception)
+            {
+                return new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.NotFound,
+                    new List<string> { "Not Found" });
+            }
         }
     }
 }

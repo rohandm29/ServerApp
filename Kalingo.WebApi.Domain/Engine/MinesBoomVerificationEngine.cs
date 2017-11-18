@@ -1,9 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Entity;
+using Kalingo.WebApi.Domain.Exceptions;
 
 namespace Kalingo.WebApi.Domain.Engine
 {
@@ -27,7 +29,7 @@ namespace Kalingo.WebApi.Domain.Engine
 
             if (gameData == null)
             {
-                return MinesBoomSession.CreateNotFound(gameArgs.UserId, NotFound(gameArgs.GameId), null);
+                throw new GameNotFoundException("Game Not Found");
             }
 
             var result = IsSelectionCorrect(gameArgs, gameData);
@@ -57,6 +59,11 @@ namespace Kalingo.WebApi.Domain.Engine
             if(mbGameState.UserSelections.Any())
                 alreadySelected = mbGameState.UserSelections.Contains(mbArgs.SelectedOption);
 
+            if (alreadySelected)
+            {
+                throw new DuplicateSelectionException("Duplicate Selection");
+            }
+
             var selectionExist = mbGameState.HasSelection(mbArgs.SelectedOption) && !alreadySelected;
 
             var result = CreateResult(selectionExist, mbArgs);
@@ -69,11 +76,6 @@ namespace Kalingo.WebApi.Domain.Engine
             var gameResult = new MinesboomSelectionResponse(args.GameId, selectionCorrect, args.SelectedOption.ToString());
 
             return gameResult;
-        }
-
-        private MinesboomSelectionResponse NotFound(int gameId)
-        {
-            return new MinesboomSelectionResponse(gameId: gameId, selectionCorrect: false, userSelection: null);
         }
     }
 }

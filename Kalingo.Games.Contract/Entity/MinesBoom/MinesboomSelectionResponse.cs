@@ -36,7 +36,7 @@ namespace Kalingo.Games.Contract.Entity.MinesBoom
 
         public string RandomSequence { get; set; }
 
-        public MbErrorCodes ErrorCode { get; set; }
+        public MinesboomCodes ErrorCode { get; set; }
 
         public List<string> Errors { get; set; } = new List<string>();
     }

@@ -16,7 +16,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<VoucherClaimResponse> Execute(VoucherClaimRequest voucherClaim)
+        public async Task<int> Execute(VoucherClaimRequest voucherClaim)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
@@ -29,7 +29,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     },
                     commandType: CommandType.StoredProcedure);
 
-                var claimResponse = await conn.QueryAsync<VoucherClaimResponse>(command);
+                var claimResponse = await conn.QueryAsync<int>(command);
 
                 return claimResponse.FirstOrDefault();
             }

@@ -1,6 +1,6 @@
 ﻿namespace Kalingo.Games.Contract.Entity
 {
-    public enum UserErrorCodes
+    public enum UserCodes
     {
         Valid,
 
@@ -11,7 +11,7 @@
         Inactive,
     }
 
-    public enum MbErrorCodes
+    public enum MinesboomCodes
     {
         Valid,
 
@@ -19,28 +19,24 @@
 
         NotFound,
 
-        Inactive,
+        Duplicate,
     }
 
-    public enum CaptchaErrorCodes
+    public enum CaptchaCodes
     {
         Valid,
 
         Invalid,
 
         NotFound,
-
-        Inactive,
     }
 
-    public enum VoucherErrorCodes
+    public enum VoucherCodes
     {
         Valid,
 
-        Invalid,
+        NotEnoughCoins,
 
-        NotFound,
-
-        Inactive,
+        NoVouchers,
     }
 }

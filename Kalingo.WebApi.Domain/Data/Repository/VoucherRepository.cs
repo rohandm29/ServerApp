@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             return await _getVouchersQuery.Execute(countryId);
         }
 
-        public async Task<VoucherClaimResponse> VoucherClaimed(VoucherClaimRequest claim)
+        public async Task<int> VoucherClaimed(VoucherClaimRequest claim)
         {
             return await _voucherClaimedCommand.Execute(claim);
 ;        }

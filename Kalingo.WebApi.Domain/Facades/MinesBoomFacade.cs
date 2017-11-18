@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Cleaner;
 using Kalingo.WebApi.Domain.Engine;
-using Kalingo.WebApi.Domain.Entity;
+using Kalingo.WebApi.Domain.Exceptions;
 using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Domain.Facades
@@ -37,17 +38,49 @@ namespace Kalingo.WebApi.Domain.Facades
 
         public async Task<MinesboomSelectionResponse> ProcessSelection(MinesboomSelectionRequest gameArgs)
         {
-            var mbSession = await _minesBoomService.ProcessSelection(gameArgs);
+            try
+            {
+                var mbSession = await _minesBoomService.ProcessSelection(gameArgs);
 
-            await _cleaner.CloseIfGameOver(mbSession);
+                await _cleaner.CloseIfGameOver(mbSession);
 
-            return mbSession.GameResult;
+                return mbSession.GameResult;
+            }
+            catch (GameNotFoundException e)
+            {
+                return HandleException(gameArgs, e.Message, MinesboomCodes.NotFound);
+            }
+            catch (DuplicateSelectionException e)
+            {
+                return HandleException(gameArgs, e.Message, MinesboomCodes.Duplicate);
+            }
+            catch (Exception e)
+            {
+                return HandleException(gameArgs, e.Message, MinesboomCodes.Invalid);
+            }
         }
 
-        
         public async Task TerminateGame(int gameId)
         {
-            await _cleaner.Terminate(gameId);
+            try
+            {
+                await _cleaner.Terminate(gameId);
+            }
+            catch (Exception)
+            {
+                // log
+            }
+        }
+
+        private static MinesboomSelectionResponse HandleException(MinesboomSelectionRequest gameArgs, string message,
+            MinesboomCodes code)
+        {
+            var response = new MinesboomSelectionResponse(gameArgs.GameId, false, gameArgs.SelectedOption.ToString())
+            {
+                ErrorCode = code
+            };
+            response.Errors.Add(message);
+            return response;
         }
     }
 }

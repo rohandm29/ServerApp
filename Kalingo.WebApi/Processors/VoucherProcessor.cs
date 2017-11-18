@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
+using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Voucher;
 using Kalingo.WebApi.Domain.Data.Repository;
 
@@ -19,12 +18,30 @@ namespace Kalingo.WebApi.Processors
 
         public async Task<IEnumerable<VoucherResponse>> GetVouchers(int countryId)
         {
-            return await _voucherRepository.GetVouchers(countryId);
+            try
+            {
+                return await _voucherRepository.GetVouchers(countryId);
+            }
+            catch (Exception)
+            {
+                return new List<VoucherResponse>();
+            }
         }
 
         public async Task<VoucherClaimResponse> ClaimVoucher(VoucherClaimRequest claim)
         {
-            return await _voucherRepository.VoucherClaimed(claim);
+            try
+            {
+                var response = await _voucherRepository.VoucherClaimed(claim);
+
+                return response == 0
+                    ? new VoucherClaimResponse(VoucherCodes.NotEnoughCoins)
+                    : new VoucherClaimResponse(VoucherCodes.Valid);
+            }
+            catch (Exception)
+            {
+                return new VoucherClaimResponse(VoucherCodes.NoVouchers);
+            }
         }
     }
 }

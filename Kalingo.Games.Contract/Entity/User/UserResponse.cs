@@ -14,7 +14,7 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int PromoId { get; }
 
-        public UserErrorCodes ErrorCode { get; set; }
+        public UserCodes Code { get; set; }
 
         public List<string> Errors { get; set; }
 

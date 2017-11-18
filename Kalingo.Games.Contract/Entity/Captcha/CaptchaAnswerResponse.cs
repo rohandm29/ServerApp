@@ -6,14 +6,14 @@ namespace Kalingo.Games.Contract.Entity.Captcha
     {
         public int Id { get; }
 
-        public CaptchaErrorCodes ErrorCode { get; }
+        public CaptchaCodes Code { get; }
 
         public List<string> Errors { get; }
 
-        public CaptchaAnswerResponse(int id, CaptchaErrorCodes errorCode, List<string> errors)
+        public CaptchaAnswerResponse(int id, CaptchaCodes code, List<string> errors = null)
         {
             Id = id;
-            ErrorCode = errorCode;
+            Code = code;
             Errors = errors;
         }
     }
