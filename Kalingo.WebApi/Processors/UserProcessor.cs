@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
@@ -17,41 +18,70 @@ namespace Kalingo.WebApi.Processors
 
         public async Task<UserResponse> GetUser(UserArgs userArgs)
         {
-            var user = await _repository.GetUser(userArgs);
-
-            if (user == null)
+            try
             {
-                return UserNotFound();
-            }
+                var user = await _repository.GetUser(userArgs);
 
-            if (!Encryption.VerifyHash(userArgs.Password, user.Password))
+                if (user == null)
+                {
+                    return UserNotFound();
+                }
+
+                if (!Encryption.VerifyHash(userArgs.Password, user.Password))
+                {
+                    return InvalidUser();
+                }
+
+                if (!user.IsActive)
+                {
+                    return InactiveUser();
+                }
+
+                return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId);
+            }
+            catch (Exception)
             {
                 return InvalidUser();
             }
-
-            if (!user.IsActive)
-            {
-                return InactiveUser();
-            }
-
-            return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId);
         }
 
         public async Task<int> AddUser(NewUserRequest user)
         {
-            var userId = await _repository.AddUser(user);
+            try
+            {
+                var userId = await _repository.AddUser(user);
 
-            return userId;
+                return userId;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public async Task UpdateUser(UpdateUserRequest updateUser)
         {
-            await _repository.UpdateUser(updateUser);
+            try
+            {
+                await _repository.UpdateUser(updateUser);
+            }
+            catch (Exception)
+            {
+                //Log
+            }
         }
 
         public async Task<int> GetLimit(int userId)
         {
-            return await _repository.GetUserLimit(userId);
+            try
+            {
+                return await _repository.GetUserLimit(userId);
+            }
+            catch (Exception)
+            {
+                //log
+                return 0;
+            }
         }
 
         private static UserResponse ValidUser(int userId, int gold, int silver, int countryId)

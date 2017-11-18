@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,24 +19,16 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
         public async Task<UserEntity> Execute(UserArgs user)
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspGetUser",
-                        new {@userName = user.UserName},
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspGetUser",
+                    new {@userName = user.UserName},
+                    commandType: CommandType.StoredProcedure);
 
-                    var validUser = await conn.QueryAsync<UserEntity>(command);
+                var validUser = await conn.QueryAsync<UserEntity>(command);
 
-                    return validUser.FirstOrDefault();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                return validUser.FirstOrDefault();
             }
         }
     }

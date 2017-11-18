@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 
@@ -20,23 +16,16 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
         public async Task<int> Execute(int userId)
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspCreateMinesBoom", 
-                        new {userId}, 
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspCreateMinesBoom",
+                    new {userId},
+                    commandType: CommandType.StoredProcedure);
 
-                    var gameId = await conn.ExecuteScalarAsync<int>(command);
+                var gameId = await conn.ExecuteScalarAsync<int>(command);
 
-                    return gameId;
-                }
-            }
-            catch (Exception)
-            {
-                return 0;
+                return gameId;
             }
         }
     }

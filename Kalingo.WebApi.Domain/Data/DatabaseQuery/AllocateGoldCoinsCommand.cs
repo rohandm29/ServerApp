@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Kalingo.WebApi.Domain.Entity;
@@ -21,22 +17,20 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
         public async Task Execute(MinesBoomSession mbSession)
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspAllocateCoins",
-                        new { mbSession.UserId, mbSession.GameId, mbSession.GameResult.CoinType, mbSession.GameResult.CoinsWon },
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspAllocateCoins",
+                    new
+                    {
+                        mbSession.UserId,
+                        mbSession.GameId,
+                        mbSession.GameResult.CoinType,
+                        mbSession.GameResult.CoinsWon
+                    },
+                    commandType: CommandType.StoredProcedure);
 
-                    await conn.ExecuteAsync(command);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                await conn.ExecuteAsync(command);
             }
         }
     }

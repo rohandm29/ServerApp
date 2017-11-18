@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Dapper;
 using Kalingo.WebApi.Domain.Engine;
-using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -19,30 +15,21 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
         {
             _connectionString = connectionString;
         }
-            
+
         public async Task Execute(int gameId, List<int> userSelections, int[] randomSequence)
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspTerminateMinesBoom",
-                        new
-                        {
-                            @gameId = gameId,
-                            @randomSequence = RandomProvider.GetDelimatedSequence(randomSequence),
-                            @userSelections = RandomProvider.GetDelimatedSequence(userSelections)
-                        },
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspTerminateMinesBoom",
+                    new
+                    {   gameId,
+                        @randomSequence = RandomProvider.GetDelimatedSequence(randomSequence),
+                        @userSelections = RandomProvider.GetDelimatedSequence(userSelections)
+                    },
+                    commandType: CommandType.StoredProcedure);
 
-                    await conn.ExecuteScalarAsync<int>(command);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                await conn.ExecuteScalarAsync<int>(command);
             }
         }
     }

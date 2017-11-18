@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Threading.Tasks;
 using Dapper;
 using Kalingo.WebApi.Domain.Entity;
 
@@ -19,23 +17,15 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
         public IEnumerable<Settings> Execute()
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspGetMinesboomSettings",
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspGetMinesboomSettings",
+                    commandType: CommandType.StoredProcedure);
 
-                    var settings = conn.Query<Settings>(command);
-                    
-                    return settings;
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                var settings = conn.Query<Settings>(command);
+
+                return settings;
             }
         }
     }

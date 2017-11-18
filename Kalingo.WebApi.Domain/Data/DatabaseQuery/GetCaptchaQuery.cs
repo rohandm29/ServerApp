@@ -1,10 +1,8 @@
-﻿using System;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
@@ -20,24 +18,16 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
         public async Task<CaptchaResponse> Execute(int id, CaptchaRequest captchaArgs)
         {
-            try
+            using (IDbConnection conn = new SqlConnection(_connectionString))
             {
-                using (IDbConnection conn = new SqlConnection(_connectionString))
-                {
-                    var command = new CommandDefinition(
-                        "uspGetCaptcha",
-                        new {@id = id, @gameId = captchaArgs.GameId},
-                        commandType: CommandType.StoredProcedure);
+                var command = new CommandDefinition(
+                    "uspGetCaptcha",
+                    new {id, @gameId = captchaArgs.GameId},
+                    commandType: CommandType.StoredProcedure);
 
-                    var captcha = await conn.QueryAsync<CaptchaResponse>(command);
-                    
-                    return captcha.First();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
+                var captcha = await conn.QueryAsync<CaptchaResponse>(command);
+
+                return captcha.First();
             }
         }
     }
