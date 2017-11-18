@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Cleaner;
 using Kalingo.WebApi.Domain.Engine;
@@ -22,9 +23,16 @@ namespace Kalingo.WebApi.Domain.Facades
 
         public async Task<int> ProcessNewGame(int userId)
         {
-            var gameId = await _minesBoomCreationEngine.NewMinesBoom(userId);
+            try
+            {
+                var gameId = await _minesBoomCreationEngine.NewMinesBoom(userId);
 
-            return gameId;
+                return gameId;
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
         }
 
         public async Task<MinesboomSelectionResponse> ProcessSelection(MinesboomSelectionRequest gameArgs)

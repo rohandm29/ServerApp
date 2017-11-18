@@ -34,10 +34,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     return gameId;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
-                throw;
+                return 0;
             }
         }
     }

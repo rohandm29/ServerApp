@@ -40,10 +40,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     return validUser;
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Console.WriteLine(e);
-                throw;
+                return 0;
             }
         }
     }

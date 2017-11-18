@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Dapper;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
+using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -18,7 +19,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<CaptchaAnswerResponse> Execute(CaptchaAnswerRequest captchaAnswer)
+        public async Task<CaptchaAnswer> Execute(CaptchaAnswerRequest captchaAnswer)
         {
             try
             {
@@ -31,7 +32,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 
                     var result = await conn.QueryAsync<bool>(command);
 
-                    return new CaptchaAnswerResponse(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
+                    return new CaptchaAnswer(captchaAnswer.Id, captchaAnswer.GameId, result.FirstOrDefault());
                 }
             }
             catch (Exception e)

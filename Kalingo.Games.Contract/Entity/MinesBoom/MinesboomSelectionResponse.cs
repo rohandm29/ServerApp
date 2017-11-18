@@ -1,4 +1,6 @@
-﻿namespace Kalingo.Games.Contract.Entity.MinesBoom
+﻿using System.Collections.Generic;
+
+namespace Kalingo.Games.Contract.Entity.MinesBoom
 {
     public class MinesboomSelectionResponse : GameResult
     {
@@ -33,5 +35,9 @@
         public int CoinType { get; set; }
 
         public string RandomSequence { get; set; }
+
+        public MbErrorCodes ErrorCode { get; set; }
+
+        public List<string> Errors { get; set; } = new List<string>();
     }
 }

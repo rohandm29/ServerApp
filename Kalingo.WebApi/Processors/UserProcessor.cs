@@ -19,16 +19,29 @@ namespace Kalingo.WebApi.Processors
         {
             var user = await _repository.GetUser(userArgs);
 
-            var isValid = user != null && Encryption.VerifyHash(userArgs.Password, user.Password);
+            if (user == null)
+            {
+                return UserNotFound();
+            }
 
-            return isValid
-                ? UserResponse.ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId)
-                : UserResponse.InvalidUser();
+            if (!Encryption.VerifyHash(userArgs.Password, user.Password))
+            {
+                return InvalidUser();
+            }
+
+            if (!user.IsActive)
+            {
+                return InactiveUser();
+            }
+
+            return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId);
         }
 
         public async Task<int> AddUser(NewUserRequest user)
         {
-            return await _repository.AddUser(user);
+            var userId = await _repository.AddUser(user);
+
+            return userId;
         }
 
         public async Task UpdateUser(UpdateUserRequest updateUser)
@@ -39,6 +52,52 @@ namespace Kalingo.WebApi.Processors
         public async Task<int> GetLimit(int userId)
         {
             return await _repository.GetUserLimit(userId);
+        }
+
+        private static UserResponse ValidUser(int userId, int gold, int silver, int countryId)
+        {
+            var response = new UserResponse(userId, gold, silver, countryId)
+            {
+                ErrorCode = UserErrorCodes.Valid
+            };
+
+            return response;
+        }
+
+        private static UserResponse InvalidUser()
+        {
+            var response = new UserResponse(0)
+            {
+                ErrorCode = UserErrorCodes.Invalid
+            };
+
+            response.Errors.Add("User details are not valid");
+
+            return response;
+        }
+
+        private static UserResponse UserNotFound()
+        {
+            var response = new UserResponse(0)
+            {
+                ErrorCode = UserErrorCodes.NotFound
+            };
+
+            response.Errors.Add("User not found");
+
+            return response;
+        }
+
+        private static UserResponse InactiveUser()
+        {
+            var response = new UserResponse(0)
+            {
+                ErrorCode = UserErrorCodes.Inactive
+            };
+
+            response.Errors.Add("User not active");
+
+            return response;
         }
     }
 }

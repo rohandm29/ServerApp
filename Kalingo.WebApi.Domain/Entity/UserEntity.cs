@@ -12,13 +12,16 @@
 
         public int CountryId { get; }
 
-        public UserEntity(int userId, string password, int gold, int silver, int countryId)
+        public bool IsActive { get; }
+
+        public UserEntity(int userId, string password, int gold, int silver, int countryId, bool isActive)
         {
             UserId = userId;
             Password = password;
             Gold = gold;
             Silver = silver;
             CountryId = countryId;
+            IsActive = isActive;
         }
     }
 }

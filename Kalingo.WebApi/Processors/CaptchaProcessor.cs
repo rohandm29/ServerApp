@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
@@ -28,7 +29,12 @@ namespace Kalingo.WebApi.Processors
 
         public Task<CaptchaAnswerResponse> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
-            return _captchaRepository.SubmitCaptcha(captchaAnswer);
+            // todo
+            var result = _captchaRepository.SubmitCaptcha(captchaAnswer);
+
+            var response = new CaptchaAnswerResponse(1, CaptchaErrorCodes.Inactive, new List<string>());
+
+            return Task.FromResult(response);
         }
     }
 }

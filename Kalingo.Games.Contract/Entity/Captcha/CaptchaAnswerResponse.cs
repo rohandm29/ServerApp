@@ -1,18 +1,20 @@
-﻿namespace Kalingo.Games.Contract.Entity.Captcha
+﻿using System.Collections.Generic;
+
+namespace Kalingo.Games.Contract.Entity.Captcha
 {
     public class CaptchaAnswerResponse
     {
-        public int Id { get; }
+        private int Id { get; }
 
-        public bool Match { get; }
+        private CaptchaErrorCodes ErrorCode { get; }
 
-        public int GameId { get; }
+        private List<string> Errors { get; }
 
-        public CaptchaAnswerResponse(int id, int gameId, bool match)
+        public CaptchaAnswerResponse(int id, CaptchaErrorCodes errorCode, List<string> errors)
         {
             Id = id;
-            Match = match;
-            GameId = gameId;
+            ErrorCode = errorCode;
+            Errors = errors;
         }
     }
 }

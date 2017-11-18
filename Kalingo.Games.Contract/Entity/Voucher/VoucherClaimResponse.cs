@@ -1,14 +1,16 @@
-﻿namespace Kalingo.Games.Contract.Entity.Voucher
+﻿using System.Collections.Generic;
+
+namespace Kalingo.Games.Contract.Entity.Voucher
 {
     public class VoucherClaimResponse
     {
-        public bool Result { get; }
-        public string Comment { get; }
+       public VoucherErrorCodes ErrorCode { get; set; }
+        public List<string> Error { get; }
 
-        public VoucherClaimResponse(bool result, string comment)
+        public VoucherClaimResponse(VoucherErrorCodes errorCode, List<string> error)
         {
-            Result = result;
-            Comment = comment;
+            ErrorCode = errorCode;
+            Error = error;
         }
     }
 }
