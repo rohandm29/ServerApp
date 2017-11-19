@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                         @userName = user.UserName,
                         @password = user.Password,
                         @emailaddress = user.Email,
-                        @country = CountryService.GetCountry(user.Country)
+                        @country = user.CountryId
                     },
                     commandType: CommandType.StoredProcedure);
 

@@ -63,11 +63,13 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetVouchersQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<VoucherClaimedCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetCountriesQuery>().WithParameter("connectionString", connectionString).SingleInstance();
 
             Builder.RegisterType<UserRepository>().SingleInstance();
             Builder.RegisterType<GamesRepository>().SingleInstance();
             Builder.RegisterType<CaptchaRepository>().SingleInstance();
             Builder.RegisterType<VoucherRepository>().SingleInstance();
+            Builder.RegisterType<CountryRepository>().SingleInstance();
 
             Builder.RegisterType<MinesBoomGameSettings>().SingleInstance();
             Builder.RegisterType<MinesBoomCreationEngine>().SingleInstance();
@@ -77,10 +79,12 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<MinesBoomService>().SingleInstance();
             Builder.RegisterType<MinesBoomCleaner>().SingleInstance();
             Builder.RegisterType<MinesBoomFacade>().SingleInstance();
+            Builder.RegisterType<CountryService>().SingleInstance();
             Builder.RegisterType<UserProcessor>().SingleInstance();
             Builder.RegisterType<GameProcessor>().SingleInstance();
             Builder.RegisterType<CaptchaProcessor>().SingleInstance();
             Builder.RegisterType<VoucherProcessor>().SingleInstance();
+            Builder.RegisterType<CountryProcessor>().SingleInstance();
 
             Builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
         }

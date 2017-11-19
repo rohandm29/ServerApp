@@ -4,13 +4,13 @@
     {
         public string Email { get; }
 
-        public string Country { get; }
+        public int CountryId { get; }
 
-        public NewUserRequest(string userName, string password, string email, string country) 
+        public NewUserRequest(string userName, string password, string email, int countryId) 
             : base(userName, password)
         {
             Email = email;
-            Country = country;
+            CountryId = countryId;
         }
     }
 }

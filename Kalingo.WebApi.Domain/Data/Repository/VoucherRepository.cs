@@ -24,6 +24,6 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         public async Task<int> VoucherClaimed(VoucherClaimRequest claim)
         {
             return await _voucherClaimedCommand.Execute(claim);
-;        }
+        }
     }
 }

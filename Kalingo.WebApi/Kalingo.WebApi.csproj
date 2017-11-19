@@ -220,6 +220,7 @@
   <ItemGroup>
     <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="Processors\CaptchaProcessor.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -230,6 +231,7 @@
     </Compile>
     <Compile Include="Processors\GameProcessor.cs" />
     <Compile Include="Processors\UserProcessor.cs" />
+    <Compile Include="Processors\CountryProcessor.cs" />
     <Compile Include="Processors\VoucherProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup\Auth.cs" />
