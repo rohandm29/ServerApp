@@ -6,13 +6,10 @@
 
         public string Name { get; }
 
-        public string Code { get; }
-
-        public CountryResponse(int id, string name, string code)
+        public CountryResponse(int id, string name)
         {
             Id = id;
             Name = name;
-            Code = code;
         }
     }
 }

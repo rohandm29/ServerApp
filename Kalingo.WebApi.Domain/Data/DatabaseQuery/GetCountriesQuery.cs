@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
-                    "uspGetCountreis",
+                    "uspGetCountries",
                     commandType: CommandType.StoredProcedure);
 
                 var vouchers = await conn.QueryAsync<CountryResponse>(command);

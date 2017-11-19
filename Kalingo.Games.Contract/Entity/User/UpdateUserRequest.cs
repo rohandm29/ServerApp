@@ -6,13 +6,13 @@
 
         public string Email { get; }
 
-        public string Country { get; }
+        public int CountryId { get; }
 
-        public UpdateUserRequest(int userId, string email, string country) 
+        public UpdateUserRequest(int userId, string email, int countryId) 
         {
             UserId = userId;
             Email = email;
-            Country = country;
+            CountryId = countryId;
         }
     }
 }

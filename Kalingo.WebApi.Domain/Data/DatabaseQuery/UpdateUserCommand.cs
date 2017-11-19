@@ -26,7 +26,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     {
                         @userId = user.UserId,
                         @emailaddress = user.Email,
-                        @country = CountryService.GetCounties(user.Country)
+                        @country = user.CountryId
                     },
                     commandType: CommandType.StoredProcedure);
 

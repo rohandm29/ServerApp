@@ -10,9 +10,9 @@ namespace Kalingo.WebApi.Controllers
     [RoutePrefix("country")]
     public class CountryController : ApiController
     {
-        private readonly VoucherProcessor _processor;
+        private readonly CountryProcessor _processor;
 
-        public CountryController(VoucherProcessor processor)
+        public CountryController(CountryProcessor processor)
         {
             _processor = processor;
         }
@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetCountries()
         {
-            var image = await _processor.GetVouchers(countryId);
+            var image = await _processor.GetVouchers();
 
             return Ok(image);
         }
