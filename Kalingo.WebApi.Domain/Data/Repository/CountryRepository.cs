@@ -14,7 +14,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _getCountriesQuery = getCountriesQuery;
         }
 
-        public async Task<IEnumerable<CountryResponse>> GetCountris()
+        public async Task<IEnumerable<CountryResponse>> GetCountries()
         {
             return await _getCountriesQuery.Execute();
         }

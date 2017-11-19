@@ -25,6 +25,7 @@ namespace Kalingo.Games.Contract.Entity.User
             Silver = silver;
             CountryId = countryId;
             PromoId = promoId;
+            Errors = new List<string>();
         }
     }
 }

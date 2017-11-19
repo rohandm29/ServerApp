@@ -18,7 +18,7 @@ namespace Kalingo.WebApi.Domain.Services
 
         public async Task<IEnumerable<CountryResponse>> GetCounties()
         {
-            return _countryResponses ?? (_countryResponses = await _countryRepository.GetCountris());
+            return _countryResponses ?? (_countryResponses = await _countryRepository.GetCountries());
         }
 
         public static int GetCountryId(string name)

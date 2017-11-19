@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Controllers
         [HttpGet]
         public async Task<IHttpActionResult> GetCountries()
         {
-            var image = await _processor.GetVouchers();
+            var image = await _processor.GetCountries();
 
             return Ok(image);
         }

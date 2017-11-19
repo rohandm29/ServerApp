@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
-using Kalingo.Games.Contract.Entity.Voucher;
-using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Processors
@@ -17,7 +15,7 @@ namespace Kalingo.WebApi.Processors
             _countryService = countryService;
         }
 
-        public async Task<IEnumerable<CountryResponse>> GetVouchers()
+        public async Task<IEnumerable<CountryResponse>> GetCountries()
         {
             try
             {

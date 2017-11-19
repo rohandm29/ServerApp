@@ -2,41 +2,41 @@
 {
     public enum UserCodes
     {
-        Valid,
-
         Invalid,
 
         NotFound,
 
         Inactive,
+
+        Valid,
     }
 
     public enum MinesboomCodes
     {
-        Valid,
-
         Invalid,
 
         NotFound,
 
         Duplicate,
+
+        Valid,
     }
 
     public enum CaptchaCodes
     {
-        Valid,
-
         Invalid,
 
         NotFound,
+
+        Valid,
     }
 
     public enum VoucherCodes
     {
-        Valid,
-
         NotEnoughCoins,
 
         NoVouchers,
+
+        Valid,
     }
 }
