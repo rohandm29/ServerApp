@@ -3,28 +3,28 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.Games.Contract.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class GetUserLimitQuery
+    public class GetConfigQuery
     {
         private readonly string _connectionString;
 
-        public GetUserLimitQuery(string connectionString)
+        public GetConfigQuery(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(int userId)
+        public async Task<Config> Execute()
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
-                    "uspGetUserLimit",
-                    new {@userId = userId},
+                    "uspGetMinesboomConfig",
                     commandType: CommandType.StoredProcedure);
 
-                var limit = await conn.QueryAsync<int>(command);
+                var limit = await conn.QueryAsync<Config>(command);
 
                 return limit.FirstOrDefault();
             }

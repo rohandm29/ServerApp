@@ -98,8 +98,9 @@
     <Compile Include="Cleaner\MinesBoomCleaner.cs" />
     <Compile Include="Configuration\MinesBoomGameSettings.cs" />
     <Compile Include="Data\Cache\MinesBoomCache.cs" />
+    <Compile Include="Data\DatabaseQuery\GetUserPlayCountQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetMinesboomSettingsQuery.cs" />
-    <Compile Include="Data\DatabaseQuery\GetUserLimitQuery.cs" />
+    <Compile Include="Data\DatabaseQuery\GetConfigQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetCountriesQuery.cs" />
     <Compile Include="Data\DatabaseQuery\VoucherClaimedCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetVouchersQuery.cs" />

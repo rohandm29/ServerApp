@@ -73,7 +73,7 @@ namespace Kalingo.WebApi.Controllers
 
         [Route("GetLimit")]
         [HttpGet]
-        public async Task<IHttpActionResult> GetLimit(int userId)
+        public async Task<IHttpActionResult> GetUserLimit(int userId)
         {
             var limit = await _processor.GetLimit(userId);
             return Ok(limit);

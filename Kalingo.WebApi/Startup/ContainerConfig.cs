@@ -52,8 +52,9 @@ namespace Kalingo.WebApi.Startup
 
             Builder.RegisterType<GetUserQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AddUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
-            Builder.RegisterType<GetUserLimitQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetUserPlayCountQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetConfigQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetMinesboomSettingsQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<CreateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<CloseMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();

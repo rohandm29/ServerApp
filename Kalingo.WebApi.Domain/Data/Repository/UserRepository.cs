@@ -11,14 +11,17 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         private readonly GetUserQuery _getUser;
         private readonly AddUserCommand _addUser;
         private readonly UpdateUserCommand _updateUser;
-        private readonly GetUserLimitQuery _getUserLimitQuery;
+        private readonly GetConfigQuery _configQuery;
+        private readonly GetUserPlayCountQuery _getUserPlayCount;
 
-        public UserRepository(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUser, GetUserLimitQuery getUserLimitQuery)
+        public UserRepository(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUser, 
+            GetConfigQuery configQuery, GetUserPlayCountQuery getUserPlayCount)
         {
             _getUser = getUserQuery;
             _addUser = addUserCommand;
             _updateUser = updateUser;
-            _getUserLimitQuery = getUserLimitQuery;
+            _configQuery = configQuery;
+            _getUserPlayCount = getUserPlayCount;
         }
 
         public async Task<UserEntity> GetUser(UserArgs user)
@@ -36,9 +39,14 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             await _updateUser.Execute(updateUser);
         }
 
-        public async Task<int> GetUserLimit(int userId)
+        public async Task<int> GetUserPlayCount(int userId)
         {
-            return await _getUserLimitQuery.Execute(userId);
+            return await _getUserPlayCount.Execute(userId);
+        }
+
+        public async Task<Config> GetConfig()
+        {
+            return await _configQuery.Execute();
         }
     }
 }

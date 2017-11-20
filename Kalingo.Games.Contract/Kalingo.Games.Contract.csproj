@@ -43,6 +43,7 @@
     <Compile Include="Entity\Captcha\CaptchaAnswerRequest.cs" />
     <Compile Include="Entity\Captcha\CaptchaAnswerResponse.cs" />
     <Compile Include="Entity\Captcha\CaptchaResponse.cs" />
+    <Compile Include="Entity\Config.cs" />
     <Compile Include="Entity\GameArgs.cs" />
     <Compile Include="Entity\GameResult.cs" />
     <Compile Include="Entity\Ladders\LaddersGameRequest.cs" />

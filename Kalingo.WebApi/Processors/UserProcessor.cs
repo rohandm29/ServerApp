@@ -37,9 +37,11 @@ namespace Kalingo.WebApi.Processors
                     return InactiveUser();
                 }
 
-                return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId);
+                var config = await _repository.GetConfig();
+
+                return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId, config);
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return InvalidUser();
             }
@@ -75,7 +77,7 @@ namespace Kalingo.WebApi.Processors
         {
             try
             {
-                return await _repository.GetUserLimit(userId);
+                return await _repository.GetUserPlayCount(userId);
             }
             catch (Exception)
             {
@@ -84,9 +86,9 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
-        private static UserResponse ValidUser(int userId, int gold, int silver, int countryId)
+        private static UserResponse ValidUser(int userId, int gold, int silver, int countryId, Config config)
         {
-            var response = new UserResponse(userId, gold, silver, countryId)
+            var response = new UserResponse(userId, config, gold, silver, countryId)
             {
                 Code = UserCodes.Valid
             };

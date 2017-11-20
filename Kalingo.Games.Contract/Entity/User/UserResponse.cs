@@ -14,17 +14,20 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int PromoId { get; }
 
+        public Config MbConfig { get;}
+
         public UserCodes Code { get; set; }
 
         public List<string> Errors { get; set; }
 
-        public UserResponse(int userId, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
+        public UserResponse(int userId, Config config = null, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
         {
             UserId = userId;
             Gold = gold;
             Silver = silver;
             CountryId = countryId;
             PromoId = promoId;
+            MbConfig = config;
             Errors = new List<string>();
         }
     }
