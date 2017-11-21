@@ -2,15 +2,15 @@
 {
     public class CaptchaAnswerRequest
     {
-        public int Id { get; }
+        public int CaptchaId { get; }
 
         public string Answer { get; }
 
         public int GameId { get; }
 
-        public CaptchaAnswerRequest(int id, string answer, int gameId)
+        public CaptchaAnswerRequest(int captchaId, string answer, int gameId)
         {
-            Id = id;
+            CaptchaId = captchaId;
             Answer = answer;
             GameId = gameId;
         }

@@ -41,13 +41,13 @@ namespace Kalingo.WebApi.Processors
                 var isCorrect = await _captchaRepository.SubmitCaptcha(captchaAnswerRequest);
 
                 return isCorrect
-                    ? new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.Valid)
-                    : new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.Invalid,
+                    ? new CaptchaAnswerResponse(captchaAnswerRequest.CaptchaId, CaptchaCodes.Valid)
+                    : new CaptchaAnswerResponse(captchaAnswerRequest.CaptchaId, CaptchaCodes.Invalid,
                         new List<string> {"Does not match"});
             }
             catch (Exception)
             {
-                return new CaptchaAnswerResponse(captchaAnswerRequest.Id, CaptchaCodes.NotFound,
+                return new CaptchaAnswerResponse(captchaAnswerRequest.CaptchaId, CaptchaCodes.NotFound,
                     new List<string> { "Not Found" });
             }
         }

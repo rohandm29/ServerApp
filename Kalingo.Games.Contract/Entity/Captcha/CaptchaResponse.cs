@@ -2,13 +2,13 @@
 {
     public class CaptchaResponse
     {
-        public int Id { get; }
+        public int CaptchaId { get; }
 
         public string Image { get; }
 
-        public CaptchaResponse(int id, string image)
+        public CaptchaResponse(int captchaId, string image)
         {
-            Id = id;
+            CaptchaId = captchaId;
             Image = image;
         }
     }

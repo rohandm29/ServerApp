@@ -23,7 +23,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             {
                 var command = new CommandDefinition(
                     "uspProcessCaptcha",
-                    new {@id = captchaAnswer.Id, @gameId = captchaAnswer.GameId, @answer = captchaAnswer.Answer},
+                    new {@captchaId = captchaAnswer.CaptchaId, @gameId = captchaAnswer.GameId, @answer = captchaAnswer.Answer},
                     commandType: CommandType.StoredProcedure);
 
                 var result = await conn.QueryAsync<bool>(command);
