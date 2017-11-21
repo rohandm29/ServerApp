@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Domain.Engine
 
             var gameId = await _gamesRepository.CreateMinesBoom(userId) ; //, RandomProvider.GetDelimatedSequence(randomSequence));
 
-            var gameData = new MinesBoomGameState(randomSequence, _mbGameSettings.TotalGifts, _mbGameSettings.TotalChances);
+            var gameData = new MinesBoomGameState(userId, randomSequence, _mbGameSettings.TotalGifts, _mbGameSettings.TotalChances);
 
             await _minesBoomCache.Add(gameId, gameData);
 

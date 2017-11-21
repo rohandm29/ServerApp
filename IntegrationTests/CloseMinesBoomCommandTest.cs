@@ -50,7 +50,7 @@ namespace IntegrationTests
         {
             return MinesBoomSession.Create(1,
                 new MinesboomSelectionResponse(gameId, true, null) {HasWon = true},
-                new MinesBoomGameState(new[] {1, 2, 3, 4, 5}, 1, 1));
+                new MinesBoomGameState(1, new[] {1, 2, 3, 4, 5}, 1, 1));
         }
 
         private static void AppendUserSelections(MinesBoomSession mbData, string userSelection)

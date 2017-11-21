@@ -60,11 +60,11 @@ namespace Kalingo.WebApi.Domain.Facades
             }
         }
 
-        public async Task TerminateGame(int gameId)
+        public async Task TerminateGame(GameArgs gameArgs, bool expired)
         {
             try
             {
-                await _cleaner.Terminate(gameId);
+                await _cleaner.Terminate(gameArgs.UserId, gameArgs.GameId , expired);
             }
             catch (Exception)
             {

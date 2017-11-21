@@ -3,6 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.Games.Contract.Entity;
 using Kalingo.WebApi.Domain.Engine;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
@@ -16,16 +17,20 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task Execute(int gameId, List<int> userSelections, int[] randomSequence)
+        public async Task Execute(int userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
-                    "uspTerminateMinesBoom",
+                    "uspCloseMinesBoom",
                     new
-                    {   gameId,
+                    {
+                        userId,
+                        gameId,
+                        @win = false,
                         @randomSequence = RandomProvider.GetDelimatedSequence(randomSequence),
-                        @userSelections = RandomProvider.GetDelimatedSequence(userSelections)
+                        @userSelections = RandomProvider.GetDelimatedSequence(userSelection),
+                        @Expired = expired,
                     },
                     commandType: CommandType.StoredProcedure);
 

@@ -16,7 +16,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Engine
         [SetUp]
         public void SetUp()
         {
-            _cache = new MinesBoomCache();
+            _cache = new MinesBoomCache(null);
             _verifier = new MinesBoomVerificationEngine(_cache);
         }
 
@@ -28,7 +28,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Engine
         {
             // arrange
             var gameId = 123;
-            var gameData = new MinesBoomGameState(new[] { 1, 3, 5, 7, 12 }, 1, 1);
+            var gameData = new MinesBoomGameState(1, new[] { 1, 3, 5, 7, 12 }, 1, 1);
 
             await _cache.Add(gameId, gameData);
 

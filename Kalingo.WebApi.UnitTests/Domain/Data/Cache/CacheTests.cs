@@ -13,7 +13,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Data.Cache
         [SetUp]
         public void SetUp()
         {
-            _randomSequenceCache = new MinesBoomCache();
+            _randomSequenceCache = new MinesBoomCache(null);
         }
 
         [Test]
@@ -23,7 +23,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Data.Cache
             const int gameId = 123;
             var randomSequence = new[] { 1, 2, 3, 4, 5 };
 
-            var gameData = new MinesBoomGameState(randomSequence, 1, 1);
+            var gameData = new MinesBoomGameState(1, randomSequence, 1, 1);
 
             // act
             await _randomSequenceCache.Add(gameId, gameData);
@@ -41,7 +41,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Data.Cache
             // arrange
             var randomSequence = new[] { 1, 2, 3, 4, 5 };
 
-            var gameData = new MinesBoomGameState(randomSequence, 1, 1);
+            var gameData = new MinesBoomGameState(1, randomSequence, 1, 1);
             
             // act
             await _randomSequenceCache.Add(gameId, gameData);
@@ -59,7 +59,7 @@ namespace Kalingo.WebApi.UnitTests.Domain.Data.Cache
             const int gameId = 123;
             var randomSequence = new[] { 1, 2, 3, 4, 5 };
 
-            var gameData = new MinesBoomGameState(randomSequence, 1, 1);
+            var gameData = new MinesBoomGameState(1, randomSequence, 1, 1);
 
             // act
             await _randomSequenceCache.Add(gameId, gameData);

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
+using Kalingo.WebApi.Domain.Cleaner;
+using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.Cache
@@ -8,13 +10,27 @@ namespace Kalingo.WebApi.Domain.Data.Cache
     public class MinesBoomCache
     {
         private const string MinesBoomCacheName = "MinesBoomCacheName";
-        private readonly CacheItemPolicy _cacheItemPolicy;
+        private CacheItemPolicy _cacheItemPolicy;
         private readonly MemoryCache _cache;
 
-        public MinesBoomCache()
+        private readonly GamesRepository _gamesRepository;
+
+        public MinesBoomCache(GamesRepository gamesRepository)
         {
-            _cacheItemPolicy = new CacheItemPolicy {AbsoluteExpiration = DateTime.UtcNow.AddMinutes(60)};
+            _gamesRepository = gamesRepository;
+
             _cache = new MemoryCache(MinesBoomCacheName);
+        }
+
+        private async void RemovedCallback(CacheEntryRemovedArguments arguments)
+        {
+            if (arguments.RemovedReason == CacheEntryRemovedReason.Expired)
+            {
+                var item = (MinesBoomGameState) arguments.CacheItem.Value;
+
+                await _gamesRepository.TerminateMinesBoom(item.UserId, int.Parse(arguments.CacheItem.Key),
+                    item.RandomSequence, item.UserSelections, true);
+            }
         }
 
         /// <summary>
@@ -24,7 +40,13 @@ namespace Kalingo.WebApi.Domain.Data.Cache
         /// <param name="mbGameState"></param>
         public async Task Add(int gameId, MinesBoomGameState mbGameState)
         {
-             await Task.Run(()=> _cache.Add(new CacheItem(gameId.ToString(), mbGameState), _cacheItemPolicy));
+            _cacheItemPolicy = new CacheItemPolicy
+            {
+                AbsoluteExpiration = DateTime.UtcNow.AddMinutes(1),
+                RemovedCallback = RemovedCallback
+            };
+
+            await Task.Run(()=> _cache.Add(new CacheItem(gameId.ToString(), mbGameState), _cacheItemPolicy));
         }
 
         /// <summary>

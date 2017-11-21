@@ -60,7 +60,7 @@ namespace Kalingo.WebApi.Processors
             switch (gameArgs.GameTypeId)
             {
                 case 1:
-                    await _minesBoomFacade.TerminateGame(gameArgs.GameId);
+                    await _minesBoomFacade.TerminateGame(gameArgs, false);
                     break;
             }
         }

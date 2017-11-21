@@ -5,14 +5,17 @@ namespace Kalingo.WebApi.Domain.Entity
 {
     public class MinesBoomGameState
     {
-        public MinesBoomGameState(int[] randomSequence, int totalGifts, int totalChances)
+        public MinesBoomGameState(int userId, int[] randomSequence, int totalGifts, int totalChances)
         {
             GiftsFound = 0;
+            UserId = userId;
             RandomSequence = randomSequence;
             TotalGifts = totalGifts;
             TotalChances = totalChances;
             UserSelections = new List<int>();
         }
+
+        public int UserId { get; }
 
         public int[] RandomSequence { get; }
 

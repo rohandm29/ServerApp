@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Kalingo.Games.Contract.Entity;
 using Kalingo.WebApi.Domain.Data.DatabaseQuery;
 using Kalingo.WebApi.Domain.Entity;
 
@@ -37,9 +38,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             await _closeMinesBoomCommand.Execute(minesBoomSession);
         }
 
-        public async Task TerminateMinesBoom(int gameId, List<int> userSelection, int[] randomSequence)
+        public async Task TerminateMinesBoom(int userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
         {
-            await _terminateMinesBoomCommand.Execute(gameId, userSelection, randomSequence);
+            await _terminateMinesBoomCommand.Execute(userId, gameId, userSelection, randomSequence, expired);
         }
 
         public async Task AllocateGoldCoins(MinesBoomSession minesBoomSession)
