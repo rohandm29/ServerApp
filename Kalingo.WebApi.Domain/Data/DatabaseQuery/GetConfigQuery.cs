@@ -16,12 +16,16 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<Config> Execute()
+        public async Task<Config> Execute(int countryId)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
                     "uspGetMinesboomConfig",
+                    new
+                    {
+                        countryId
+                    },
                     commandType: CommandType.StoredProcedure);
 
                 var limit = await conn.QueryAsync<Config>(command);

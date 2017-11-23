@@ -44,9 +44,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             return await _getUserPlayCount.Execute(userId);
         }
 
-        public async Task<Config> GetConfig()
+        public async Task<Config> GetConfig(int countryId)
         {
-            return await _configQuery.Execute();
+            return await _configQuery.Execute(countryId);
         }
     }
 }

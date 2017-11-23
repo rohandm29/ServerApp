@@ -14,7 +14,7 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int PromoId { get; }
 
-        public Config MbConfig { get;}
+        public Config MbConfig { get; set; }
 
         public UserCodes Code { get; set; }
 

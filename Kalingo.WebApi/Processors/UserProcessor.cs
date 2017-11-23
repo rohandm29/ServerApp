@@ -37,7 +37,7 @@ namespace Kalingo.WebApi.Processors
                     return InactiveUser();
                 }
 
-                var config = await _repository.GetConfig();
+                var config = await _repository.GetConfig(user.CountryId);
 
                 return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId, config);
             }
