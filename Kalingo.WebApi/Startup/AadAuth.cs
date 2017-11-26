@@ -5,7 +5,7 @@ using Owin;
 
 namespace Kalingo.WebApi.Startup
 {
-    public class Auth
+    public class AadAuth
     {
         public static void ConfigureAuth(IAppBuilder app)
         {

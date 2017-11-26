@@ -21,16 +21,15 @@ namespace Kalingo.WebApi.Controllers
         /// <summary>
         /// Creates a new game for a user with the given game type.
         /// </summary>
-        /// <param name="gameTypeId"></param>
-        /// <param name="userId"></param>
+        /// <param name="args"></param>
         /// <returns></returns>
         [Route("join")]
         [HttpGet]
-        public async Task<IHttpActionResult> Join(int gameTypeId, int userId)
+        public async Task<IHttpActionResult> Join([FromBody] GameArgs args)
         {
             try
             {
-                var gameId = await _processor.ExecuteNewGame(gameTypeId, userId);
+                var gameId = await _processor.ExecuteNewGame(args.GameTypeId, args.UserId);
 
                 return Ok(gameId);
             }   

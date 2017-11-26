@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.User;
@@ -27,7 +29,14 @@ namespace Kalingo.WebApi.Controllers
         {
             var userEntity = await _processor.GetUser(user);
 
-            return Ok(userEntity);
+            if (userEntity.Code == UserCodes.Valid || userEntity.Code == UserCodes.Inactive)
+            {
+                var response = Request.CreateResponse(HttpStatusCode.OK, userEntity);
+                response.Headers.Add("UserId", userEntity.UserId.ToString());
+                return ResponseMessage(response);
+            }
+
+            return NotFound();
         }
 
         /// <summary>

@@ -1,9 +1,9 @@
-﻿using System.IdentityModel.Tokens;
+﻿using System.Configuration;
 using System.Web.Http;
 using Autofac.Integration.WebApi;
+using Kalingo.WebApi.Middleware;
 using Kalingo.WebApi.Startup;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.ActiveDirectory;
 using Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
@@ -16,7 +16,8 @@ namespace Kalingo.WebApi.Startup
         {
             var config = new HttpConfiguration();
 
-            //Auth.ConfigureAuth(app);
+            if(bool.Parse(ConfigurationManager.AppSettings["AuthEnabled"]))
+                app.Use(typeof(AuthMiddleware));
 
             WebApiConfig.Register(config);
 
