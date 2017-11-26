@@ -24,7 +24,7 @@ namespace Kalingo.WebApi.Controllers
         /// <param name="args"></param>
         /// <returns></returns>
         [Route("join")]
-        [HttpGet]
+        [HttpPost]
         public async Task<IHttpActionResult> Join([FromBody] GameArgs args)
         {
             try

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Runtime.Caching;
 using System.Threading.Tasks;
-using Kalingo.WebApi.Domain.Cleaner;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
 
@@ -12,6 +11,7 @@ namespace Kalingo.WebApi.Domain.Data.Cache
         private const string MinesBoomCacheName = "MinesBoomCacheName";
         private CacheItemPolicy _cacheItemPolicy;
         private readonly MemoryCache _cache;
+        private const int ExipireMin = 10;
 
         private readonly GamesRepository _gamesRepository;
 
@@ -42,7 +42,7 @@ namespace Kalingo.WebApi.Domain.Data.Cache
         {
             _cacheItemPolicy = new CacheItemPolicy
             {
-                AbsoluteExpiration = DateTime.UtcNow.AddMinutes(1),
+                AbsoluteExpiration = DateTime.UtcNow.AddMinutes(ExipireMin),
                 RemovedCallback = RemovedCallback
             };
 
