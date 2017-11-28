@@ -14,13 +14,13 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(int userId)
+        public async Task<int> Execute(int userId, string getDelimatedSequence)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
                     "uspCreateMinesBoom",
-                    new {userId},
+                    new {userId, getDelimatedSequence},
                     commandType: CommandType.StoredProcedure);
 
                 var gameId = await conn.ExecuteScalarAsync<int>(command);

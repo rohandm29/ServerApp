@@ -28,9 +28,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _getMinesboomSettingsQuery = getMinesboomSettingsQuery;
         }
 
-        public async Task<int> CreateMinesBoom(int userId)
+        public async Task<int> CreateMinesBoom(int userId, string getDelimatedSequence)
         {
-            return await _createMinesBoomCommand.Execute(userId);
+            return await _createMinesBoomCommand.Execute(userId, getDelimatedSequence);
         }
 
         public async Task CloseMinesBoom(MinesBoomSession minesBoomSession)
