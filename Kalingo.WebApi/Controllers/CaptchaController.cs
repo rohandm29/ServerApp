@@ -30,14 +30,14 @@ namespace Kalingo.WebApi.Controllers
             return Ok(image);
         }
 
-       
+
         /// <summary>
         /// Update the user details.
         /// </summary>
-        /// <param name="updateUser"></param>
+        /// <param name="captchaAnswer"></param>
         /// <returns></returns>
-        [Route("Update")]
-        [HttpPatch]
+        [Route("Submit")]
+        [HttpPost]
         public async Task<IHttpActionResult> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
             var result = await _processor.SubmitCaptcha(captchaAnswer);

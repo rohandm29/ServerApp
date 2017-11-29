@@ -48,7 +48,7 @@ namespace Kalingo.WebApi.Processors
             catch (Exception e)
             {
                 return new CaptchaAnswerResponse(captchaAnswerRequest.CaptchaId, CaptchaCodes.NotFound,
-                    new List<string> { "Not Found" });
+                    new List<string> { e.Message + " - Not Found" });
             }
         }
     }
