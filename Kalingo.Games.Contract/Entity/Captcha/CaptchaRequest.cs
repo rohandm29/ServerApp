@@ -2,11 +2,11 @@
 {
     public class CaptchaRequest
     {
-        public int UserId { get; }
+        public string UserId { get; }
 
         public int GameId { get; }
 
-        public CaptchaRequest(int userId, int gameId)
+        public CaptchaRequest(string userId, int gameId)
         {
             UserId = userId;
             GameId = gameId;

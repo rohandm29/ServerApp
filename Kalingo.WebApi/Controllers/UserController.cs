@@ -42,16 +42,15 @@ namespace Kalingo.WebApi.Controllers
         /// <summary>
         /// Creates a new user account.
         /// </summary>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
+        /// <param name="user"></param>
         /// <returns></returns>
         [Route("Add")]
         [HttpPost]
         public async Task<IHttpActionResult> AddUser(NewUserRequest user)
         {
-            var userId = await _processor.AddUser(user);
+            var addUserResponse = await _processor.AddUser(user);
 
-            return Ok(userId);
+            return Ok(addUserResponse);
         } 
 
         /// <summary>

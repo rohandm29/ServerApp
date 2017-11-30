@@ -17,7 +17,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task Execute(int userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
+        public async Task Execute(string userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {

@@ -14,7 +14,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(int userId, string getDelimatedSequence)
+        public async Task<int> Execute(string userId, string getDelimatedSequence)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {

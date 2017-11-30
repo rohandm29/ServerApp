@@ -4,7 +4,7 @@ namespace Kalingo.WebApi.Domain.Entity
 {
     public class MinesBoomSession
     {
-        private MinesBoomSession(int userId, MinesboomSelectionResponse gameResult, MinesBoomGameState gameState)
+        private MinesBoomSession(string userId, MinesboomSelectionResponse gameResult, MinesBoomGameState gameState)
         {
             UserId = userId;
             GameId = gameResult.GameId;
@@ -12,19 +12,19 @@ namespace Kalingo.WebApi.Domain.Entity
             GameState = gameState;
         }
 
-        public static MinesBoomSession Create(int userId, MinesboomSelectionResponse mbGameResult, MinesBoomGameState mbGameState)
+        public static MinesBoomSession Create(string userId, MinesboomSelectionResponse mbGameResult, MinesBoomGameState mbGameState)
         {
             var minesBoom = new MinesBoomSession(userId, mbGameResult, mbGameState);
 
             return minesBoom;
         }
 
-        public static MinesBoomSession CreateNotFound(int userId, MinesboomSelectionResponse mbGameResult, MinesBoomGameState mbGameState)
+        public static MinesBoomSession CreateNotFound(string userId, MinesboomSelectionResponse mbGameResult, MinesBoomGameState mbGameState)
         {
             return new MinesBoomSession(userId, mbGameResult, mbGameState);
         }
 
-        public int UserId { get; }
+        public string UserId { get; }
 
         public int GameId { get; }
 

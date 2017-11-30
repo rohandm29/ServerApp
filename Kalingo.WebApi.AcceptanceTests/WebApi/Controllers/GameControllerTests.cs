@@ -23,7 +23,7 @@ namespace Kalingo.WebApi.AcceptanceTests.WebApi.Controllers
         public void Should_create_MinesBoom()
         {
             // arrange
-            var gamesArgs = new MinesboomSelectionRequest(1, 123, 1);
+            var gamesArgs = new MinesboomSelectionRequest(1, "123", 1);
 
             // act
             // assert
@@ -38,12 +38,12 @@ namespace Kalingo.WebApi.AcceptanceTests.WebApi.Controllers
         public async Task Should_submit_selection_to_MinesBoom()
         {
             // arrange
-            var gamesArgs = new MinesboomSelectionRequest(1, 123, 1);
+            var gamesArgs = new MinesboomSelectionRequest(1, "123", 1);
 
             // act
             var gameId = await _testServer.SendRequest<int>("join", gamesArgs);
 
-            var gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 5));
+            var gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 5));
 
             // assert
             Assert.IsNotNull(gameResult);
@@ -53,16 +53,16 @@ namespace Kalingo.WebApi.AcceptanceTests.WebApi.Controllers
         public async Task Should_win_or_lose_a_Game()
         {
             // arrange
-            var gamesArgs = new MinesboomSelectionRequest(1, 123, 1);
+            var gamesArgs = new MinesboomSelectionRequest(1, "123", 1);
 
             // act
             var gameId = await _testServer.SendRequest<int>("join", gamesArgs);
 
-            var gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 1));
-            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 2));
-            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 13));
-            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 4));
-            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, 123, 15));
+            var gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 1));
+            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 2));
+            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 13));
+            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 4));
+            gameResult = await _testServer.SendRequest<GameResult>("submit", new MinesboomSelectionRequest(gameId, "123", 15));
 
             // assert
             Assert.IsNotNull(gameResult);

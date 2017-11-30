@@ -47,17 +47,26 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
-        public async Task<int> AddUser(NewUserRequest user)
+        public async Task<AddUserResponse> AddUser(NewUserRequest user)
         {
             try
             {
                 var userId = await _repository.AddUser(user);
 
-                return userId;
+                if (userId == 0)
+                {
+                    return new AddUserResponse(UserCodes.Invalid);
+                }
+                if(userId == -1)
+                {
+                    return new AddUserResponse(UserCodes.Duplicate);
+                }
+
+                return new AddUserResponse(UserCodes.Valid);
             }
             catch (Exception)
             {
-                return 0;
+                return new AddUserResponse(UserCodes.Invalid);
             }
         }
 
@@ -86,7 +95,7 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
-        private static UserResponse ValidUser(int userId, int gold, int silver, int countryId, Config config)
+        private static UserResponse ValidUser(string userId, int gold, int silver, int countryId, Config config)
         {
             var response = new UserResponse(userId, config, gold, silver, countryId)
             {
@@ -98,7 +107,7 @@ namespace Kalingo.WebApi.Processors
 
         private static UserResponse InvalidUser()
         {
-            var response = new UserResponse(0)
+            var response = new UserResponse("0")
             {
                 Code = UserCodes.Invalid
             };
@@ -110,7 +119,7 @@ namespace Kalingo.WebApi.Processors
 
         private static UserResponse UserNotFound()
         {
-            var response = new UserResponse(0)
+            var response = new UserResponse("0")
             {
                 Code = UserCodes.NotFound
             };
@@ -122,7 +131,7 @@ namespace Kalingo.WebApi.Processors
 
         private static UserResponse InactiveUser()
         {
-            var response = new UserResponse(0)
+            var response = new UserResponse("0")
             {
                 Code = UserCodes.Inactive
             };

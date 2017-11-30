@@ -4,9 +4,9 @@
     {
         public int VoucherId { get; }
 
-        public int UserId { get; }
+        public string UserId { get; }
 
-        public VoucherClaimRequest(int voucherId, int userId)
+        public VoucherClaimRequest(int voucherId, string userId)
         {
             VoucherId = voucherId;
             UserId = userId;

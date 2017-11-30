@@ -10,7 +10,7 @@
         /// <param name="gameId"></param>
         /// <param name="userId"></param>
         /// <param name="selectedOption"></param>
-        public MinesboomSelectionRequest(int gameId, int userId, int selectedOption)
+        public MinesboomSelectionRequest(int gameId, string userId, int selectedOption)
             :base(gameId, userId, MinesboomGameId)
         {
             SelectedOption = selectedOption;

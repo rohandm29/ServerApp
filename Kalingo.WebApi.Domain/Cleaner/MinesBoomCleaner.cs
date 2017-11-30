@@ -39,7 +39,7 @@ namespace Kalingo.WebApi.Domain.Cleaner
             _cache.Remove(mb.GameId);
         }
 
-        public async Task Terminate(int userId, int gameId, bool expired)
+        public async Task Terminate(string userId, int gameId, bool expired)
         {
             var gameData = await _cache.GetData(gameId);
 

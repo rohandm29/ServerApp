@@ -2,13 +2,13 @@
 {
     public class UpdateUserRequest
     {
-        public int UserId { get; }
+        public string UserId { get; }
 
         public string Email { get; }
 
         public int CountryId { get; }
 
-        public UpdateUserRequest(int userId, string email, int countryId) 
+        public UpdateUserRequest(string userId, string email, int countryId) 
         {
             UserId = userId;
             Email = email;

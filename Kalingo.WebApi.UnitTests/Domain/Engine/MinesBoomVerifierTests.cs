@@ -28,11 +28,11 @@ namespace Kalingo.WebApi.UnitTests.Domain.Engine
         {
             // arrange
             var gameId = 123;
-            var gameData = new MinesBoomGameState(1, new[] { 1, 3, 5, 7, 12 }, 1, 1);
+            var gameData = new MinesBoomGameState("123", new[] { 1, 3, 5, 7, 12 }, 1, 1);
 
             await _cache.Add(gameId, gameData);
 
-            var gameArgs = new MinesboomSelectionRequest(gameId, 111, selection);
+            var gameArgs = new MinesboomSelectionRequest(gameId, "111", selection);
 
             // act
             var result = await _verifier.CheckUserSelection(gameArgs);

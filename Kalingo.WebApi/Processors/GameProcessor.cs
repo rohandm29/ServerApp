@@ -14,7 +14,7 @@ namespace Kalingo.WebApi.Processors
             _minesBoomFacade = minesBoomFacade;
         }
 
-        public async Task<int> ExecuteNewGame(int gameTypeId, int userId)
+        public async Task<int> ExecuteNewGame(int gameTypeId, string userId)
         {
             int gameId;
 

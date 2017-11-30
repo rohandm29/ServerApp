@@ -31,7 +31,7 @@ namespace IntegrationTests
             var userSelection = "1-2-3-4-5";
             var closeMinesBoomCommand = new CloseMinesBoomCommand(_connectionString);
 
-            var gameId = await _createMinesBoomCommand.Execute(111); //, "1-2-3-4-5");
+            var gameId = await _createMinesBoomCommand.Execute("111", ""); //, "1-2-3-4-5");
             var mbData = GetMbData(gameId);
 
             AppendUserSelections(mbData, userSelection);
@@ -48,9 +48,9 @@ namespace IntegrationTests
 
         private static MinesBoomSession GetMbData(int gameId)
         {
-            return MinesBoomSession.Create(1,
+            return MinesBoomSession.Create("123",
                 new MinesboomSelectionResponse(gameId, true, null) {HasWon = true},
-                new MinesBoomGameState(1, new[] {1, 2, 3, 4, 5}, 1, 1));
+                new MinesBoomGameState("123", new[] {1, 2, 3, 4, 5}, 1, 1));
         }
 
         private static void AppendUserSelections(MinesBoomSession mbData, string userSelection)

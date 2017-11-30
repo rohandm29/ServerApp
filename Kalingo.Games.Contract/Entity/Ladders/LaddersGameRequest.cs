@@ -4,7 +4,7 @@
     {
         private const int LaddersGameId = 2; 
 
-        public LaddersGameRequest(int gameId,  int userId, int selectedOption)
+        public LaddersGameRequest(int gameId,  string userId, int selectedOption)
             : base(gameId, userId, LaddersGameId)
         {
             SelectedOption = selectedOption;

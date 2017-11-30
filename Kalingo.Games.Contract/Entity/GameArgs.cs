@@ -11,7 +11,7 @@
         /// <param name="gameId"></param>
         /// <param name="userId"></param>
         /// <param name="gameTypeId"></param>
-        public GameArgs(int gameId, int userId, int gameTypeId)
+        public GameArgs(int gameId, string userId, int gameTypeId)
         {
             GameId = gameId;
             UserId = userId;
@@ -20,7 +20,7 @@
 
         public int GameId { get; protected set; }
 
-        public int UserId { get; protected set; }
+        public string UserId { get; protected set; }
 
         public int GameTypeId { get; }
     }

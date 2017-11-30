@@ -28,7 +28,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _getMinesboomSettingsQuery = getMinesboomSettingsQuery;
         }
 
-        public async Task<int> CreateMinesBoom(int userId, string getDelimatedSequence)
+        public async Task<int> CreateMinesBoom(string userId, string getDelimatedSequence)
         {
             return await _createMinesBoomCommand.Execute(userId, getDelimatedSequence);
         }
@@ -38,7 +38,7 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             await _closeMinesBoomCommand.Execute(minesBoomSession);
         }
 
-        public async Task TerminateMinesBoom(int userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
+        public async Task TerminateMinesBoom(string userId, int gameId, int[] userSelection, List<int> randomSequence, bool expired)
         {
             await _terminateMinesBoomCommand.Execute(userId, gameId, userSelection, randomSequence, expired);
         }

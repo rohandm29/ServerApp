@@ -22,7 +22,7 @@ namespace Kalingo.WebApi.Domain.Facades
             _cleaner = cleaner;
         }
 
-        public async Task<int> ProcessNewGame(int userId)
+        public async Task<int> ProcessNewGame(string userId)
         {
             try
             {

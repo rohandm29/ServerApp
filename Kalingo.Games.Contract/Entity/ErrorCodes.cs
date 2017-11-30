@@ -9,6 +9,8 @@
         Inactive,
 
         Valid,
+
+        Duplicate
     }
 
     public enum MinesboomCodes

@@ -21,7 +21,7 @@ namespace Kalingo.WebApi.Domain.Engine
             _mbGameSettings = mbGameSettings;
         }
 
-        public async Task<int> NewMinesBoom(int userId)
+        public async Task<int> NewMinesBoom(string userId)
         {
             var randomSequence = _randomProvider.CreateRandomSequenceForMinesBoom();
 

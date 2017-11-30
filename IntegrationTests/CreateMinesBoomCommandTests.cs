@@ -25,10 +25,10 @@ namespace IntegrationTests
         {
             // arrange
             const string randomSequence = "1-2-3-4-5";
-            const int userId = 111;
+            const string userId = "111";
 
             // act
-            var gameId = await _createMinesBoomCommand.Execute(userId); //, randomSequence);
+            var gameId = await _createMinesBoomCommand.Execute(userId, ""); //, randomSequence);
 
             var gameData = await _dbHelper.GetUserGameMinesBoom(gameId);
 

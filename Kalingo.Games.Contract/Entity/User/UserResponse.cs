@@ -4,7 +4,7 @@ namespace Kalingo.Games.Contract.Entity.User
 {
     public class UserResponse
     {
-        public int UserId { get; }
+        public string UserId { get; }
 
         public int Gold { get; }
 
@@ -20,7 +20,7 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public List<string> Errors { get; set; }
 
-        public UserResponse(int userId, Config config = null, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
+        public UserResponse(string userId, Config config = null, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
         {
             UserId = userId;
             Gold = gold;
