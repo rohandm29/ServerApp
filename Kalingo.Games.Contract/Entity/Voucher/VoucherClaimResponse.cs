@@ -5,13 +5,13 @@ namespace Kalingo.Games.Contract.Entity.Voucher
     public class VoucherClaimResponse
     {
         public VoucherCodes Code { get; set; }
-        
-        public List<string> Error { get; }
 
-        public VoucherClaimResponse(VoucherCodes errorCode, List<string> error = null)
+        public List<string> Error { get; set; }
+
+        public VoucherClaimResponse(VoucherCodes errorCode)
         {
             Code = errorCode;
-            Error = error;
+            Error = new List<string>();
         }
     }
 }

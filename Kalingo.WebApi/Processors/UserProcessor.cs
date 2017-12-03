@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
+using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Processors
@@ -45,6 +46,13 @@ namespace Kalingo.WebApi.Processors
             {
                 return InvalidUser();
             }
+        }
+
+        public async Task<UserEntity> AddUser(FbUser fbUser)
+        {
+            var userEntity = await _repository.AddUser(fbUser);
+
+            return userEntity;
         }
 
         public async Task<int> AddUser(NewUserRequest user)

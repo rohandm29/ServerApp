@@ -52,7 +52,16 @@ namespace Kalingo.WebApi.Controllers
             var userId = await _processor.AddUser(user);
 
             return Ok(userId);
-        } 
+        }
+
+        [Route("AddFb")]
+        [HttpPost]
+        public async Task<IHttpActionResult> AddFb(FbUser fbUser)
+        {
+            var userEntity = await _processor.AddUser(fbUser);
+
+            return Ok(userEntity);
+        }
 
         /// <summary>
         /// Update the user details.

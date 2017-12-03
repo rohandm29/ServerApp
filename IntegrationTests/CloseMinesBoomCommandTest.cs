@@ -31,7 +31,7 @@ namespace IntegrationTests
             var userSelection = "1-2-3-4-5";
             var closeMinesBoomCommand = new CloseMinesBoomCommand(_connectionString);
 
-            var gameId = await _createMinesBoomCommand.Execute(111); //, "1-2-3-4-5");
+            var gameId = await _createMinesBoomCommand.Execute(111, "1-2-3-4-5");
             var mbData = GetMbData(gameId);
 
             AppendUserSelections(mbData, userSelection);
