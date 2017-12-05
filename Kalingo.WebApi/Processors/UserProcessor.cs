@@ -5,6 +5,8 @@ using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Services;
+using NLog;
+using Kalingo.WebApi.Domain;
 
 namespace Kalingo.WebApi.Processors
 {
@@ -40,19 +42,30 @@ namespace Kalingo.WebApi.Processors
 
                 var config = await _repository.GetConfig(user.CountryId);
 
-                return ValidUser(user.UserId, user.Gold, user.Silver, user.CountryId, config);
+                return ValidUser(user, config);
             }
             catch (Exception e)
             {
+                Log.Error(e);
                 return InvalidUser();
             }
         }
 
-        public async Task<UserEntity> AddUser(FbUser fbUser)
+        public async Task<UserResponse> AddUser(FbUser fbUser)
         {
-            var userEntity = await _repository.AddUser(fbUser);
+            try
+            {
+                var userEntity = await _repository.AddUser(fbUser);
 
-            return userEntity;
+                var config = await _repository.GetConfig(userEntity.CountryId);
+
+                return ValidUser(userEntity, config);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return InvalidUser();
+            }
         }
 
         public async Task<int> AddUser(NewUserRequest user)
@@ -63,8 +76,9 @@ namespace Kalingo.WebApi.Processors
 
                 return userId;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log.Error(e);
                 return 0;
             }
         }
@@ -75,9 +89,9 @@ namespace Kalingo.WebApi.Processors
             {
                 await _repository.UpdateUser(updateUser);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //Log
+                Log.Error(e);
             }
         }
 
@@ -87,16 +101,16 @@ namespace Kalingo.WebApi.Processors
             {
                 return await _repository.GetUserPlayCount(userId);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //log
+                Log.Error(e);
                 return 0;
             }
         }
 
-        private static UserResponse ValidUser(int userId, int gold, int silver, int countryId, Config config)
+        private static UserResponse ValidUser(UserEntity user, Config config)
         {
-            var response = new UserResponse(userId, config, gold, silver, countryId)
+            var response = new UserResponse(user.UserId, config, user.Gold, user.Silver, user.CountryId)
             {
                 Code = UserCodes.Valid
             };

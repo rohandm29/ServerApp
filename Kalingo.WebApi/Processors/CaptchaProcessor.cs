@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
+using Kalingo.WebApi.Domain;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Engine;
 using Kalingo.WebApi.Domain.Entity;
@@ -28,9 +29,10 @@ namespace Kalingo.WebApi.Processors
 
                 return await _captchaRepository.GetCaptcha(id, captchaArgs);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-               return new CaptchaResponse(0, string.Empty);
+                Log.Error(e);
+                return new CaptchaResponse(0, string.Empty);
             }
         }
 
@@ -47,6 +49,8 @@ namespace Kalingo.WebApi.Processors
             }
             catch (Exception e)
             {
+                Log.Error(e);
+
                 return new CaptchaAnswerResponse(captchaAnswerRequest.CaptchaId, CaptchaCodes.NotFound,
                     new List<string> { e.Message + " - Not Found" });
             }

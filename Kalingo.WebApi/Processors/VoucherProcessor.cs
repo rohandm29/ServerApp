@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Voucher;
+using Kalingo.WebApi.Domain;
 using Kalingo.WebApi.Domain.Data.Repository;
 
 namespace Kalingo.WebApi.Processors
@@ -22,8 +23,9 @@ namespace Kalingo.WebApi.Processors
             {
                 return await _voucherRepository.GetVouchers(countryId);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log.Error(e);
                 return new List<VoucherResponse>();
             }
         }
@@ -38,8 +40,9 @@ namespace Kalingo.WebApi.Processors
                     ? new VoucherClaimResponse(VoucherCodes.NotEnoughCoins)
                     : new VoucherClaimResponse(VoucherCodes.Valid);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log.Error(e);
                 return new VoucherClaimResponse(VoucherCodes.NoVouchers);
             }
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
+using Kalingo.WebApi.Domain;
 using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Processors
@@ -21,8 +22,9 @@ namespace Kalingo.WebApi.Processors
             {
                 return await _countryService.GetCounties();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log.Error(e);
                 return new List<CountryResponse>();
             }
         }
