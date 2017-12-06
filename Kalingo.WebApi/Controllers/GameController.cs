@@ -25,11 +25,11 @@ namespace Kalingo.WebApi.Controllers
         /// <returns></returns>
         [Route("join")]
         [HttpPost]
-        public async Task<IHttpActionResult> Join([FromBody] GameArgs args)
+        public async Task<IHttpActionResult> Join([FromBody] NewMinesboomRequest minesboomRequest)
         {
             try
             {
-                var gameId = await _processor.ExecuteNewGame(args.GameTypeId, args.UserId);
+                var gameId = await _processor.ExecuteNewGame(minesboomRequest);
 
                 return Ok(gameId);
             }   

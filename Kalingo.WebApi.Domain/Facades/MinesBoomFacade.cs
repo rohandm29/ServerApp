@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Cleaner;
 using Kalingo.WebApi.Domain.Engine;
+using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Exceptions;
 using Kalingo.WebApi.Domain.Services;
 
@@ -14,25 +17,30 @@ namespace Kalingo.WebApi.Domain.Facades
         private readonly MinesBoomService _minesBoomService;
         private readonly MinesBoomCreationEngine _minesBoomCreationEngine;
         private readonly MinesBoomCleaner _cleaner;
+        private readonly MinesboomSettings _minesboomSettings;
 
-        public MinesBoomFacade(MinesBoomService minesBoomService, MinesBoomCreationEngine minesBoomCreationEngine, MinesBoomCleaner cleaner) 
+        public MinesBoomFacade(MinesBoomService minesBoomService, MinesBoomCreationEngine minesBoomCreationEngine, MinesBoomCleaner cleaner, MinesboomSettings minesboomSettings)
         {
             _minesBoomService = minesBoomService;
             _minesBoomCreationEngine = minesBoomCreationEngine;
             _cleaner = cleaner;
+            _minesboomSettings = minesboomSettings;
         }
 
-        public async Task<int> ProcessNewGame(int userId)
+        public async Task<NewMinesboomResponse> ProcessNewGame(NewMinesboomRequest minesboomRequest)
         {
             try
             {
-                var gameId = await _minesBoomCreationEngine.NewMinesBoom(userId);
+                var gameId = await _minesBoomCreationEngine.NewMinesBoom(minesboomRequest);
 
-                return gameId;
+                var settings = _minesboomSettings.Setting;
+
+                return new NewMinesboomResponse(gameId, settings);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                return 0;
+                Log.Error(e);
+                return new NewMinesboomResponse(0, new List<Settings>());
             }
         }
 
@@ -66,9 +74,9 @@ namespace Kalingo.WebApi.Domain.Facades
             {
                 await _cleaner.Terminate(gameArgs.UserId, gameArgs.GameId , expired);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                // log
+                Log.Error(e);
             }
         }
 

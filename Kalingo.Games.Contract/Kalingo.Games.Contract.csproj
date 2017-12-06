@@ -51,6 +51,9 @@
     <Compile Include="Entity\MinesBoom\MinesboomSelectionResponse.cs" />
     <Compile Include="Entity\Captcha\CaptchaRequest.cs" />
     <Compile Include="Entity\CountryResponse.cs" />
+    <Compile Include="Entity\MinesBoom\NewMinesboomResponse.cs" />
+    <Compile Include="Entity\MinesBoom\NewMinesboomRequest.cs" />
+    <Compile Include="Entity\MinesBoom\Settings.cs" />
     <Compile Include="Entity\UserArgs.cs" />
     <Compile Include="Entity\ErrorCodes.cs" />
     <Compile Include="Entity\User\FBUser.cs" />

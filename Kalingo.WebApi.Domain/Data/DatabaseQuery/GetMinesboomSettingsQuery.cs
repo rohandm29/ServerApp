@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using Dapper;
-using Kalingo.WebApi.Domain.Entity;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {

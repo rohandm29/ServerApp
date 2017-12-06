@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Configuration;
 using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Data.Repository;
@@ -21,13 +22,13 @@ namespace Kalingo.WebApi.Domain.Engine
             _mbGameSettings = mbGameSettings;
         }
 
-        public async Task<int> NewMinesBoom(int userId)
+        public async Task<int> NewMinesBoom(NewMinesboomRequest minesboomRequest)
         {
             var randomSequence = _randomProvider.CreateRandomSequenceForMinesBoom();
 
-            var gameId = await _gamesRepository.CreateMinesBoom(userId, RandomProvider.GetDelimatedSequence(randomSequence));
+            var gameId = await _gamesRepository.CreateMinesBoom(minesboomRequest, RandomProvider.GetDelimatedSequence(randomSequence));
 
-            var gameData = new MinesBoomGameState(userId, randomSequence, _mbGameSettings.TotalGifts, _mbGameSettings.TotalChances);
+            var gameData = new MinesBoomGameState(minesboomRequest.UserId, randomSequence, _mbGameSettings.TotalGifts, _mbGameSettings.TotalChances);
 
             await _minesBoomCache.Add(gameId, gameData);
 

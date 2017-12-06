@@ -10,12 +10,16 @@
         /// <param name="gameId"></param>
         /// <param name="userId"></param>
         /// <param name="selectedOption"></param>
-        public MinesboomSelectionRequest(int gameId, int userId, int selectedOption)
+        /// <param name="playAgain"></param>
+        public MinesboomSelectionRequest(int gameId, int userId, int selectedOption, bool playAgain)
             :base(gameId, userId, MinesboomGameId)
         {
             SelectedOption = selectedOption;
+            PlayAgain = playAgain;
         }
 
         public int SelectedOption { get;}
+
+        public bool PlayAgain { get; }
     }
 }

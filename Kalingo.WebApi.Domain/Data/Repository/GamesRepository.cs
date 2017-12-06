@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.WebApi.Domain.Data.DatabaseQuery;
 using Kalingo.WebApi.Domain.Entity;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 
 namespace Kalingo.WebApi.Domain.Data.Repository
 {
@@ -28,9 +29,9 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _getMinesboomSettingsQuery = getMinesboomSettingsQuery;
         }
 
-        public async Task<int> CreateMinesBoom(int userId, string getDelimatedSequence)
+        public async Task<int> CreateMinesBoom(NewMinesboomRequest minesboomRequest, string getDelimatedSequence)
         {
-            return await _createMinesBoomCommand.Execute(userId, getDelimatedSequence);
+            return await _createMinesBoomCommand.Execute(minesboomRequest, getDelimatedSequence);
         }
 
         public async Task CloseMinesBoom(MinesBoomSession minesBoomSession)

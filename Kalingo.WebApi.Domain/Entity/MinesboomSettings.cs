@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Runtime.Caching;
 using Kalingo.WebApi.Domain.Data.Repository;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 
 namespace Kalingo.WebApi.Domain.Entity
 {
@@ -50,23 +51,4 @@ namespace Kalingo.WebApi.Domain.Entity
             return settings;
         }
     }
-
-     public class Settings
-        {
-            public int CoinTypeId { get; }
-
-            public int MinesCount { get; }
-
-            public int CoinCount { get; }
-
-            public int Chances { get; }
-
-            public Settings(int coinTypeId, int minesCount, int coinCount, int chances)
-            {
-                CoinTypeId = coinTypeId;
-                MinesCount = minesCount;
-                CoinCount = coinCount;
-                Chances = chances;
-            }
-        }
 }

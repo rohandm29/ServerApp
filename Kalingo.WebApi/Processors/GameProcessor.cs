@@ -16,27 +16,18 @@ namespace Kalingo.WebApi.Processors
             _minesBoomFacade = minesBoomFacade;
         }
 
-        public async Task<int> ExecuteNewGame(int gameTypeId, int userId)
+        public async Task<NewMinesboomResponse> ExecuteNewGame(NewMinesboomRequest minesboomRequest)
         {
             try
             {
-                int gameId;
-
-                switch (gameTypeId)
-                {
-                    case 1: gameId = await _minesBoomFacade.ProcessNewGame(userId);
-                        break;
-
-                    default: gameId = 0;
-                        break;
-                }
-
-                return gameId;
+                var newMinesboomResponse = await _minesBoomFacade.ProcessNewGame(minesboomRequest);
+                
+                return newMinesboomResponse;
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                return 0;
+                return default(NewMinesboomResponse);
             }
         }
 

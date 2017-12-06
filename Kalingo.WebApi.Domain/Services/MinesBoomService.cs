@@ -24,7 +24,7 @@ namespace Kalingo.WebApi.Domain.Services
         {
             var mbSession = await _verifier.CheckUserSelection(mbArgs);
 
-            UpdateGameStateAndResult(mbSession);
+            UpdateGameStateAndResult(mbSession, mbArgs.PlayAgain);
             
             CacheCurrentSelection(mbArgs.SelectedOption, mbSession);
 
@@ -33,13 +33,13 @@ namespace Kalingo.WebApi.Domain.Services
             return mbSession;
         }
 
-        private void UpdateGameStateAndResult(MinesBoomSession mbSession)
+        private void UpdateGameStateAndResult(MinesBoomSession mbSession, bool playAgain)
         {
             DecrementGiftsIfWon(mbSession);
 
             DecrementLifes(mbSession);
 
-            UpdateGameResult(mbSession);
+            UpdateGameResult(mbSession, playAgain);
         }
 
         private static void DecrementGiftsIfWon(MinesBoomSession mbSession)
@@ -56,12 +56,12 @@ namespace Kalingo.WebApi.Domain.Services
             mbSession.GameState.DecrementChance();
         }
 
-        private void UpdateGameResult(MinesBoomSession mbSession)
+        private void UpdateGameResult(MinesBoomSession mbSession, bool playAgain)
         {
             mbSession.GameResult.TotalChances = mbSession.GameState.TotalChances;
             mbSession.GameResult.GiftsHidden = mbSession.GameState.TotalGifts;
 
-            _mbCalculator.Calculate(mbSession);
+            _mbCalculator.Calculate(mbSession, playAgain);
             
             //mbSession.GameResult.HasWon = mbSession.GameState.TotalGifts == 0;
         }

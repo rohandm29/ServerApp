@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -14,13 +15,13 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             _connectionString = connectionString;
         }
 
-        public async Task<int> Execute(int userId, string getDelimatedSequence)
+        public async Task<int> Execute(NewMinesboomRequest minesboomRequest, string getDelimatedSequence)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
                     "uspCreateMinesBoom",
-                    new {userId, getDelimatedSequence},
+                    new {minesboomRequest.UserId, minesboomRequest.Reward, getDelimatedSequence},
                     commandType: CommandType.StoredProcedure);
 
                 var gameId = await conn.ExecuteScalarAsync<int>(command);
