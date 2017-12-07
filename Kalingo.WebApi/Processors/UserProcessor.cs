@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.User;
@@ -13,6 +14,7 @@ namespace Kalingo.WebApi.Processors
     public class UserProcessor
     {
         private readonly UserRepository _repository;
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         public UserProcessor(UserRepository repository)
         {
@@ -23,6 +25,12 @@ namespace Kalingo.WebApi.Processors
         {
             try
             {
+                for (int i = 0; i < 100; i++)
+                {
+                    Log.Error(new Exception("Error in code"));
+                    Thread.Sleep(1000);
+                }
+
                 var user = await _repository.GetUser(userArgs);
 
                 if (user == null)
