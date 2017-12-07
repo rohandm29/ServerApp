@@ -1,6 +1,7 @@
 ﻿using System.Configuration;
 using System.Threading.Tasks;
 using IntegrationTests.Support;
+using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Data.DatabaseQuery;
 using NUnit.Framework;
 
@@ -28,7 +29,7 @@ namespace IntegrationTests
             const int userId = 111;
 
             // act
-            var gameId = await _createMinesBoomCommand.Execute(userId, randomSequence);
+            var gameId = await _createMinesBoomCommand.Execute(new NewMinesboomRequest(1, "", true), randomSequence);
 
             var gameData = await _dbHelper.GetUserGameMinesBoom(gameId);
 
