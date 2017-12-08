@@ -106,6 +106,7 @@
     <Compile Include="Data\DatabaseQuery\GetMinesboomSettingsQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetConfigQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetCountriesQuery.cs" />
+    <Compile Include="Data\DatabaseQuery\GetFbUserQuery.cs" />
     <Compile Include="Data\DatabaseQuery\VoucherClaimedCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetVouchersQuery.cs" />
     <Compile Include="Data\DatabaseQuery\SubmitCaptchaCommand.cs" />

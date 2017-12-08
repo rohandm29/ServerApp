@@ -14,9 +14,10 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         private readonly GetConfigQuery _configQuery;
         private readonly GetUserPlayCountQuery _getUserPlayCount;
         private readonly AddFbUserCommand _addFbUser;
+        private readonly GetFbUserQuery _getFbUser;
 
         public UserRepository(GetUserQuery getUserQuery, AddUserCommand addUserCommand, UpdateUserCommand updateUser, 
-            GetConfigQuery configQuery, GetUserPlayCountQuery getUserPlayCount, AddFbUserCommand addFbUserCommand)
+            GetConfigQuery configQuery, GetUserPlayCountQuery getUserPlayCount, AddFbUserCommand addFbUserCommand, GetFbUserQuery getFbUser)
         {
             _getUser = getUserQuery;
             _addUser = addUserCommand;
@@ -24,11 +25,17 @@ namespace Kalingo.WebApi.Domain.Data.Repository
             _configQuery = configQuery;
             _getUserPlayCount = getUserPlayCount;
             _addFbUser = addFbUserCommand;
+            _getFbUser = getFbUser;
         }
 
         public async Task<UserEntity> GetUser(UserArgs user)
         {
             return await _getUser.Execute(user);
+        }
+
+        public async Task<UserEntity> GetFbUser(string userName)
+        {
+            return await _getFbUser.Execute(userName);
         }
 
         public async Task<UserEntity> AddUser(NewUserRequest user)

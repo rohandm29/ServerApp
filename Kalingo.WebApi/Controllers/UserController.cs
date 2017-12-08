@@ -54,6 +54,16 @@ namespace Kalingo.WebApi.Controllers
             return Ok(userResponse);
         }
 
+        [Route("GetFbUser")]
+        [HttpGet]
+        public async Task<IHttpActionResult> AddFb(string userName)
+        {
+            var userResponse = await _processor.GetFbUser(userName);
+
+            return Ok(userResponse);
+        }
+
+
         [Route("AddFb")]
         [HttpPost]
         public async Task<IHttpActionResult> AddFb(FbUser fbUser)

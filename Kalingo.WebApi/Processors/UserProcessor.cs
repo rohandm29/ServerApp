@@ -70,6 +70,32 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
+        public async Task<UserResponse> GetFbUser(string userName)
+        {
+            var user = await _repository.GetFbUser(userName);
+            try
+            {
+                if (user == null)
+                {
+                    return UserNotFound();
+                }
+
+                if (!user.IsActive)
+                {
+                    return InactiveUser();
+                }
+
+                var config = await _repository.GetConfig(user.CountryId);
+
+                return ValidUser(user, config);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return InvalidUser();
+            }
+        }
+
         public async Task<UserResponse> AddUser(NewUserRequest user)
         {
             try

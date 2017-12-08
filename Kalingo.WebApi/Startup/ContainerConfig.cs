@@ -52,6 +52,7 @@ namespace Kalingo.WebApi.Startup
 
             Builder.RegisterType<GetUserQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AddUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<GetFbUserQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AddFbUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetUserPlayCountQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<UpdateUserCommand>().WithParameter("connectionString", connectionString).SingleInstance();

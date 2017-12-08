@@ -1,37 +1,34 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
-using Kalingo.Games.Contract.Entity.User;
+using Kalingo.Games.Contract.Entity;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class AddFbUserCommand
+    public class GetFbUserQuery
     {
         private readonly string _connectionString;
 
-        public AddFbUserCommand(string connectionString)
+        public GetFbUserQuery(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public async Task<UserEntity> Execute(FbUser user)
+        public async Task<UserEntity> Execute(string userName)
         {
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
-                    "uspFbUserLogin",
-                    new
-                    {
-                        @userName = user.UserName,
-                        @countryId = user.CountryId
-                    },
+                    "uspGetFbUser",
+                    new {@userName = userName},
                     commandType: CommandType.StoredProcedure);
 
-                var validUser = await conn.ExecuteScalarAsync<UserEntity>(command);
+                var validUser = await conn.QueryAsync<UserEntity>(command);
 
-                return validUser;
+                return validUser.FirstOrDefault();
             }
         }
     }
