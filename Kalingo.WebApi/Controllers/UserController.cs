@@ -49,16 +49,16 @@ namespace Kalingo.WebApi.Controllers
         [HttpPost]
         public async Task<IHttpActionResult> AddUser(NewUserRequest user)
         {
-            var userId = await _processor.AddUser(user);
+            var userResponse = await _processor.AddUser(user);
 
-            return Ok(userId);
+            return Ok(userResponse);
         }
 
         [Route("AddFb")]
         [HttpPost]
         public async Task<IHttpActionResult> AddFb(FbUser fbUser)
         {
-            var userEntity = await _processor.AddUser(fbUser);
+            var userEntity = await _processor.AddFbUser(fbUser);
 
             return Ok(userEntity);
         }

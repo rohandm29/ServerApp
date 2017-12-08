@@ -25,12 +25,6 @@ namespace Kalingo.WebApi.Processors
         {
             try
             {
-                for (int i = 0; i < 100; i++)
-                {
-                    Log.Error(new Exception("Error in code"));
-                    Thread.Sleep(1000);
-                }
-
                 var user = await _repository.GetUser(userArgs);
 
                 if (user == null)
@@ -59,7 +53,7 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
-        public async Task<UserResponse> AddUser(FbUser fbUser)
+        public async Task<UserResponse> AddFbUser(FbUser fbUser)
         {
             try
             {
@@ -76,18 +70,21 @@ namespace Kalingo.WebApi.Processors
             }
         }
 
-        public async Task<int> AddUser(NewUserRequest user)
+        public async Task<UserResponse> AddUser(NewUserRequest user)
         {
             try
             {
-                var userId = await _repository.AddUser(user);
+                var userEntity = await _repository.AddUser(user);
 
-                return userId;
+                var config = await _repository.GetConfig(user.CountryId);
+
+                return ValidUser(userEntity, config);
+
             }
             catch (Exception e)
             {
                 Log.Error(e);
-                return 0;
+                return InvalidUser();
             }
         }
 
