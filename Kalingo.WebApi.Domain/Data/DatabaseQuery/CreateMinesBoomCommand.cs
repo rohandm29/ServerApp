@@ -21,7 +21,10 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             {
                 var command = new CommandDefinition(
                     "uspCreateMinesBoom",
-                    new {minesboomRequest.UserId, minesboomRequest.Reward, getDelimatedSequence},
+                    new {minesboomRequest.UserId,
+                        minesboomRequest.Reward,
+                        minesboomRequest.PlayAgain,
+                        getDelimatedSequence },
                     commandType: CommandType.StoredProcedure);
 
                 var gameId = await conn.ExecuteScalarAsync<int>(command);
