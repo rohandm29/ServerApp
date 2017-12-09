@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapper;
 using Kalingo.Games.Contract.Entity.User;
@@ -21,7 +22,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
             using (IDbConnection conn = new SqlConnection(_connectionString))
             {
                 var command = new CommandDefinition(
-                    "uspFbUserLogin",
+                    "uspAddFbUser",
                     new
                     {
                         @userName = user.UserName,
@@ -29,9 +30,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     },
                     commandType: CommandType.StoredProcedure);
 
-                var validUser = await conn.ExecuteScalarAsync<UserEntity>(command);
+                var validUser = await conn.QueryAsync<UserEntity>(command);
 
-                return validUser;
+                return validUser.FirstOrDefault();
             }
         }
     }
