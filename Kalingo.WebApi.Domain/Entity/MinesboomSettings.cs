@@ -4,6 +4,7 @@ using System.Configuration;
 using System.Runtime.Caching;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.Games.Contract.Entity.MinesBoom;
+using Microsoft.Azure;
 
 namespace Kalingo.WebApi.Domain.Entity
 {
@@ -20,7 +21,7 @@ namespace Kalingo.WebApi.Domain.Entity
         {
             this._gamesRepository = _gamesRepository;
 
-            _timeInMins = int.Parse(ConfigurationManager.AppSettings["SettingsCacheExpirationMin"]);
+            _timeInMins = int.Parse(CloudConfigurationManager.GetSetting("SettingsCacheExpirationMin"));
             _settingCache = new MemoryCache("Settings");
         }
 

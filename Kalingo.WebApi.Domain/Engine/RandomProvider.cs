@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Kalingo.WebApi.Domain.Data.Cache;
+﻿using System.Collections.Generic;
 using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Engine

@@ -12,11 +12,11 @@ namespace Kalingo.WebApi.Startup
             app.UseWindowsAzureActiveDirectoryBearerAuthentication(
                 new WindowsAzureActiveDirectoryBearerAuthenticationOptions
                 {
-                    //ConfigurationManager.AppSettings["Tenant"]
+                    //CloudConfigurationManager.GetSetting("Tenant")
                     Tenant = "rohanmayekar29outlook.onmicrosoft.com",
                     TokenValidationParameters = new TokenValidationParameters
                     {
-                        //ConfigurationManager.AppSettings["Audience"],
+                        //CloudConfigurationManager.GetSetting("Audience),
                         ValidAudience = "https://rohanmayekar29outlook.onmicrosoft.com/KalingoApi"  
                     }
                 });

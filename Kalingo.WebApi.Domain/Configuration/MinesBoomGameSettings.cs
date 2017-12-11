@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using Microsoft.Azure;
 
 namespace Kalingo.WebApi.Domain.Configuration
 {
@@ -6,9 +7,9 @@ namespace Kalingo.WebApi.Domain.Configuration
     {
         public MinesBoomGameSettings()
         {
-            TotalChances = int.Parse(ConfigurationManager.AppSettings["MbTotalChances"]);
+            TotalChances = int.Parse(CloudConfigurationManager.GetSetting("MbTotalChances"));
 
-            TotalGifts = int.Parse(ConfigurationManager.AppSettings["MbTotalGifts"]);
+            TotalGifts = int.Parse(CloudConfigurationManager.GetSetting("MbTotalGifts"));
         }
 
         public int TotalGifts { get; }

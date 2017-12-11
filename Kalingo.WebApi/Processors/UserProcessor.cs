@@ -141,7 +141,7 @@ namespace Kalingo.WebApi.Processors
 
         private static UserResponse ValidUser(UserEntity user, Config config)
         {
-            var response = new UserResponse(user.UserId, config, user.Gold, user.Silver, user.CountryId)
+            var response = new UserResponse(user.UserId, user.EmailAddress, config, user.Gold, user.Silver, user.CountryId)
             {
                 Code = UserCodes.Valid
             };

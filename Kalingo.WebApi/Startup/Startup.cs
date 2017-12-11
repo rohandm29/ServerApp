@@ -3,6 +3,7 @@ using System.Web.Http;
 using Autofac.Integration.WebApi;
 using Kalingo.WebApi.Middleware;
 using Kalingo.WebApi.Startup;
+using Microsoft.Azure;
 using Microsoft.Owin;
 using Owin;
 
@@ -16,7 +17,7 @@ namespace Kalingo.WebApi.Startup
         {
             var config = new HttpConfiguration();
 
-            if(bool.Parse(ConfigurationManager.AppSettings["AuthEnabled"]))
+            if(bool.Parse(CloudConfigurationManager.GetSetting("AuthEnabled")))
                 app.Use(typeof(AuthMiddleware));
 
             WebApiConfig.Register(config);

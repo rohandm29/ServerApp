@@ -2,13 +2,13 @@
 {
     public class CaptchaRequest
     {
-        public int UserId { get; }
+        public int CaptchId { get; }
 
         public int GameId { get; }
 
-        public CaptchaRequest(int userId, int gameId)
+        public CaptchaRequest(int captchId, int gameId)
         {
-            UserId = userId;
+            CaptchId = captchId;
             GameId = gameId;
         }
     }
