@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Cleaner\MinesBoomCleaner.cs" />
     <Compile Include="Configuration\MinesBoomGameSettings.cs" />
+    <Compile Include="Data\Cache\CaptchaDictionary.cs" />
     <Compile Include="Data\Cache\MinesBoomCache.cs" />
     <Compile Include="Data\DatabaseQuery\AddFbUserCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetUserPlayCountQuery.cs" />

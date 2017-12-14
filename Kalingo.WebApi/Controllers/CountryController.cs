@@ -7,7 +7,7 @@ using Kalingo.WebApi.Processors;
 namespace Kalingo.WebApi.Controllers
 {
     //[Authorize]
-    [RoutePrefix("country")]
+    [RoutePrefix("api/country")]
     public class CountryController : ApiController
     {
         private readonly CountryProcessor _processor;

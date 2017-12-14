@@ -6,7 +6,7 @@ using Kalingo.WebApi.Processors;
 namespace Kalingo.WebApi.Controllers
 {
     //[Authorize]
-    [RoutePrefix("captcha")]
+    [RoutePrefix("api/captcha")]
     public class CaptchaController : ApiController
     {
         private readonly CaptchaProcessor _processor;

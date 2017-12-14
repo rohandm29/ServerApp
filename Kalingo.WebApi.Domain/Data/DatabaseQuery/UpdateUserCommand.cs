@@ -3,7 +3,6 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Dapper;
 using Kalingo.Games.Contract.Entity.User;
-using Kalingo.WebApi.Domain.Services;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
@@ -26,7 +25,6 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     {
                         @userId = user.UserId,
                         @emailaddress = user.Email,
-                        @country = user.CountryId
                     },
                     commandType: CommandType.StoredProcedure);
 

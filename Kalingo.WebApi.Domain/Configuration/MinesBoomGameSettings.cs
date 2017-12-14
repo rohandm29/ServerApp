@@ -1,15 +1,20 @@
-﻿using System.Configuration;
+﻿using System.Linq;
+using Kalingo.WebApi.Domain.Entity;
 using Microsoft.Azure;
 
 namespace Kalingo.WebApi.Domain.Configuration
 {
     public class MinesBoomGameSettings
     {
-        public MinesBoomGameSettings()
-        {
-            TotalChances = int.Parse(CloudConfigurationManager.GetSetting("MbTotalChances"));
+        public MinesboomSettings MinesboomSettings { get; }
 
-            TotalGifts = int.Parse(CloudConfigurationManager.GetSetting("MbTotalGifts"));
+        public MinesBoomGameSettings(MinesboomSettings minesboomSettings)
+        {
+            MinesboomSettings = minesboomSettings;
+
+            TotalChances = minesboomSettings.Setting.Max(x => x.Chances); // int.Parse(CloudConfigurationManager.GetSetting("MbTotalChances"));
+
+            TotalGifts = minesboomSettings.Setting.Max(x => x.MinesCount);  //int.Parse(CloudConfigurationManager.GetSetting("MbTotalGifts"));
         }
 
         public int TotalGifts { get; }

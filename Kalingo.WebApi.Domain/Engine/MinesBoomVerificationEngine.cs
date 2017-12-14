@@ -1,7 +1,5 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http.Results;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Entity;
@@ -40,13 +38,13 @@ namespace Kalingo.WebApi.Domain.Engine
         // Get the game data from cache
         private MinesBoomGameState FetchDataFromCache(int gameId)
         {
-            lock ("CacheMayExpire")
-            {
+            //lock ("CacheMayExpire")
+            //{
                 if (_minesBoomCache.IsAlive(gameId))
                 {
                     return _minesBoomCache.GetData(gameId).Result;
                 }
-            }
+            //}
 
             return null;
         }

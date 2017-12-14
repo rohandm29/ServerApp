@@ -8,7 +8,7 @@ using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
 {
-    [RoutePrefix("games")]
+    [RoutePrefix("api/games")]
     public class GameController : ApiController
     {
         private readonly GameProcessor _processor;

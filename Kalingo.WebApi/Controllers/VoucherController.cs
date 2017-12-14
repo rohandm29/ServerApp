@@ -1,13 +1,12 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Http;
-using Kalingo.Games.Contract.Entity.Captcha;
 using Kalingo.Games.Contract.Entity.Voucher;
 using Kalingo.WebApi.Processors;
 
 namespace Kalingo.WebApi.Controllers
 {
     //[Authorize]
-    [RoutePrefix("voucher")]
+    [RoutePrefix("api/voucher")]
     public class VoucherController : ApiController
     {
         private readonly VoucherProcessor _processor;
