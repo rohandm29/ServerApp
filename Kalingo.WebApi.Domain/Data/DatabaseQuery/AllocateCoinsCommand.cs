@@ -6,11 +6,11 @@ using Kalingo.WebApi.Domain.Entity;
 
 namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
 {
-    public class AllocateGoldCoinsCommand
+    public class AllocateCoinsCommand
     {
         private readonly string _connectionString;
 
-        public AllocateGoldCoinsCommand(string connectionString)
+        public AllocateCoinsCommand(string connectionString)
         {
             _connectionString = connectionString;
         }

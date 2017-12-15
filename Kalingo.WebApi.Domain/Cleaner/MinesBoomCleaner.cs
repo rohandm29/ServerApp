@@ -27,7 +27,7 @@ namespace Kalingo.WebApi.Domain.Cleaner
 
                 if (minesBoomSession.GameResult.HasWon)
                 {
-                    await _gamesRepository.AllocateGoldCoins(minesBoomSession);
+                    await _gamesRepository.AllocateCoins(minesBoomSession);
                 }
             }
         }

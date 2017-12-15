@@ -12,17 +12,20 @@
 
         public int Silver { get; }
 
+        public int Bronze { get; }
+
         public int CountryId { get; }
 
         public bool IsActive { get; }
 
-        public UserEntity(int userId, string emailAddress, string password, int gold, int silver, int countryId, bool isActive)
+        public UserEntity(int userId, string emailAddress, string password, int gold, int silver, int bronze, int countryId, bool isActive)
         {
             UserId = userId;
             EmailAddress = emailAddress;
             Password = password;
             Gold = gold;
             Silver = silver;
+            Bronze = bronze;
             CountryId = countryId;
             IsActive = isActive;
         }

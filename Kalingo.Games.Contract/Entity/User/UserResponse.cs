@@ -10,6 +10,8 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int Silver { get; }
 
+        public int Bronze { get; }
+
         public int CountryId { get; }
 
         public string EmailAddress { get; set; }
@@ -22,11 +24,12 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public List<string> Errors { get; set; }
 
-        public UserResponse(int userId, string emailAddress ="", Config config = null, int gold = 0, int silver = 0, int countryId = 0, int promoId = 0)
+        public UserResponse(int userId, string emailAddress ="", Config config = null, int gold = 0, int silver = 0, int bronze =0, int countryId = 0, int promoId = 0)
         {
             UserId = userId;
             Gold = gold;
             Silver = silver;
+            Bronze = bronze;
             CountryId = countryId;
             EmailAddress = emailAddress;
             PromoId = promoId;

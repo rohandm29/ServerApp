@@ -10,11 +10,17 @@ namespace Kalingo.Games.Contract.Entity.User
 
         public int CountryId { get; set; }
 
-        public FbUser(string userName, string token, int countryId)
+        public string DeviceId { get; }
+
+        public string Version { get; }
+
+        public FbUser(string userName, string token, int countryId, string deviceId, string version)
         {
             UserName = userName;
             Token = token;
             CountryId = countryId;
+            DeviceId = deviceId;
+            Version = version;
         }
     }
 }

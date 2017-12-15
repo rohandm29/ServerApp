@@ -26,7 +26,9 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     new
                     {
                         @userName = user.UserName,
-                        @countryId = user.CountryId
+                        @countryId = user.CountryId,
+                        @deviceId = user.DeviceId,
+                        @version = user.Version
                     },
                     commandType: CommandType.StoredProcedure);
 

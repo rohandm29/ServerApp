@@ -113,7 +113,7 @@
     <Compile Include="Data\DatabaseQuery\GetCaptchaQuery.cs" />
     <Compile Include="Data\DatabaseQuery\UpdateUserCommand.cs" />
     <Compile Include="Data\DatabaseQuery\AddUserCommand.cs" />
-    <Compile Include="Data\DatabaseQuery\AllocateGoldCoinsCommand.cs" />
+    <Compile Include="Data\DatabaseQuery\AllocateCoinsCommand.cs" />
     <Compile Include="Data\DatabaseQuery\CloseMinesBoomCommand.cs" />
     <Compile Include="Data\DatabaseQuery\CreateMinesBoomCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetUserQuery.cs" />
