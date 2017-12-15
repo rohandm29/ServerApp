@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.User;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
 using Kalingo.WebApi.Domain.Services;
-using NLog;
 using Kalingo.WebApi.Domain;
 
 namespace Kalingo.WebApi.Processors
@@ -14,7 +12,6 @@ namespace Kalingo.WebApi.Processors
     public class UserProcessor
     {
         private readonly UserRepository _repository;
-        private static Logger _logger = LogManager.GetCurrentClassLogger();
 
         public UserProcessor(UserRepository repository)
         {

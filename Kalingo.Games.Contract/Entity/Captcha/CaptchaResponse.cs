@@ -2,19 +2,19 @@
 {
     public class CaptchaResponse
     {
-        public int CaptchaId { get; }
+        public int CaptchaId { get; private set; }
 
         public string Image { get; private set; }
 
         public CaptchaResponse(int captchaId, string image)
         {
             CaptchaId = captchaId;
-            Image = Append(image);
+            Image = image;
         }
 
-        private string Append(string image)
+        public void Update()
         {
-            return  image.Substring(0, 10) + image;
+            Image = Image.Substring(0, 10) + Image;
         }
     }
 }

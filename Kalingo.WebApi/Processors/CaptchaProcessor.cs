@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.Captcha;
@@ -39,6 +38,8 @@ namespace Kalingo.WebApi.Processors
 
                 response = await _captchaRepository.GetCaptcha(id, captchaArgs);
                 CaptchaDictionary.Add(response);
+
+                response.Update();
                 return response;
             }
             catch (Exception e)
@@ -52,6 +53,8 @@ namespace Kalingo.WebApi.Processors
         {
             try
             {
+                Log.Info($"GameId - {captchaAnswerRequest.GameId}, Captcha {captchaAnswerRequest.Answer}");
+
                 var isCorrect = await _captchaRepository.SubmitCaptcha(captchaAnswerRequest);
 
                 return isCorrect

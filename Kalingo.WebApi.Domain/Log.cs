@@ -9,7 +9,11 @@ namespace Kalingo.WebApi.Domain
 
         public static void Error(Exception e)
         {
-            _logger.Error($"Error: GetUser() - {e.Message} \n {e.StackTrace} \n -------------------");
+            _logger.Error($"Error: {e.Message} \n {e.StackTrace} \n -------------------");
+        }
+        public static void Info(string message)
+        {
+            _logger.Error($"Info: {message} \n ");
         }
     }
 }
