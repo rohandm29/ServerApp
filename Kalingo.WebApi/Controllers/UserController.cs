@@ -79,7 +79,7 @@ namespace Kalingo.WebApi.Controllers
         /// <param name="updateUser"></param>
         /// <returns></returns>
         [Route("Update")]
-        [HttpPatch]
+        [HttpPost]
         public async Task<IHttpActionResult> UpdateUser(UpdateUserRequest updateUser)
         {
             await _processor.UpdateUser(updateUser);
