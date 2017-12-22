@@ -26,6 +26,7 @@ namespace Kalingo.WebApi.Domain.Data.DatabaseQuery
                     new
                     {
                         @userName = user.UserName,
+                        @emailAddress = user.EmailAddress,
                         @countryId = user.CountryId,
                         @deviceId = user.DeviceId,
                         @version = user.Version

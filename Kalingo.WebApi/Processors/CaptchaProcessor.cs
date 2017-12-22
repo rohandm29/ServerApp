@@ -34,7 +34,10 @@ namespace Kalingo.WebApi.Processors
                 var response = CaptchaDictionary.Get(id);
 
                 if (response != null)
+                {
+                    await _captchaRepository.AddCaptcha(id, captchaArgs);
                     return response;
+                }
 
                 response = await _captchaRepository.GetCaptcha(id, captchaArgs);
                 CaptchaDictionary.Add(response);

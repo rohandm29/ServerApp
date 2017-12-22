@@ -8,6 +8,9 @@
       <Setting name="KalingoDb" value="Server=tcp:kalingo.database.windows.net,1433;Initial Catalog=KalingoDb;Persist Security Info=False;User ID=KalingoAdmin;Password=Kalingo2017;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;" />
       <Setting name="MbTotalChances" value="5" />
       <Setting name="MbTotalGifts" value="3" />
+      <Setting name="AuthEnabled" value="false" />
+      <Setting name="VoucherMaxId" value="4" />
+      <Setting name="SettingsCacheExpirationMin" value="3" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="rohandm29@gmail.com" />
       <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEBMLDmI/WW+7Qcz/2UGfUlkwDQYJKoZIhvcNAQEBBQAEggEA1lAoGD4vdfCj20+LfkfzI6eNYcFPqus5ntgnOwwdjWiwKugUtglTckLjn0ONZ9kPEhGryVEP7wun0jBJX7Sti1wniIBfuUf1y40xAXL3F4A7hs+rTcY4wTcBj6dJvMPMUMEKFsWZUZC85N8krPcf/XgLThsy/tL9sT18iSyhASKtyTXRCM5h6VgaeCXLbH7EwJDVNdoT96AUmToOrRwwK+WM4USUtpzTJO7SJXLGvu7fNkPAQ8Xu2Z8WOHw+jycgXrbuPUq39WH2euB7DE/jhc7qwGoR/9ks2sOdrx9GBTJrNw1Xk7clNzprvuq64n0rCtdFuILDIkdPDawQnDfVFTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECJraL3T/t3t3gBCQmty/3cY7uurMBAQI/Kfd" />

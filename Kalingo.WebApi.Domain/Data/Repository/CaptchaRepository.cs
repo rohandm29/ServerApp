@@ -10,11 +10,13 @@ namespace Kalingo.WebApi.Domain.Data.Repository
     public class CaptchaRepository
     {
         private readonly GetCaptchaQuery _getCaptchaQuery;
+        private readonly AddCaptchaCommand _addCaptcha;
         private readonly SubmitCaptchaCommand _submitCaptchaCommand;
 
-        public CaptchaRepository(GetCaptchaQuery getCaptchaQuery, SubmitCaptchaCommand submitCaptcha)
+        public CaptchaRepository(GetCaptchaQuery getCaptchaQuery, AddCaptchaCommand addCaptcha, SubmitCaptchaCommand submitCaptcha)
         {
             _getCaptchaQuery = getCaptchaQuery;
+            _addCaptcha = addCaptcha;
             _submitCaptchaCommand = submitCaptcha;
         }
 
@@ -26,6 +28,11 @@ namespace Kalingo.WebApi.Domain.Data.Repository
         public async Task<bool> SubmitCaptcha(CaptchaAnswerRequest captchaAnswer)
         {
             return await _submitCaptchaCommand.Execute(captchaAnswer);
+        }
+
+        public async Task AddCaptcha(int id, CaptchaRequest captchaArgs)
+        {
+            await _addCaptcha.Execute(id, captchaArgs);
         }
     }
 }

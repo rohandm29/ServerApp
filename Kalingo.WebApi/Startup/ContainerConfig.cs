@@ -63,6 +63,7 @@ namespace Kalingo.WebApi.Startup
             Builder.RegisterType<TerminateMinesBoomCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<AllocateCoinsCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetCaptchaQuery>().WithParameter("connectionString", connectionString).SingleInstance();
+            Builder.RegisterType<AddCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<SubmitCaptchaCommand>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<GetVouchersQuery>().WithParameter("connectionString", connectionString).SingleInstance();
             Builder.RegisterType<VoucherClaimedCommand>().WithParameter("connectionString", connectionString).SingleInstance();

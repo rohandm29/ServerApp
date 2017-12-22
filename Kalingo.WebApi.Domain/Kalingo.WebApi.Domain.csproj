@@ -102,6 +102,7 @@
     <Compile Include="Data\Cache\CaptchaDictionary.cs" />
     <Compile Include="Data\Cache\MinesBoomCache.cs" />
     <Compile Include="Data\DatabaseQuery\AddFbUserCommand.cs" />
+    <Compile Include="Data\DatabaseQuery\AddCaptchaCommand.cs" />
     <Compile Include="Data\DatabaseQuery\GetUserPlayCountQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetMinesboomSettingsQuery.cs" />
     <Compile Include="Data\DatabaseQuery\GetConfigQuery.cs" />
