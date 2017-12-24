@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ServiceDefinition name="KalingoCloudService" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition" schemaVersion="2015-04.2.6">
-  <WebRole name="Kalingo.WebApi" vmsize="Small">
+  <WebRole name="Kalingo.WebApi" vmsize="ExtraSmall">
     <Sites>
       <Site name="Web">
         <Bindings>
@@ -14,6 +14,9 @@
       <Setting name="KalingoDb" />
       <Setting name="MbTotalChances" />
       <Setting name="MbTotalGifts" />
+      <Setting name="AuthEnabled" />
+      <Setting name="VoucherMaxId" />
+      <Setting name="SettingsCacheExpirationMin" />
     </ConfigurationSettings>
     <Endpoints>
       <InputEndpoint name="Endpoint1" protocol="http" port="80" />

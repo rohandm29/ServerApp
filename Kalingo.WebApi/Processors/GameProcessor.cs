@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain;
+using Kalingo.WebApi.Domain.Exceptions;
 using Kalingo.WebApi.Domain.Facades;
 
 namespace Kalingo.WebApi.Processors
@@ -18,17 +19,9 @@ namespace Kalingo.WebApi.Processors
 
         public async Task<NewMinesboomResponse> ExecuteNewGame(NewMinesboomRequest minesboomRequest)
         {
-            try
-            {
-                var newMinesboomResponse = await _minesBoomFacade.ProcessNewGame(minesboomRequest);
-                
-                return newMinesboomResponse;
-            }
-            catch (Exception e)
-            {
-                Log.Error(e);
-                return default(NewMinesboomResponse);
-            }
+            var newMinesboomResponse = await _minesBoomFacade.ProcessNewGame(minesboomRequest);
+
+            return newMinesboomResponse;
         }
 
         public async Task<GameResult> ExecuteSelection(GameArgs gameArgs)

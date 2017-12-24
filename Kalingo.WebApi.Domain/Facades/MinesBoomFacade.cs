@@ -37,6 +37,11 @@ namespace Kalingo.WebApi.Domain.Facades
 
                 return new NewMinesboomResponse(gameId, settings);
             }
+            catch (PlayLimitExceedException ex)
+            {
+                Log.Error(ex);
+                return new NewMinesboomResponse(0, new List<Settings>());
+            }
             catch (Exception e)
             {
                 Log.Error(e);

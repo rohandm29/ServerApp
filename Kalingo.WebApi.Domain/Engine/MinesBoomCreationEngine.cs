@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Kalingo.Games.Contract.Entity.MinesBoom;
 using Kalingo.WebApi.Domain.Configuration;
 using Kalingo.WebApi.Domain.Data.Cache;
 using Kalingo.WebApi.Domain.Data.Repository;
 using Kalingo.WebApi.Domain.Entity;
+using Kalingo.WebApi.Domain.Exceptions;
 
 namespace Kalingo.WebApi.Domain.Engine
 {
@@ -27,6 +29,11 @@ namespace Kalingo.WebApi.Domain.Engine
             var randomSequence = _randomProvider.CreateRandomSequenceForMinesBoom();
 
             var gameId = await _gamesRepository.CreateMinesBoom(minesboomRequest, RandomProvider.GetDelimatedSequence(randomSequence));
+
+            if (gameId == -1)
+            {
+                throw new PlayLimitExceedException("Play limit exceeded");
+            }
 
             var gameData = new MinesBoomGameState(minesboomRequest.UserId, randomSequence, _mbGameSettings.TotalGifts, _mbGameSettings.TotalChances);
 
